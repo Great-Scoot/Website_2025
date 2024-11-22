@@ -1,0 +1,6 @@
+// Default font family, size, and weight.
+@mixin default-font-family-size-and-weight() {
+    font-family: $default-font-family; 
+    font-size: $default-font-size;
+    font-weight: $default-font-weight;
+}

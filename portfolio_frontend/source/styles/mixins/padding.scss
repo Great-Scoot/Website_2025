@@ -1,0 +1,14 @@
+// Padding
+@mixin default-padding-all {
+    padding: $default-padding;
+}
+
+@mixin default-padding-top-and-bottom() {
+    padding-top: $default-padding;
+    padding-bottom: $default-padding;
+}
+
+@mixin default-padding-left-and-right() {
+    padding-left: $default-padding;
+    padding-right: $default-padding;
+}

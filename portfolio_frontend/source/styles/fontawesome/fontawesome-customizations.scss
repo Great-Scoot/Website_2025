@@ -1,0 +1,30 @@
+// Style Revisions
+.fas:not(.noMarginRight), .far:not(.noMarginRight), .fab:not(.noMarginRight), svg[data-prefix*="fa"]:not(.noMarginRight) {
+    margin-right: $default-margin-right;
+}
+
+.fas.noMarginRight, .far.noMarginRight, .fab.noMarginRight, svg[data-prefix*="fa"].noMarginRight {
+    margin-right: 0;
+}
+
+// Spin
+.fa-spin.spin-fast {
+    animation: spin infinite 1s ease-in-out;
+}
+
+.fa-spin {
+    animation: spin infinite 2s ease-in-out;
+}
+
+.fa-spin.spin-slow {
+    animation: spin infinite 3s ease-in-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

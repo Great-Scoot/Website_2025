@@ -1,0 +1,20 @@
+// My Variables
+@import './variables.scss';
+
+// My Mixins
+@import './mixins.scss';
+
+// Base Styles
+@import './base.scss';
+
+// Customize Bootstrap
+@import './bootstrap/bootstrap-customizations.scss';
+
+// Bootstrap
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+// Customize FontAwesome
+@import './fontawesome/fontawesome-customizations.scss';
+
+// Application Styles
+@import './snippets/application.scss';

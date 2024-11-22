@@ -1,0 +1,78 @@
+// Work
+.workButton {
+    width: calc(100% - 0.33rem);
+    height: 6.67rem;
+    position: relative;
+    text-align: center;
+    color: $white;
+    background: $custom-blue-1;
+    background: radial-gradient(ellipse at bottom, $custom-blue-1 0%, $default-background-color 100%);
+    border: none;
+    border-bottom: 6px solid $custom-black-one-third;
+    border-radius: $default-border-radius;
+    transition: all $transition-duration-fast ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 0.165rem 0.33rem 0.165rem;
+
+    @media (min-width: $breakpoint-md) {
+        height: 10rem;
+    }
+
+    &.pink {
+        background: $pink;
+        background: radial-gradient(ellipse at bottom, $pink 0%, $red 100%);
+    }
+
+    &.yellow {
+        background: $yellow;
+        background: radial-gradient(ellipse at bottom, $yellow 0%, $orange 100%);
+    }
+
+    &.green {
+        background: $green;
+        background: radial-gradient(ellipse at bottom, $green 0%, $yellow 100%);
+    }
+
+    .workText {
+        position: absolute;
+        top: calc(50% + 1.5px); right: 0; left: 0;
+        transform: translateY(-50%);
+        transition: top $transition-duration-fast ease-in-out;
+
+        .workSubTitle {
+            font-style: italic;
+        }
+    }
+
+    // State
+    &.desaturate {
+        filter: grayscale(1);
+    }
+
+    &.shrink {
+        height: 6.67rem;
+    }
+
+    &:hover {
+        border-bottom-width: 9px;
+
+        .workText {
+            top: calc(50% - 1.5px);
+        }
+    }
+}
+
+.workContent {
+    height: 0;
+    scale: 0;
+    transition: scale $transition-duration-fast ease-in-out;
+    
+    // State
+    &.active {
+        height: auto;
+        scale: 1;
+        background-color: $default-background-color;
+        margin: $default-margin 0;
+    }
+}

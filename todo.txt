@@ -1,0 +1,12 @@
+== TO DO ==
+
+Update settings.py to handle dev vs prod (API Only vs API + HTML/REACT)
+    - webpack:dev will need API to query. In prod, Python could include data in the response, or the client could fetch the data. What is best?
+    - How can python run on port 80/443?
+        - SSL stuff?
+CMD to bundle for prod && then start Python?
+Pass ENV_WEBSITE_VERSION to client-side
+    - Pass other stuff?
+Easy way to deploy to cloud?
+    - migrations?
+    - Only include prod stuff.

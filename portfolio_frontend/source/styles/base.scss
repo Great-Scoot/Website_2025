@@ -1,0 +1,63 @@
+// Base Styles
+html, body {
+    width: 100%; height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: $default-text-color;
+    @include default-font-family-size-and-weight();
+    background-color: $default-background-color;
+    overflow-x: hidden; overflow-y: auto;
+}
+
+form {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+
+    input, select, textarea {
+        margin-bottom: $default-margin;
+    }
+
+    button {
+        @include default-margin-top-and-bottom();
+    }
+
+    button.noMarginTop {
+        margin-top: 0;
+    }
+
+    button.noMarginBottom {
+        margin-bottom: 0;
+    }
+}
+
+iframe {
+    width: 100%;
+    display: block;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+input, select, textarea {
+    color: $default-text-color;
+    background-color: $default-background-color;
+    padding: 0;
+    margin: 0;
+}
+
+select {
+    cursor: pointer;
+    text-overflow: ellipsis;
+}
+
+[itemprop="telephone"] {
+    white-space: nowrap;
+}
+
+nav ul, footer ul {
+    list-style: none;
+}

@@ -1,0 +1,318 @@
+// Navigation
+#navigation {
+    // Vars
+    $font-size: 21px;
+
+    width: 100%; min-height: auto;
+    position: fixed;
+    z-index: 9999;
+    background-color: transparent;
+    transition: all $transition-duration-fast ease-in-out;
+    overflow: hidden;
+    
+    // State
+    &.closed {
+        &.showNavBackground {
+            background: $custom-blue-1;
+            background: radial-gradient(ellipse at bottom, $custom-blue-1 0%, $default-background-color calc(100% - $default-padding));
+            border-bottom: 3px solid $custom-blue-2;
+            box-shadow: 0px 0px 6px 6px $custom-black-one-third;
+        }
+    }
+
+    &.opening, &.open, &.closing {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    #navConstrainment {
+        width: 100%; max-width: 1280px; min-height: 100%;
+        position: relative;
+        display: block;
+        padding: $default-padding;
+        transition: padding $transition-duration-fast ease-in-out;
+        margin: 0 auto;
+
+        // State
+        &.showNavBackground {
+            padding: $default-padding-half $default-padding;
+        }
+
+        #navMenuBackground {
+            max-height: $navigation-min-height;
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            clip-path: circle(21px at 110% -10%); /* Offscreen by default. Updated by JS. */
+            transition: clip-path $transition-duration-slow ease-in-out;
+    
+            // State
+            &.closed {
+                max-height: $navigation-min-height;
+            }
+    
+            &.opening, &.open {
+                max-height: 150%;
+                background: $custom-blue-1;
+                background: linear-gradient(45deg, $purple 0%, $custom-blue-1 100%);
+            }
+    
+            &.closing {
+                max-height: 150%;
+                background: $custom-blue-1;
+                background: linear-gradient(45deg, $purple 0%, $custom-blue-1 100%);
+            }
+        }
+
+        #navBrand {
+            display: inline-block;
+            position: relative;
+            font-size: $font-size;
+            padding: 0.33rem 1rem 0.33rem calc(1.67rem + 42px); // Making room for #navBrandImage
+            margin: 0.33rem 0;
+    
+            #navBrandImage {
+                width: 42px;
+                position: absolute;
+                top: 50%; left: 1rem;
+                z-index: 1;
+                transform: translateY(-50%);
+                border: 1px solid $secondary;
+                border-radius: 2rem;
+                cursor: pointer;
+                transition: border-color $transition-duration-fast ease-in-out;
+
+                // State
+                &:hover {
+                    border-color: $custom-blue-2;
+
+                    // Update color of sibling.
+                    + #navBrandName {
+                        color: $custom-blue-2;
+                    }
+                }
+            }
+
+            #navBrandName {
+                display: inline;
+                cursor: pointer;
+                transition: color $transition-duration-fast ease-in-out;
+    
+                // State
+                &:hover {
+                    color: $teal;
+                }
+
+                #navSignature {
+                    width: auto; max-width: initial; height: 27.5px;
+                    vertical-align: bottom;
+                }
+            }
+    
+            #navBrandSectionWrapper {
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                overflow: hidden;
+    
+                #navBrandSection {
+                    position: relative;
+                    top: 0;
+                    opacity: 1;
+    
+                    // Colors
+                    &.blue   {color: $blue;}
+                    &.cyan   {color: $cyan;}
+                    &.green  {color: $green;}
+                    &.indigo {color: $indigo;}
+                    &.orange {color: $orange;}
+                    &.pink   {color: $pink;}
+                    &.purple {color: $purple;}
+                    &.red    {color: $red;}
+                    &.teal   {color: $teal;}
+                    &.yellow {color: $yellow;}
+                    &.white  {color: $white;}
+    
+                    // Animation
+                    &.animate {
+                        animation: navBrandSectionAnimate $transition-duration-fast ease-in-out forwards;
+                        @keyframes navBrandSectionAnimate {
+                            0%   {top: 67px; opacity: 0;}
+                            100% {top: 0;    opacity: 1;}
+                        }
+                    }
+                }
+            }
+        }
+
+        #navContact {
+            position: absolute;
+            top: 6px; right: 50px;
+            z-index: 1;
+            border-color: transparent;
+            margin: $default-margin;
+            transition: margin $transition-duration-fast ease-in-out;
+
+            // State
+            &[disabled] {
+                opacity: 1;
+            }
+
+            &.showNavBackground {
+                margin: $default-margin-half $default-margin;
+            }
+        }
+    
+        #navBars {
+            width: 42px; height: 42px;
+            position: absolute;
+            top: 4px; right: 0;
+            z-index: 1;
+            font-size: $font-size;
+            color: $default-text-color;
+            border-color: transparent;
+            margin: $default-margin;
+            transition: margin $transition-duration-fast ease-in-out;
+    
+            // State
+            &[disabled] {
+                opacity: 1;
+            }
+    
+            &.showNavBackground {
+                margin: $default-margin-half $default-margin;
+            }
+
+            .fa-bars {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+        }
+
+        #navMenu {
+            position: relative;
+            z-index: 1;
+            padding: $default-padding;
+            margin: 0;
+            
+            // State
+            &.closed {
+                display: none;
+            }
+    
+            &.opening, &.open, &.closing {
+                max-width: 540px;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                margin: 50px auto;
+
+                @media (min-width: $breakpoint-md) {
+                    max-width: 720px;
+                }
+            }
+
+            // If <NavButtons /> wrap to 3 rows or more, hide overflow. If less, allow full shadow effect to display.
+            &.navMenuLimitOverflow {
+                overflow: hidden;
+            }
+    
+            .navButton {
+                width: 100px; height: 100px;
+                position: relative;
+                z-index: 1;
+                font-size: 18px;
+                opacity: 0;
+                border-color: transparent;
+                transition: opacity $transition-duration-fast ease-in-out;
+                margin: $default-margin;
+
+                @media (min-width: $breakpoint-sm) {
+                    width: 125px; height: 125px;
+                }
+
+                @media (min-width: $breakpoint-md) {
+                    width: 150px; height: 150px;
+                }
+
+                .NBShadow {
+                    width: 100%; height: 100%;
+                    position: absolute;
+                    top: 0; right: 0; bottom: 0; left: 0;
+                    z-index: -2;
+
+                    .NBSRight, .NBSBottom {
+                        width: 100%; height: 100%;
+                        position: absolute;
+
+                        &::before {
+                            content: '';
+                            width: 0; height: 100%;
+                            position: absolute;
+                            opacity: 0;
+                            transition-property: width, opacity;
+                            transition-duration: $transition-duration-fast;
+                            transition-timing-function: ease-in-out;
+                            background: transparent;
+                            background: linear-gradient(0deg, rgba(15,15,45,0) 0%, rgba(15,15,45,0) 50%, rgba(15,15,45,0.2) 100%);
+                        }
+                    }
+
+                    .NBSRight {
+                        top: 0; left: 100%;
+                        transform: rotate(-90deg);
+
+                        &::before {
+                            top: 0; left: -50%;
+                            transform: skewX(-45deg);
+                        }
+                    }
+
+                    .NBSBottom {
+                        top: 100%; left: 0;
+
+                        &::before {
+                            top: 0; right: -50%;
+                            transform: skewX(45deg);
+                        }
+                    }
+                }
+
+                .NBContent {
+                    position: relative;
+                    top: 0;
+                    transition: top $transition-duration-fast ease-in-out;
+                }
+
+                &:hover .NBContent {
+                    top: -0.33rem;
+                }
+
+                // State
+                &.open {
+                    // Fade in buttons when .open.
+                    opacity: 1;
+
+                    // Force hoverScaleBg when .active.
+                    &.active.hoverScaleBg::before {
+                        background-color: $custom-blue-1;
+                        scale: 1;
+                    }
+
+                    // Force shadow when .active or on hover.
+                    &.active:not(.hideNavButtonShadow), &:hover {
+                        .NBSRight::before, .NBSBottom::before {
+                            width: 100%;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                // Override the border-radius of this effect.
+                &.hoverScaleBg::before {
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

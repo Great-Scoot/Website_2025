@@ -17,9 +17,12 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Take environment variables from .env file
+# VARIABLES FROM ENV FILE
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '..', '.env'))
+
+WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server needs to reload in order to pickup changes in .env file
+WEBSITE_VERSION = env('ENV_WEBSITE_VERSION').strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -28,7 +31,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '..', '.env'))
 SECRET_KEY = 'django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = WEBSITE_MODE == 'dev'
 
 ALLOWED_HOSTS = ['*']
 
@@ -88,11 +91,11 @@ WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('ENV_DB_NAME'),
-        'USER': env('ENV_DB_USER'),
-        'PASSWORD': env('ENV_DB_PASSWORD'),
-        'HOST': env('ENV_DB_HOST'),
-        'PORT': env('ENV_DB_PORT'),
+        'NAME': env('ENV_DB_NAME').strip(),
+        'USER': env('ENV_DB_USER').strip(),
+        'PASSWORD': env('ENV_DB_PASSWORD').strip(),
+        'HOST': env('ENV_DB_HOST').strip(),
+        'PORT': env('ENV_DB_PORT').strip(),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         },
@@ -178,6 +181,3 @@ DJOSER = {
 INTERNAL_IPS = [ # Related to debug_toolbar
     '127.0.0.1',
 ]
-
-# Custom settings
-PROJECT_VERSION = 'alpha'

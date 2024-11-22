@@ -1,0 +1,35 @@
+// Defaults
+$default-text-color: #f4f5f7;
+$default-font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+$default-font-size: 15px;
+$default-font-weight: normal;
+$default-background-color: #19163d;
+$default-border-radius: 1rem;
+$default-border-radius-small: 3px;
+$default-padding: 1rem;
+$default-padding-half: calc($default-padding / 2);
+$default-margin: 1rem;
+$default-margin-half: calc($default-margin / 2);
+$default-margin-right: 0.33rem;
+
+// Custom Colors
+$custom-blue-1: #1c286b;
+$custom-blue-2: #3c32cf;
+$custom-black-one-third:  rgba(15, 15, 45, 0.33);
+$custom-black-one-half:   rgba(15, 15, 45, 0.50);
+$custom-black-two-thirds: rgba(15, 15, 45, 0.67);
+
+// Grid
+$breakpoint-xs:  0px;
+$breakpoint-sm:  576px;
+$breakpoint-md:  768px;
+$breakpoint-lg:  992px;
+$breakpoint-xl:  1200px;
+$breakpoint-xxl: 1400px;
+
+// Navigation
+$navigation-min-height: 78.25px;
+
+// Transitions
+$transition-duration-fast: 0.25s; 
+$transition-duration-slow: 0.5s;

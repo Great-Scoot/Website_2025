@@ -1,0 +1,198 @@
+/* Notes:
+    - This file is imported before Bootstrap, so don't reference bootstrap variables as the value for a given property.
+*/
+
+// Options
+
+// Original:
+
+// $enable-caret:       true;
+// $enable-rounded:     true;
+// $enable-shadows:     false;
+// $enable-gradients:   false;
+// $enable-transitions: true;
+
+// Color Palate
+
+// Original:
+
+// $white:    #fff;
+// $gray-100: #f8f9fa;
+// $gray-200: #e9ecef;
+// $gray-300: #dee2e6;
+// $gray-400: #ced4da;
+// $gray-500: #adb5bd;
+// $gray-600: #6c757d;
+// $gray-700: #495057;
+// $gray-800: #343a40;
+// $gray-900: #212529;
+// $black:    #000;
+
+// Custom:
+
+$white:    #f4f5f7;
+$gray-100: #dcdee2;
+$gray-200: #b6bac2;
+$gray-300: #8e93a0;
+$gray-400: #686e7d;
+$gray-500: #4b5161;
+$gray-600: #353a48;
+$gray-700: #242832;
+$gray-800: #16191f;
+$gray-900: #0c0d10;
+$black:    #060607;
+
+// Original:
+
+// $red:       #dc3545;
+// $pink:      #d63384;
+// $orange:    #fd7e14;
+// $yellow:    #ffc107;
+// $green:     #198754;
+// $teal:      #20c997;
+// $cyan:      #0dcaf0;
+// $blue:      #0d6efd;
+// $indigo:    #6610f2;
+// $purple:    #6f42c1;
+
+// Custom:
+
+$red:       #f02951;
+$pink:      #ec6683;
+$orange:    #ec7239;
+$yellow:    #e6c213;
+$green:     #2db963;
+$teal:      #18c1df;
+$cyan:      #27e7b4;
+$blue:      #3364c7;
+$indigo:    #5603ad;
+$purple:    #8965e0;
+
+// Theme Colors
+
+// Original:
+
+// $primary:   $blue;
+// $secondary: $gray-600;
+// $success:   $green;
+// $info:      $cyan;
+// $warning:   $yellow;
+// $danger:    $red;
+// $light:     $gray-100;
+// $dark:      $gray-900;
+
+// Custom:
+
+$primary:   $teal;
+$secondary: $gray-600;
+$success:   $cyan;
+$info:      $blue;
+$warning:   $yellow;
+$danger:    $red;
+$light:     $gray-100;
+$dark:      $gray-900;
+
+// Body
+
+// Original:
+
+// $font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+// $body-bg:    $white;
+// $body-color: $gray-900;
+
+// Custom:
+$font-family-sans-serif: $default-font-family;
+$body-bg:    $default-background-color;
+$body-color: $default-text-color;
+
+// Links
+
+// Original:
+
+// $link-color:            $primary;
+// $link-decoration:       underline;
+// $link-hover-decoration: null;
+
+// Style Additions Revisions
+.btn.btnCyan {
+    &.btn-primary {
+        background-color: $cyan;
+        border-color: $cyan;
+    }
+
+    &.btn-outline-primary {
+        color: $cyan;
+        border-color: $cyan;
+        &:hover {
+            color: $black;
+            background-color: $cyan;
+        }
+    }
+
+    &:focus {
+        color: $black;
+        background-color: $cyan;
+    }
+}
+
+.btn.btnBlue {
+    &.btn-primary {
+        background-color: $blue;
+        border-color: $blue;
+    }
+
+    &.btn-outline-primary {
+        color: $blue;
+        border-color: $blue;
+        &:hover {
+            color: $black;
+            background-color: $blue;
+        }
+    }
+
+    &:focus {
+        color: $black;
+        background-color: $blue;
+    }
+}
+
+.card {
+    background-color: $default-background-color !important;
+    border: 2px solid $secondary !important;
+    z-index: 2;
+
+    .card-body {
+        position: relative;
+
+        .card-title {
+            margin-bottom: $default-margin;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+form {
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .input-group {
+        margin-bottom: $default-margin;
+
+        input, select, textarea {
+            margin-bottom: 0;
+        }
+
+        button {
+            margin: 0;
+        }
+    }
+
+    button {
+        margin-right: $default-margin-right;
+    }
+}

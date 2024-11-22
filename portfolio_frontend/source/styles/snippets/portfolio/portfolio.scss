@@ -1,0 +1,122 @@
+// Portfolio
+#portfolio {
+
+    #hero {
+        padding-bottom: 1rem !important;
+
+        &.sectionDarkened::before {
+            top: -#{$navigation-min-height} !important;
+        }
+
+        #heroCard {
+            box-shadow: 0 0 30px 15px $custom-black-one-half;
+            margin-top: 5rem;
+            margin-bottom: 2.5rem;
+    
+            #HeroCardHeaderImage {
+                width: 150px;
+                position: absolute;
+                top: 0; left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                border-radius: 75px;
+                padding: 4px;
+            }
+    
+            #heroCardBody {
+                font-size: 0.9rem;
+                margin-top: 4rem;
+    
+                @media (min-width: $breakpoint-md) {
+                    margin-top: 2.5rem;
+                }
+
+                #heroButton {
+                    margin: 0.5rem 0;
+                }
+            }
+        }
+    }
+
+    #latestWork {
+
+        #latestWorkHeading {
+            color: $cyan;
+        }
+
+        #latestWorkContent {
+            margin: $default-margin auto;
+
+            #latestWorkRow {
+                position: relative;
+                justify-content: center;
+            }
+        }
+
+        #webDev .workDescription, #webcasting .workDescription {
+            @media (min-width: $breakpoint-md) {
+                margin-left: 0;
+            }
+        }
+
+        #eventProduction {
+
+            #eventProductionDescription {
+                overflow: hidden;
+                margin-bottom: $default-margin;
+
+                #EPImage {
+                    width: 100%;
+                    aspect-ratio: 4/3;
+                    scale: 0;
+                    opacity: 0;
+                    transition: all $transition-duration-fast ease-in-out;
+                    background-clip: content-box;
+                    background-size: cover;
+                    background-position: center;
+                    padding: 4px;
+
+                    &.loaded {
+                        scale: 1;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            #EPSliderBackground {
+                overflow: hidden;
+
+                #eventProductionSlider {
+                    width: 250px;
+                    aspect-ratio: 16/9;
+                    margin-top: $default-margin-half;
+                    margin-bottom: $default-margin-half;
+                }
+            }
+        }
+    }
+
+    #previousWork {
+
+        #previousWorkHeading {
+            color: $purple;
+        }
+
+        #PWDescription {
+
+            #PWYouTubeContainer {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    #goToProfile {
+        min-height: auto !important;
+        text-align: center;
+
+        .btn {
+            min-width: 150px;
+            margin: $default-margin-half;
+        }
+    }
+}

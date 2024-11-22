@@ -1,0 +1,14 @@
+// Margin
+@mixin default-margin-all {
+    margin: $default-margin;
+}
+
+@mixin default-margin-top-and-bottom() {
+    margin-top: $default-margin;
+    margin-bottom: $default-margin;
+}
+
+@mixin default-margin-left-and-right() {
+    margin-left: $default-margin;
+    margin-right: $default-margin;
+}

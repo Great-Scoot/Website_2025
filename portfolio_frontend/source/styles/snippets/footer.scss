@@ -1,0 +1,95 @@
+// Footer
+#footer {
+    // Vars
+    $font-size: 18px;
+
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    font-size: $font-size;
+    text-align: center;
+    background: $custom-blue-1;
+    background: radial-gradient(ellipse at bottom, $custom-blue-1 0%, $default-background-color calc(100% - $default-padding));
+    border-top: 3px solid $custom-blue-2;
+    padding: $default-padding;
+
+    // Classes
+    .footerCol {
+        padding: $default-padding-half;
+        margin-bottom: $default-margin-half;
+
+        .footerNavMenu {
+            padding: 0;
+            margin: 0;
+    
+            .footerNavButton {
+                width: 100%; max-width: 167px;
+                font-size: $font-size;
+                border-color: transparent;
+
+                // Force hoverScaleBg when .active.
+                &.active.hoverScaleBg::before {
+                    background-color: $custom-blue-1;
+                    scale: 1;
+                }
+            }
+        }
+
+        .footerSocialButton {
+            width: 42px; height: 42px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            color: $white;
+            font-size: 27.5px;
+            border-radius: 21px;
+            margin-right: $default-margin-right;
+
+            svg {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+        }
+    }
+
+    // IDs
+    #footerConstrainment {
+        max-width: 1280px;
+        position: relative;
+        margin: 0 auto;
+
+        #footerColumnBrand {
+    
+            #footerSignature {
+                width: 150px;
+                cursor: pointer;
+                margin-bottom: $default-margin;
+    
+                @media (min-width: $breakpoint-md) {
+                    margin-top: 0.33rem;
+                }
+            }
+        }
+    
+        #footerColumnSocial {
+    
+            #FCSHeading {
+                font-size: 18px;
+    
+                @media (min-width: $breakpoint-md) {
+                    margin-top: 0.33rem;
+                }
+            }
+    
+            #FCSBackground {
+                width: 100%; max-width: 133px; height: 43px;
+                position: relative;
+                // background: $custom-black-two-thirds;
+                border-radius: 2rem;
+                padding: 0 0.75rem;
+                margin: 0 auto;
+            }
+        }
+    }
+}
