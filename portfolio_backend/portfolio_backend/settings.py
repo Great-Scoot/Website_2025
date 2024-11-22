@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
+# from pathlib import Path
 import os
 import environ
 
@@ -32,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'debug_toolbar',
-    # 'django_filters',
-    # 'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'djoser',
+    'debug_toolbar',
+    'django_filters',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     'portfolio_app',
 ]
 
@@ -58,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio_backend.urls'
@@ -66,7 +65,9 @@ ROOT_URLCONF = 'portfolio_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['portfolio_backend/templates'],
+        'DIRS': [
+            'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -100,7 +100,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -119,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -131,7 +129,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -139,6 +136,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     'portfolio_backend/static/',
+    'portfolio_app/static/'
 ]
 
 # Default primary key field type

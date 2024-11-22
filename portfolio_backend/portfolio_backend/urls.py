@@ -15,8 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.conf import settings
+
+from portfolio_backend import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
+    path('auth/',  include('djoser.urls')),
+    path('auth/',  include('djoser.urls.authtoken')),
+    path('portfolio/', include('portfolio_app.urls'), name='portfolio'),
+    path('', views.index, name='index'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt'),
+    ]
+else:
+    handler400 = 'portfolio_backend.views.handler400'
+    handler403 = 'portfolio_backend.views.handler403'
+    handler404 = 'portfolio_backend.views.handler404'
+    handler500 = 'portfolio_backend.views.handler500'
