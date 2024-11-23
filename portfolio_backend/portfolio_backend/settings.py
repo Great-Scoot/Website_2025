@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '..', '.env'))
 
-WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server needs to reload in order to pickup changes in .env file
+WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env file
 WEBSITE_VERSION = env('ENV_WEBSITE_VERSION').strip()
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +33,12 @@ SECRET_KEY = 'django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = WEBSITE_MODE == 'dev'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
+
+if WEBSITE_MODE == 'dev':
+    ALLOWED_HOSTS += [
+        '*'
+    ]
 
 # Application definition
 
@@ -44,13 +49,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
     'portfolio_app',
 ]
+
+if WEBSITE_MODE == 'dev':
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,8 +69,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+if WEBSITE_MODE == 'dev':
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
 
 ROOT_URLCONF = 'portfolio_backend.urls'
 
@@ -142,6 +156,10 @@ STATICFILES_DIRS = [
     'portfolio_app/static/'
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -178,6 +196,7 @@ DJOSER = {
     # "LOGIN_FIELD": "email", # If login via email is desired...
 }
 
-INTERNAL_IPS = [ # Related to debug_toolbar
-    '127.0.0.1',
-]
+if WEBSITE_MODE == 'dev':
+    INTERNAL_IPS = [ # Related to debug_toolbar
+        '127.0.0.1',
+    ]

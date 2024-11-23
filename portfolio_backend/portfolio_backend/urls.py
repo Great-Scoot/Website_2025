@@ -28,7 +28,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 ]
 
-if settings.DEBUG:
+if settings.WEBSITE_MODE == 'dev':
     urlpatterns += [
         path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt'),
     ]
