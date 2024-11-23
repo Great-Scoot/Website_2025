@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-# from pathlib import Path
 import os
 import environ
 
@@ -21,21 +20,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '..', '.env'))
 
-WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env file
-WEBSITE_VERSION = env('ENV_WEBSITE_VERSION').strip()
+ENV_WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env file
+ENV_WEBSITE_VERSION = env('ENV_WEBSITE_VERSION').strip()
+ENV_DJANGO_SECRET_KEY = env('ENV_DJANGO_SECRET_KEY').strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i'
+SECRET_KEY = ENV_DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = WEBSITE_MODE == 'dev'
+DEBUG = ENV_WEBSITE_MODE == 'dev'
 
 ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
 
-if WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev':
     ALLOWED_HOSTS += [
         '*'
     ]
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'portfolio_app',
 ]
 
-if WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev':
     INSTALLED_APPS += [
         'debug_toolbar',
     ]
@@ -72,7 +72,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-if WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev':
     MIDDLEWARE += [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     ]
@@ -113,7 +113,7 @@ DATABASES = {
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         },
-        # TODO: CONN_MAX_AGE?
+        'CONN_MAX_AGE': 300, # 5 minutes in seconds
     }
 }
 
@@ -156,7 +156,7 @@ STATICFILES_DIRS = [
     'portfolio_app/static/'
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -196,7 +196,10 @@ DJOSER = {
     # "LOGIN_FIELD": "email", # If login via email is desired...
 }
 
-if WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev':
     INTERNAL_IPS = [ # Related to debug_toolbar
         '127.0.0.1',
     ]
+
+# Other stuff
+CSRF_COOKIE_SECURE = True # Prevents transmitting the session cookie over HTTP accidentally.
