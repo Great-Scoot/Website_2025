@@ -29,5 +29,9 @@
     <body>
       <h1>Well hello there...</h1>
       <div id="base">{% block content %}{% endblock %}</div>
+      <script>
+        const systemConfig = JSON.parse('{{ system_config|safe|escapejs }}');
+        console.log(systemConfig);
+      </script>
     </body>
 </html>

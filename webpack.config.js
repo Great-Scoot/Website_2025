@@ -1,6 +1,15 @@
-require('dotenv').config();
 const path = require('path');
 
+// .env stuff...
+require('dotenv').config({path: 'public.env'});
+require('dotenv').config({path: 'secret.env'});
+
+const ENV_WEBSITE_MODE = process.env.ENV_WEBSITE_MODE;
+const EWM_TARGET_DIR   = ENV_WEBSITE_MODE == 'prod' ? 'public' : 'stage';
+
+const ENV_WEBPACK_PORT = process.env.ENV_WEBPACK_PORT;
+
+// Plugins
 const CopyPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -9,32 +18,32 @@ module.exports = (env, argv) => ({
     entry: path.join(__dirname, './portfolio_frontend/source/index.js'),
     output: {
         filename: 'scripts/bundle.js',
-        path: path.join(__dirname, './portfolio_frontend/build'),
+        path: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR),
         publicPath: '/'
     },
     devServer: {
         historyApiFallback: true, // Allows React's routing to work
         hot: true,
-        port: process.env.ENV_WEBPACK_PORT,
+        port: ENV_WEBPACK_PORT,
         static: [ // Serve static assets
             {
-                directory: path.join(__dirname, './portfolio_frontend/build/documents'),
+                directory: path.join(__dirname, './portfolio_frontend/source/documents'),
                 publicPath: '/documents'
             },
             {
-                directory: path.join(__dirname, './portfolio_frontend/build/fonts'),
+                directory: path.join(__dirname, './portfolio_frontend/source/fonts'),
                 publicPath: '/fonts'
             },
             {
-                directory: path.join(__dirname, './portfolio_frontend/build/images'),
+                directory: path.join(__dirname, './portfolio_frontend/source/images'),
                 publicPath: '/images'
             },
             {
-                directory: path.join(__dirname, './portfolio_frontend/build/languages'),
+                directory: path.join(__dirname, './portfolio_frontend/source/languages'),
                 publicPath: '/languages'
             },
             {
-                directory: path.join(__dirname, './portfolio_frontend/build/other'),
+                directory: path.join(__dirname, './portfolio_frontend/source/other'),
                 publicPath: '/other'
             }
         ]
@@ -54,11 +63,11 @@ module.exports = (env, argv) => ({
         }),
         new CopyPlugin({
             patterns: [ // Copy static files to build. This plugin is not designed to copy the bundled files.
-                {from: path.join(__dirname, './portfolio_frontend/source/documents'), to: path.join(__dirname, './portfolio_frontend/build/documents')},
-                {from: path.join(__dirname, './portfolio_frontend/source/fonts'),     to: path.join(__dirname, './portfolio_frontend/build/fonts')},
-                {from: path.join(__dirname, './portfolio_frontend/source/images'),    to: path.join(__dirname, './portfolio_frontend/build/images')},
-                {from: path.join(__dirname, './portfolio_frontend/source/languages'), to: path.join(__dirname, './portfolio_frontend/build/languages')},
-                {from: path.join(__dirname, './portfolio_frontend/source/other'),     to: path.join(__dirname, './portfolio_frontend/build/other')},
+                {from: path.join(__dirname, './portfolio_frontend/source/documents'), to: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR + '/documents')},
+                {from: path.join(__dirname, './portfolio_frontend/source/fonts'),     to: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR + '/fonts')},
+                {from: path.join(__dirname, './portfolio_frontend/source/images'),    to: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR + '/images')},
+                {from: path.join(__dirname, './portfolio_frontend/source/languages'), to: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR + '/languages')},
+                {from: path.join(__dirname, './portfolio_frontend/source/other'),     to: path.join(__dirname, './portfolio_frontend/' + EWM_TARGET_DIR + '/other')},
             ]
         })
     ],
@@ -81,7 +90,7 @@ module.exports = (env, argv) => ({
                 test: /\.(css|less|sass|scss)$/,
                 use: [ // Do not use style-loader as it's incompatible with MiniCssExtractPlugin
                     {loader: MiniCssExtractPlugin.loader, options: {
-                        publicPath: path.join(__dirname, './portfolio_frontend/build')
+                        publicPath: path.join(__dirname, './portfolio_frontend/public')
                     }},
                     {loader: 'css-loader',     options: {url: false}},
                     {loader: 'postcss-loader', options: {postcssOptions: {plugins: () => [require('autoprefixer')]}}},

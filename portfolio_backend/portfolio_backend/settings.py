@@ -16,13 +16,17 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# VARIABLES FROM ENV FILE
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '..', '.env'))
+# VARIABLES FROM ENV FILES
+public_env = environ.Env()
+secret_env = environ.Env()
 
-ENV_WEBSITE_MODE = env('ENV_WEBSITE_MODE').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env file
-ENV_WEBSITE_VERSION = env('ENV_WEBSITE_VERSION').strip()
-ENV_DJANGO_SECRET_KEY = env('ENV_DJANGO_SECRET_KEY').strip()
+environ.Env.read_env(os.path.join(BASE_DIR, '..', 'public.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, '..', 'secret.env'))
+
+ENV_WEBSITE_VERSION = public_env('ENV_WEBSITE_VERSION', default='0.0.0').strip()
+ENV_WEBSITE_MODE    = public_env('ENV_WEBSITE_MODE',    default='prod').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env files
+
+ENV_DJANGO_SECRET_KEY = secret_env('ENV_DJANGO_SECRET_KEY', default='django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i').strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -34,6 +38,11 @@ SECRET_KEY = ENV_DJANGO_SECRET_KEY
 DEBUG = ENV_WEBSITE_MODE == 'dev'
 
 ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
+
+if ENV_WEBSITE_MODE == 'stage':
+    ALLOWED_HOSTS += [
+        'stage.scottzehner.com'
+    ]
 
 if ENV_WEBSITE_MODE == 'dev':
     ALLOWED_HOSTS += [
@@ -105,11 +114,11 @@ WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('ENV_DB_NAME').strip(),
-        'USER': env('ENV_DB_USER').strip(),
-        'PASSWORD': env('ENV_DB_PASSWORD').strip(),
-        'HOST': env('ENV_DB_HOST').strip(),
-        'PORT': env('ENV_DB_PORT').strip(),
+        'NAME': secret_env('ENV_DB_NAME').strip(),
+        'USER': secret_env('ENV_DB_USER').strip(),
+        'PASSWORD': secret_env('ENV_DB_PASSWORD').strip(),
+        'HOST': secret_env('ENV_DB_HOST').strip(),
+        'PORT': secret_env('ENV_DB_PORT').strip(),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         },

@@ -1,7 +1,13 @@
 == TO DO ==
 
-Pass ENV_WEBSITE_VERSION to client-side
-    - Pass other stuff?
+Workflow for dev -> staging -> prod?
+    - Pass system_configuration client side (done)
+    - Work on bash scripting (stage_latest.sh, stage_to_prod.sh, & others)
+        - How to update ENV_WEBSITE_MODE related to staging vs production?
+        - How to stop/start/restart servers (gunicorn, nginx, & python)?
+            - NGINX maintenance page?
+            - Test process via Docker?
+    - Create and show maintenance page
 
 How to handle dev vs prod stuff (API Only vs API + HTML/REACT)?
     - On droplet:
