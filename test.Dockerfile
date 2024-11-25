@@ -1,18 +1,27 @@
-# Simple image for testing workflow stuff, like stage_latest.sh and other bash scripts.
+# Simple image for testing workflow stuff, like stage_latest.sh and other scripts.
+# Meant to mimic this: https://marketplace.digitalocean.com/apps/django
 
-# NGINX (alpine includes apk)
-FROM nginx:alpine
+# Python
+FROM python:3
 
-# Install Python, Node.js, and other stuff.
-RUN apk update && apk add --no-cache \
-    python3 \
-    py3-pip \
+# Install NGINX, POSTGRES, GIT, etc.
+RUN apt-get update && apt-get install -y \
+    nginx \
+    postgresql \
+    postgresql-contrib \
+    certbot \
+    python3-certbot-nginx \
     git \
-    bash \
-    openssh
+    openssh-server
+
+# Copy secret.env (this will need updated)
+COPY secret.env /app/Website_2025/secret.env
+
+# Configure Nginx
+# COPY nginx.conf /etc/nginx/sites-available/default
 
 # Set up working directory
 WORKDIR /app
 
-# Configure nginx
-EXPOSE 80
+# Expose ports
+EXPOSE 80 443 22 8000

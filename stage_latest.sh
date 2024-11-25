@@ -8,5 +8,7 @@ python manage.py stage
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --noinput
+cd ../
+deactivate
 # sudo systemctl restart gunicorn
 # sudo systemctl restart nginx
