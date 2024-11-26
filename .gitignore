@@ -7,8 +7,8 @@ portfolio_backend/static-files/
 # NodeJS
 node_modules
 npm-debug.log
-portfolio_frontend/stage/
-portfolio_frontend/public/
+portfolio_frontend/public/*
+!portfolio_frontend/public/.gitignore
 
 # React
 portfolio_frontend/node_modules/
