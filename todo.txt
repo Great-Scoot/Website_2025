@@ -11,6 +11,7 @@ Workflow for dev -> staging -> prod?
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
             - NGINX maintenance page?
             - Test process via Docker?
+        - Clean up process to remove undesireable files from prod server like todo.txt, notes.txt, etc.
     - Create and show maintenance page
 
 How to handle dev vs prod stuff (API Only vs API + HTML/REACT)?
