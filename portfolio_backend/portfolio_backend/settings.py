@@ -113,15 +113,12 @@ WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': secret_env('ENV_DB_NAME').strip(),
         'USER': secret_env('ENV_DB_USER').strip(),
         'PASSWORD': secret_env('ENV_DB_PASSWORD').strip(),
         'HOST': secret_env('ENV_DB_HOST').strip(),
         'PORT': secret_env('ENV_DB_PORT').strip(),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
         'CONN_MAX_AGE': 300, # 5 minutes in seconds
     }
 }
