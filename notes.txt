@@ -1,0 +1,79 @@
+== SETUP ==
+Install python, nodejs, postgres
+Intialize git repo, create .gitignore (or git clone git@github.com:[PATH-TO-REPO])
+
+python -m venv venv
+source vevn/Scripts/activate (or source venv/bin/activate)
+
+pip install django django-appconf django-cors-headers djangorestframework django-debug-toolbar django-filter djoser python-dotenv django-environ whitenoise gunicorn psycopg[binary]
+pip freeze > requirements.txt (or pip install -r requirements.txt)
+
+django-admin startproject portfolio_backend
+cd portfolio_backend
+python manage.py startapp portfolio_app
+
+Create portfolio_frontend directory (outside of portfolio_backend directory) with source, stage, and public subdirectories
+
+python manage.py createsuperuser
+
+== POSTGRES ==
+psql -U postgres
+CREATE USER your_username WITH PASSWORD 'your_password';
+CREATE DATABASE your_database_name;
+GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
+\c your_database_name
+GRANT ALL ON SCHEMA public TO your_username;
+
+create secret.env and public.env
+Update .gitignore
+
+Update settings.py
+python manage.py makemigrations
+python manage.py migrate
+Commit
+
+Work on project level urls.py and views.py
+Work on app level urls.py and views.py
+Create static and template directories
+Update settings.py related to dev vs prod, load info from .env, etc.
+Lots of other stuff...
+
+== PYTHON ==
+
+== VENV ==
+Activate:
+source vevn/Scripts/activate (or source venv/bin/activate)
+
+Deactivate:
+deactivate
+
+== SERVERS ==
+python manage.py collectstatic
+python manage.py makemigrations
+python manage.py migrate
+
+gunicorn portfolio_backend.wsgi:application --config gunicorn_config.py
+
+== REACT ==
+npm run webpack:dev
+npm run webpack:prod
+
+== CI/CD ==
+Set ENV_WEBSITE_VERSION
+Set ENV_WEBSITE_MODE to 'stage'
+npm run webpack:stage
+Commit
+SSH to server
+./stage_latest.sh (make it executable with chmod +x stage_latest.sh)
+
+== DOCKER ==
+docker build -f .Dockerfile -t [NAME-OF-CONTAINER] .
+docker run -p 80:80 -p 443:443 -p 8000:8000 [NAME-OF-CONTAINER]
+Attach shell
+mkdir -p ~/.ssh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+Add key to GitHub (GitHub → Settings → SSH and GPG keys → New SSH key)
+git clone git@github.com:[PATH-TO-REPO]
