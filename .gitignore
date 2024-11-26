@@ -26,4 +26,4 @@ portfolio_frontend/node_modules/
 .DS_Store
 secret.env
 .iso
-*.txt
+notes.txt
