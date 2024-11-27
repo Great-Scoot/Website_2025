@@ -5,12 +5,14 @@ Workflow for dev -> staging -> prod?
     - Work on bash scripting (stage_latest.sh, stage_to_prod.sh, & others)
         - Switch to Postgres. (done)
         - Rebuild docker container (done)
+        - Start 'development' branch (done)
         - PICKUP HERE:
             - Update secret.env, setup ssh stuff, clone git, setup postgres, migrate & runserver (python), see if stage_latest.sh will work better.
         - How to update ENV_WEBSITE_MODE related to staging vs production?
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
             - NGINX maintenance page?
             - Test process via Docker?
+        - Clean up process to remove undesireable files from prod server like todo.txt, notes.txt, etc.
     - Create and show maintenance page
 
 How to handle dev vs prod stuff (API Only vs API + HTML/REACT)?
