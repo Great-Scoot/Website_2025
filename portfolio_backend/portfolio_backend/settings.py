@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Base directory (of Django project - not its parent folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # VARIABLES FROM ENV FILES
