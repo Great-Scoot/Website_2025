@@ -7,6 +7,7 @@ Workflow for dev -> staging -> prod?
         - Rebuild docker container (done)
         - Start 'development' branch (done)
         - PICKUP HERE:
+            - Test...
             - Update secret.env, setup ssh stuff, clone git, setup postgres, migrate & runserver (python), see if stage_latest.sh will work better.
         - How to update ENV_WEBSITE_MODE related to staging vs production?
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
