@@ -12,7 +12,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '..', 'secret.env'))
 ENV_GUNICORN_HOST = env('ENV_GUNICORN_HOST').strip()
 ENV_GUNICORN_PORT = env('ENV_GUNICORN_PORT').strip()
 
-bind = f'{ENV_GUNICORN_HOST}:{ENV_GUNICORN_PORT}' # Nginx will proxy to this address
+# Address NGINX will proxy to
+bind = f'{ENV_GUNICORN_HOST}:{ENV_GUNICORN_PORT}'
+
+wsgi_app = 'portfolio_backend.wsgi:application'
 
 # Worker configuration - adjust based on your server's CPU
 workers = multiprocessing.cpu_count() * 2 + 1

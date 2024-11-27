@@ -16,7 +16,9 @@ Workflow for dev -> staging -> prod?
                 - GUnicorn (done)
                 - Serve react:
                     - Update base.html and related urls/views (done)
-                    ## PICKUP HERE ##
+                    - Troubleshoot 400 error (done)
+                        ## PICKUP HERE ##
+                        - Pull latest into container and test.
                     - Pass data to webpack-dev server (use fetch? also update how base.html is working?)
                 - Stating -> Prod:
                     - Work on docker.nginx.conf?

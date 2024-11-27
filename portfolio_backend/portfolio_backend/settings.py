@@ -37,17 +37,9 @@ SECRET_KEY = ENV_DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV_WEBSITE_MODE == 'dev'
 
-ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
-
-if ENV_WEBSITE_MODE == 'stage':
-    ALLOWED_HOSTS += [
-        'stage.scottzehner.com'
-    ]
-
-if ENV_WEBSITE_MODE == 'dev':
-    ALLOWED_HOSTS += [
-        '*'
-    ]
+# TODO: Update this when ready...
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com', 'stage.scottzehner.com']
 
 # Application definition
 
