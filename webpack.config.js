@@ -28,23 +28,23 @@ module.exports = (env, argv) => ({
         static: [ // Serve static assets
             {
                 directory: path.join(__dirname, './portfolio_frontend/source/documents'),
-                publicPath: '/documents'
+                publicPath: '/static/documents'
             },
             {
                 directory: path.join(__dirname, './portfolio_frontend/source/fonts'),
-                publicPath: '/fonts'
+                publicPath: '/static/fonts'
             },
             {
                 directory: path.join(__dirname, './portfolio_frontend/source/images'),
-                publicPath: '/images'
+                publicPath: '/static/images'
             },
             {
                 directory: path.join(__dirname, './portfolio_frontend/source/languages'),
-                publicPath: '/languages'
+                publicPath: '/static/languages'
             },
             {
                 directory: path.join(__dirname, './portfolio_frontend/source/other'),
-                publicPath: '/other'
+                publicPath: '/static/other'
             }
         ]
     },

@@ -18,14 +18,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 
-from portfolio_backend import views
+from portfolio_backend import views as portfolio_project_views
+from portfolio_app     import views as portfolio_app_views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('auth/',  include('djoser.urls')),
     path('auth/',  include('djoser.urls.authtoken')),
     path('portfolio/', include('portfolio_app.urls'), name='portfolio'),
-    path('', views.index, name='index'),
+    path('', portfolio_app_views.index, name='index'),
 ]
 
 if settings.ENV_WEBSITE_MODE == 'dev':

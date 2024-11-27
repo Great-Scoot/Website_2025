@@ -1,37 +1,39 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+        <link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
 
         <!-- Title -->
         <title>{{ page_title }}</title>
 
         <!-- SEO -->
         <meta name="author" content="Scott Zehner" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <!-- <meta name="robots" content="noindex, nofollow" /> -->
+        <meta name="description" content="Dedicated developer, project leader, and creative producer. Well versed in web application development, UX/UI design, conferencing, streaming, and audio-visual engineering. Contributed to thousands of successful projects." />
+        <meta name="keywords" content="Portfolio, Resume, Developer, Audio-Visual, Producer" />
+        <meta name="robots" content="index, nofollow" />
 
         <!-- Social Media -->
-        <meta property="og:title" content="" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="" />
-        <meta property="og:url" content="" />
+        <meta property="og:title" content="Portfolio" />
+        <meta property="og:description" content="Dedicated developer, project leader, and creative producer. Well versed in application development, content creation, streaming, and audio-visual engineering." />
+        <meta property="og:image" content="/static/images/me/profile_square_alt_high.jpg" />
+        <meta property="og:url" content="https://scottzehner.com/portfolio" />
         
-        <!-- CSS/JS/PLUGINS -->
-        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-        <!-- <script src=""></script> -->
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/styles/bundle.css">
     </head>
     <body>
-      <h1>Well hello there...</h1>
-      <div id="base">{% block content %}{% endblock %}</div>
+      <!-- REACT ROOT -->
+      <div id="root"></div>
+
+      <!-- JS -->
       <script>
         const systemConfig = JSON.parse('{{ system_config|safe|escapejs }}');
         console.log(systemConfig);
       </script>
+      
+      <script src="/static/scripts/bundle.js"></script>
     </body>
 </html>

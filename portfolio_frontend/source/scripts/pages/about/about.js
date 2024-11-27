@@ -14,7 +14,7 @@ const Profile = (props) => {
             <div className='row'>
                 <div className='col-12'>
                     <div id='profileCard' className='card backgroundBlueBurst'>
-                        <img id='PCHeaderImage' className='imageBorder' src={'/images/me/profile_square_alt_large.jpg'} alt='Scott Zehner' />
+                        <img id='PCHeaderImage' className='imageBorder' src={'/static/images/me/profile_square_alt_large.jpg'} alt='Scott Zehner' />
                         <div id='PCBodyOne' className='card-body'>
                             <h4 id='PCBOTitle'    className='card-title'>Scott Zehner</h4>
                             <h6 id='PCBOSubTitle' className='card-text'>Developer / Designer / Producer</h6>

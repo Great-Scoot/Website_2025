@@ -91,19 +91,19 @@ const WebDev = (props) => {
             {
                 title: 'The Media Frame', 
                 subtitle: 'Webcasting by Chorus Call', 
-                imageURL: '/images/sliders/webDev/The-Media-Frame.jpg', 
+                imageURL: '/static/images/sliders/webDev/The-Media-Frame.jpg', 
                 type: 'card'
             },
             {
                 title: 'The Media Builder', 
                 subtitle: 'Webcasting by Chorus Call', 
-                imageURL: '/images/sliders/webDev/The-Media-Builder.jpg', 
+                imageURL: '/static/images/sliders/webDev/The-Media-Builder.jpg', 
                 type: 'card'
             },
             {
                 title: 'Mosaic Community Church', 
                 subtitle: 'Jeannette, PA', 
-                imageURL: '/images/sliders/webDev/Mosaic.jpg', 
+                imageURL: '/static/images/sliders/webDev/Mosaic.jpg', 
                 type: 'card'
             },
         ];

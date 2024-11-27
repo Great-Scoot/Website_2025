@@ -18,12 +18,12 @@ const Hero = (props) => {
 
     // Slides array
     const slidesArray = [
-        {title: 'Code',    imageURL: '/images/sliders/hero/Code.jpg',    type: 'image'},
-        {title: 'S&T',     imageURL: '/images/sliders/hero/S&T.jpg',     type: 'image'},
-        {title: 'Conagra', imageURL: '/images/sliders/hero/Conagra.jpg', type: 'image'},
-        {title: 'AAM',     imageURL: '/images/sliders/hero/AAM.jpg',     type: 'image'},
-        {title: 'Regions', imageURL: '/images/sliders/hero/Regions.jpg', type: 'image'},
-        {title: 'Red',     imageURL: '/images/sliders/hero/Red.jpg',     type: 'image'}
+        {title: 'Code',    imageURL: '/static/images/sliders/hero/Code.jpg',    type: 'image'},
+        {title: 'S&T',     imageURL: '/static/images/sliders/hero/S&T.jpg',     type: 'image'},
+        {title: 'Conagra', imageURL: '/static/images/sliders/hero/Conagra.jpg', type: 'image'},
+        {title: 'AAM',     imageURL: '/static/images/sliders/hero/AAM.jpg',     type: 'image'},
+        {title: 'Regions', imageURL: '/static/images/sliders/hero/Regions.jpg', type: 'image'},
+        {title: 'Red',     imageURL: '/static/images/sliders/hero/Red.jpg',     type: 'image'}
     ];
 
     // State
@@ -44,7 +44,7 @@ const Hero = (props) => {
             <div className='row'>
                 <div className='col-12 col-md-6 order-md-1'>
                     <div id='heroCard' className='card backgroundBlueBurst'>
-                        <img id='HeroCardHeaderImage' className='imageBorder' src={'/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
+                        <img id='HeroCardHeaderImage' className='imageBorder' src={'/static/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
                         <div id='heroCardBody' className='card-body'>
                             <h4 className='card-title'>Summary</h4>
                             <p className='card-text'>Dedicated developer, project leader, and creative producer. Well versed in application development, content creation, and audio-visual engineering. Contributed to thousands of successful projects for many satisfied clients.</p>

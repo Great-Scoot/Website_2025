@@ -238,13 +238,13 @@ const Navigation = (props) => {
                     style={{clipPath: getClipPath()}}
                 ></div>
                 <h1 id='navBrand'>
-                    <img id='navBrandImage' className='imageBorder' onClick={navigateHome} src={'/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
+                    <img id='navBrandImage' className='imageBorder' onClick={navigateHome} src={'/static/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
                     <div id='navBrandName'  onClick={navigateHome}>
                         {(() => {
                             if (['xs', 'sm'].indexOf(stage.state.breakpoint) > -1) {
                                 return 'SZ';
                             } else {
-                                return <img id='navSignature' className='signature' src={'/images/me/signature.png'} alt='Scott Zehner' />;
+                                return <img id='navSignature' className='signature' src={'/static/images/me/signature.png'} alt='Scott Zehner' />;
                             }
                         })()}
                     </div>

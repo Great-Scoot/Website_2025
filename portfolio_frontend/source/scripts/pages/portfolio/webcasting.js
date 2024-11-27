@@ -59,7 +59,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-10-19'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=370tVnvP&overrideActivation=33od0tE95446A',
                 externalURLDate: 'October 19, 2023 at 2:30 PM EDT',
-                imageURL: '/images/sliders/webcasting/HPE2.jpg', 
+                imageURL: '/static/images/sliders/webcasting/HPE2.jpg', 
                 type: 'card'
             },
             {
@@ -68,7 +68,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-09-29'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=1gh0EXkJ&overrideActivation=15o9h0O35165I',
                 externalURLDate: 'September 29, 2023 at 1:00 PM EDT',
-                imageURL: '/images/sliders/webcasting/Ford2.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Ford2.jpg', 
                 type: 'card'
             },
             {
@@ -77,7 +77,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-11-14'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=nsZMbwU0&overrideActivation=11uiO31138IsZ',
                 externalURLDate: 'November 14, 2023 at 9:30 AM EST',
-                imageURL: '/images/sliders/webcasting/TVA.jpg', 
+                imageURL: '/static/images/sliders/webcasting/TVA.jpg', 
                 type: 'card'
             },
             {
@@ -86,7 +86,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-09-26'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=1qXVM99E&overrideActivation=31h8XV683103J',
                 externalURLDate: 'September 26, 2023 at 9:00 AM EDT',
-                imageURL: '/images/sliders/webcasting/Vista.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Vista.jpg', 
                 type: 'card'
             },
             {
@@ -95,7 +95,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2025-02-27'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=lueZG7IL&overrideActivation=2okleZ670011J',
                 externalURLDate: 'February 27, 2024 at 9:00 AM EST',
-                imageURL: '/images/sliders/webcasting/Lowes.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Lowes.jpg', 
                 type: 'card'
             },
             {
@@ -104,7 +104,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2025-02-06'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=WGfuS1sz&overrideActivation=1sb6fuE49056A',
                 externalURLDate: 'February 6, 2024 at 4:30 PM EST',
-                imageURL: '/images/sliders/webcasting/ELF.jpg', 
+                imageURL: '/static/images/sliders/webcasting/ELF.jpg', 
                 type: 'card'
             },
             {
@@ -113,7 +113,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2025-02-23'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=oFEekSTM&overrideActivation=2snjEe674333J',
                 externalURLDate: 'February 23, 2024 at 8:00 AM EST',
-                imageURL: '/images/sliders/webcasting/Luckin.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Luckin.jpg', 
                 type: 'card'
             },
             {
@@ -122,7 +122,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2025-03-28'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=QGFynZHn&overrideActivation=38ewFyE97798A',
                 externalURLDate: 'March 28, 2024 at 12:00 PM EDT',
-                imageURL: '/images/sliders/webcasting/UPMC.jpg', 
+                imageURL: '/static/images/sliders/webcasting/UPMC.jpg', 
                 type: 'card'
             },
             {
@@ -131,7 +131,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-12-05'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=Zeac9rTL&overrideActivation=qedacO22165I',
                 externalURLDate: 'December 5, 2023 at 5:00 PM EST',
-                imageURL: '/images/sliders/webcasting/Yext.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Yext.jpg', 
                 type: 'card'
             },
             {
@@ -140,7 +140,7 @@ const Webcasting = (props) => {
                 expirationDate: new Date('2024-05-14'),
                 externalURL: 'https://event.choruscall.com/mediaframe/webcast.html?webcastid=uSWjcYTx&overrideActivation=2uvpWj676709J',
                 externalURLDate: 'February 14, 2024 at 9:00 AM EST',
-                imageURL: '/images/sliders/webcasting/Danaos.jpg', 
+                imageURL: '/static/images/sliders/webcasting/Danaos.jpg', 
                 type: 'card'
             },
         ];

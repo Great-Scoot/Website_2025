@@ -91,7 +91,7 @@ const Footer = (props) => {
             <div id='footerConstrainment'>
                 <div className='row'>
                     <div id='footerColumnBrand' className='footerCol col-12 col-md-3'>
-                        <img id='footerSignature' className='signature' src={'/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
+                        <img id='footerSignature' className='signature' src={'/static/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
                     </div>
                     <div id='footerColumnPortfolio' className='footerCol col-6 col-md-3'>
                         <ul className='footerNavMenu'>
