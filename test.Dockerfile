@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     sudo \
     bash \
     openssh-server \
-    nettools \
+    net-tools \
     git \
     postgresql \
     postgresql-contrib \

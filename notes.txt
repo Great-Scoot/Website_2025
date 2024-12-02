@@ -8,10 +8,10 @@ Setup Postgres database
 Create secret.env (public.env part of repo)
 Update .gitignore
 
-python -m venv venv
+python3 -m venv venv
 source venv/Scripts/activate (or source venv/bin/activate - use bash)
 
-pip install django django-appconf django-cors-headers djangorestframework django-debug-toolbar django-filter djoser python-dotenv django-environ bleach whitenoise gunicorn psycopg[binary]
+pip install django django-appconf django-cors-headers djangorestframework django-debug-toolbar django-filter djoser python-dotenv django-environ bleach gunicorn psycopg[binary]
 pip freeze > requirements.txt (or pip install -r requirements.txt)
 
 django-admin startproject [PROJECT-NAME]
@@ -47,13 +47,21 @@ ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 Add key to GitHub (GitHub → Settings → SSH and GPG keys → New SSH key)
 git clone git@github.com:[PATH-TO-REPO]
+
 mv temp/secret.env [PROJECT-DIRECTORY]/
+rm -r temp
+
+cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d/
+mv /etc/nginx/conf.f/default.conf /etc/nginx/conf.f/default.conf.backup
+
+mkdir /var/log/gunicorn
 
 == POSTGRES ==
 
 == Docker Container ==
 pg_ctlcluster 15 main start|stop|status (starts/stops postgres)
 sudo -i -u postgres
+psql
 
 == Windows ==
 psql -U postgres
@@ -87,7 +95,7 @@ SSH to server
 ./stage_latest.sh (make it executable with chmod +x stage_latest.sh)
 
 == DOCKER ==
-docker build -f .Dockerfile -t [NAME-OF-CONTAINER] .
+docker build -f .Dockerfile -t [NAME-OF-IMAGE] .
 docker run -p 80:80 -p 443:443 [NAME-OF-CONTAINER]
 Attach shell
 

@@ -158,10 +158,6 @@ USE_TZ = True
 
 STATIC_URL = '/static-django/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '..', 'portfolio_frontend', 'public')
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static-django')
 
 # Default primary key field type
