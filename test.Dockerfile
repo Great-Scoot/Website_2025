@@ -8,6 +8,8 @@ FROM nginx
 WORKDIR /app
 
 # Install GIT, POSTGRES, PYTHON, etc.
+# Notes:
+    # - Prod server should also use ufw. Do not use within Docker container.
 RUN apt-get update && apt-get install -y \
     sudo \
     bash \
@@ -40,4 +42,5 @@ CMD ["nginx", "-g", "daemon off;"]
     # Create database
     # createsuperuser, collectstatic, migrate
     # Configure NGINX
-    # Configure GUnicorn 
+    # Configure GUnicorn
+    # ...

@@ -90,3 +90,20 @@ SSH to server
 docker build -f .Dockerfile -t [NAME-OF-CONTAINER] .
 docker run -p 80:80 -p 443:443 [NAME-OF-CONTAINER]
 Attach shell
+
+== FIREWALL (N/A to Docker) ==
+# Enable UFW
+sudo ufw enable
+
+# Allow SSH (important to prevent lockout)
+sudo ufw allow ssh
+
+# Allow web traffic
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# Explicitly deny port 8000 to prevent direct Gunicorn access
+sudo ufw deny 8000
+
+# Enable logging
+sudo ufw logging on

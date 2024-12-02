@@ -11,5 +11,5 @@ cd portfolio_backend
 python manage.py stage
 python manage.py migrate
 python manage.py collectstatic
-# start gunicorn
+gunicorn portfolio_backend.wsgi:application --config gunicorn_config.py
 # NGINX Disable maintenance mode
