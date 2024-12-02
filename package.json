@@ -2,7 +2,7 @@
   "name": "sz_website",
   "version": "1.0.0",
   "description": "my website",
-  "main": "portfolio_frontend/source/index.js",
+  "main": "frontend/source/index.js",
   "scripts": {
     "webpack:dev": "webpack-dev-server --mode=development",
     "webpack:stage": "webpack --mode=production"

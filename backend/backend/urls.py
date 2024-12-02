@@ -1,5 +1,5 @@
 """
-URL configuration for portfolio_backend project.
+URL configuration for backend project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 
-from portfolio_backend import views as portfolio_project_views
+from backend import views as portfolio_project_views
 from portfolio_app     import views as portfolio_app_views
 
 urlpatterns = [
@@ -34,7 +34,7 @@ if settings.ENV_WEBSITE_MODE == 'dev':
         path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt'),
     ]
 else:
-    handler400 = 'portfolio_backend.views.handler400'
-    handler403 = 'portfolio_backend.views.handler403'
-    handler404 = 'portfolio_backend.views.handler404'
-    handler500 = 'portfolio_backend.views.handler500'
+    handler400 = 'backend.views.handler400'
+    handler403 = 'backend.views.handler403'
+    handler404 = 'backend.views.handler404'
+    handler500 = 'backend.views.handler500'

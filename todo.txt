@@ -14,12 +14,14 @@ Workflow for dev -> staging -> prod?
             - createsuperuser, migrate, collectstatic, & runserver (done)
             - Update docker.nginx.conf:
                 - GUnicorn (done)
-                - Serve react:
+                - Serve React:
                     - Update base.html and related urls/views (done)
                     - Troubleshoot 400 error (done)
                         - Add ENV_DOCKER_IS_TEST_CONTAINER, use to control ALLOWED_HOSTS (done)
-                        ## PICKUP HERE ##
-                        - Pull latest into container and test.
+                        - Pull latest into container and test. (done)
+                            - Setup container again but make sure ports are mapped (done)
+                    - Rename backend & frontend
+                    ## PICKUP HERE ##
                     - Pass data to webpack-dev server:
                         - Use fetch?
                         - Update how base.html is working?

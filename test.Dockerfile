@@ -22,12 +22,16 @@ RUN apt-get update && apt-get install -y \
     python3.11-venv \
     certbot \
     python3-certbot-nginx
-
+    
 # Copy secret.env (this will need updated)
 COPY secret.env /app/temp/secret.env
 
 # Configure Nginx
 COPY nginx/docker.nginx.conf /etc/nginx/conf.d
+RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.backup
+
+# Make log directory for GUnicorn
+RUN mkdir /var/log/gunicorn
 
 # Expose ports
 EXPOSE 80 443

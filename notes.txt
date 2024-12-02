@@ -26,7 +26,7 @@ deactivate (reactivate venv as needed)
 cd ../
 
 npm init (creates package.json)
-Create portfolio_frontend directory (outside of portfolio_backend directory) with source, stage, and public subdirectories
+Create frontend directory (outside of backend directory) with source, stage, and public subdirectories
 
 Work on project level urls.py and views.py
 Work on app level urls.py and views.py
@@ -51,8 +51,8 @@ git clone git@github.com:[PATH-TO-REPO]
 mv temp/secret.env [PROJECT-DIRECTORY]/
 rm -r temp
 
-cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d/
-mv /etc/nginx/conf.f/default.conf /etc/nginx/conf.f/default.conf.backup
+cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d
+mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.backup
 
 mkdir /var/log/gunicorn
 
@@ -96,7 +96,7 @@ SSH to server
 
 == DOCKER ==
 docker build -f .Dockerfile -t [NAME-OF-IMAGE] .
-docker run -p 80:80 -p 443:443 [NAME-OF-CONTAINER]
+docker run -p 80:80 -p 443:443 --name [NAME-OF-CONTAINER] [NAME-OF-IMAGE]
 Attach shell
 
 == FIREWALL (N/A to Docker) ==

@@ -2,16 +2,16 @@
 __pycache__/
 *.py[cod]
 venv/
-portfolio_backend/static-django/
+backend/static-django/
 
 # NodeJS
 node_modules
 npm-debug.log
-portfolio_frontend/public/*
-!portfolio_frontend/public/.gitignore
+frontend/public/*
+!frontend/public/.gitignore
 
 # React
-portfolio_frontend/node_modules/
+frontend/node_modules/
 
 # Database
 *.sqlite3

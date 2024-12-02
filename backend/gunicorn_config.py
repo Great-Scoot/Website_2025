@@ -15,7 +15,7 @@ ENV_GUNICORN_PORT = env('ENV_GUNICORN_PORT').strip()
 # Address NGINX will proxy to
 bind = f'{ENV_GUNICORN_HOST}:{ENV_GUNICORN_PORT}'
 
-wsgi_app = 'portfolio_backend.wsgi:application'
+wsgi_app = 'backend.wsgi:application'
 
 # Worker configuration - adjust based on your server's CPU
 workers = multiprocessing.cpu_count() * 2 + 1
