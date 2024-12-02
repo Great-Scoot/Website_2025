@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 venv/
-portfolio_backend/static-files/
+portfolio_backend/static-django/
 
 # NodeJS
 node_modules

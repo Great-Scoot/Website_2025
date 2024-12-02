@@ -72,6 +72,7 @@ python manage.py migrate
 
 == GREEN UNICORN ==
 gunicorn [PROJECT-NAME].wsgi:application --config gunicorn_config.py (starts gunicorn in production - linux only)
+pkill gunicorn
 
 == NODE/WEBPACK/REACT ==
 npm run webpack:dev
