@@ -10,5 +10,6 @@ pip install -r requirements.txt
 cd portfolio_backend
 python manage.py stage
 python manage.py migrate
+python manage.py collectstatic
 # start gunicorn
 # NGINX Disable maintenance mode
