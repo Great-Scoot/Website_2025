@@ -17,11 +17,14 @@ Workflow for dev -> staging -> prod?
                 - Serve react:
                     - Update base.html and related urls/views (done)
                     - Troubleshoot 400 error (done)
+                        - Add ENV_DOCKER_IS_TEST_CONTAINER, use to control ALLOWED_HOSTS (done)
                         ## PICKUP HERE ##
                         - Pull latest into container and test.
-                    - Pass data to webpack-dev server (use fetch? also update how base.html is working?)
-                - Stating -> Prod:
-                    - Work on docker.nginx.conf?
+                    - Pass data to webpack-dev server:
+                        - Use fetch?
+                        - Update how base.html is working?
+                - Staging -> Prod:
+                    - ENV vars to enable staging?
                     - Command to empty public and copy from stage?
                     - Test stage_latest.sh
         - How to update ENV_WEBSITE_MODE related to staging vs production?

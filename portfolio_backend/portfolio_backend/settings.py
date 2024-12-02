@@ -26,20 +26,30 @@ environ.Env.read_env(os.path.join(BASE_DIR, '..', 'secret.env'))
 ENV_WEBSITE_VERSION = public_env('ENV_WEBSITE_VERSION', default='0.0.0').strip()
 ENV_WEBSITE_MODE    = public_env('ENV_WEBSITE_MODE',    default='prod').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env files
 
-ENV_DJANGO_SECRET_KEY = secret_env('ENV_DJANGO_SECRET_KEY', default='django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i').strip()
+ENV_DJANGO_SECRET_KEY        = secret_env('ENV_DJANGO_SECRET_KEY',        default='django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i').strip()
+ENV_DOCKER_IS_TEST_CONTAINER = secret_env('ENV_DOCKER_IS_TEST_CONTAINER', default=False).strip()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ENV_DJANGO_SECRET_KEY
+SECRET_KEY = ENV_DJANGO_SECRET_KEY # TODO: Update this...
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV_WEBSITE_MODE == 'dev'
 
-# TODO: Update this when ready...
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com', 'stage.scottzehner.com']
+# Allowed Hosts
+ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
+
+if ENV_WEBSITE_MODE == 'stage':
+    ALLOWED_HOSTS += [
+        'stage.scottzehner.com'
+    ]   
+
+if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
+    ALLOWED_HOSTS += [
+        '*'
+    ]
 
 # Application definition
 
