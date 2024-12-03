@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'api',
     'portfolio_app',
 ]
 
@@ -156,9 +157,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static-django/'
+STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static-django')
+# If dev, these settings will allow Django to serve static assets, after running collectstatic. For prod, NGINX will serve static assets. 
+if ENV_WEBSITE_MODE == 'dev':
+    # Where Django will collect static files from...
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, '..', 'frontend', 'public')
+    ]
+
+    # Where Django will copy static files to...
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -39,7 +39,7 @@ const Pages = (props) => {
     useEffect(() => {
         // Only fetch once these match...
         if (title == stage.state.pages.activePage) {
-            fetch('/portfolio/api/system-configuration?format=json')
+            fetch('/api/system-configuration?format=json')
             .then(response => response.json())
             .then(systemConfigurationObject => {
                 stage.methods.updateSystemConfiguration(systemConfigurationObject);

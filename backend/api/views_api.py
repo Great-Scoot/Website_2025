@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from portfolio_app.models import SystemConfiguration
-from portfolio_app.serializers import SystemConfigurationSerializer
+from api.models import SystemConfiguration
+from api.serializers import SystemConfigurationSerializer
 
 # Create your views here.
 class SystemConfigurationView(generics.RetrieveAPIView):

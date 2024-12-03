@@ -78,7 +78,7 @@ const Stage = () => {
     const [lastBreakpoint, setLastBreakpoint] = useState(breakpoint);
 
     const [forceRender,         setForceRender]         = useState(0);
-    const [systemConfiguration, setSystemConfiguration] = useState(null);
+    const [systemConfiguration, setSystemConfiguration] = useState(window.systemConfiguration ? window.systemConfiguration : null);
 
     // State: <Pages />
     const [activePage,          setActivePage]          = useState(null);

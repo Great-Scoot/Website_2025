@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from portfolio_app.models import SystemConfiguration
+from api.models import SystemConfiguration
 
 class Command(BaseCommand):
     help = 'Enables staging_mode and updates staged_version.'

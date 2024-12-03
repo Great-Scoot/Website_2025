@@ -23,8 +23,9 @@ Workflow for dev -> staging -> prod?
                     - Rename backend & frontend
                     - Create API for system config (for webpack-dev server use) (done)
                     - Update secret.env in container (done)
+                    - Update url routing & views. Move API to its own app. (done) 
                     ## PICKUP HERE ##
-                    - Work on url routing & views. How to handle /portfolio and /about? Should they be separate apps?
+                    - Troubleshoot why systemConfiguration isn't being logged on p8000
                 - Staging -> Prod:
                     - ENV vars to enable staging?
                     - Command to empty public and copy from stage?
