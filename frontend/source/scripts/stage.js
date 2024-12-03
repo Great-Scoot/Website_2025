@@ -77,16 +77,23 @@ const Stage = () => {
     const [breakpoint,     setBreakpoint]     = useState('xs');
     const [lastBreakpoint, setLastBreakpoint] = useState(breakpoint);
 
+    const [forceRender,         setForceRender]         = useState(0);
+    const [systemConfiguration, setSystemConfiguration] = useState(null);
+
     // State: <Pages />
+    const [activePage,          setActivePage]          = useState(null);
     const [activeSection,       setActiveSection]       = useState({id: null, label: null, colorClass: null});
     const [sectionScrollTarget, setSectionScrollTarget] = useState({page: null, section: null});
 
     // State object (for organization and passing to children).
     stage.state = {
         // <Stage />
+        forceRender,
         breakpoint,
         lastBreakpoint,
+        systemConfiguration,
         pages: {
+            activePage,
             activeSection,
             sectionScrollTarget
         }
@@ -95,12 +102,21 @@ const Stage = () => {
     // Methods (for organization and passing to children).
     stage.methods = {
         // <Stage />
+        forceRender: () => {
+            setForceRender(prev => prev + 1);
+        },
         updateBreakpoint: (newBreakpoint) => {
             setLastBreakpoint(breakpoint || 'xs');
             setBreakpoint(newBreakpoint  || 'xs');
         },
+        updateSystemConfiguration: (systemConfigurationObject) => {
+            setSystemConfiguration(systemConfigurationObject);
+        },
         // Children
         pages: {
+            updateActivePage: (pageTitle) => {
+                setActivePage(pageTitle);
+            },
             updateActiveSection: (sectionObject) => {
                 setActiveSection(sectionObject);
             },

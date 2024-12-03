@@ -25,6 +25,13 @@ module.exports = (env, argv) => ({
         historyApiFallback: true, // Allows React's routing to work
         hot: true,
         port: ENV_WEBPACK_PORT,
+        proxy: {
+            '/portfolio/api': {
+                target: `http://${process.env.ENV_DJANGO_HOST}:${process.env.ENV_DJANGO_PORT}`,
+                // pathRewrite: { '^/api': '' },
+                changeOrigin: true
+            }
+        },
         static: [ // Serve static assets
             {
                 directory: path.join(__dirname, './frontend/source/documents'),

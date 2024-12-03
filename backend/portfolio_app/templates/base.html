@@ -7,7 +7,7 @@
         <link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
 
         <!-- Title -->
-        <title>{{ page_title }}</title>
+        <title>Title</title>
 
         <!-- SEO -->
         <meta name="author" content="Scott Zehner" />
@@ -22,6 +22,7 @@
         <meta property="og:url" content="https://scottzehner.com/portfolio" />
         
         <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
         <link rel="stylesheet" href="/static/styles/bundle.css">
     </head>
     <body>
@@ -29,11 +30,6 @@
       <div id="root"></div>
 
       <!-- JS -->
-      <script>
-        const systemConfig = JSON.parse('{{ system_config|safe|escapejs }}');
-        console.log(systemConfig);
-      </script>
-      
       <script src="/static/scripts/bundle.js"></script>
     </body>
 </html>

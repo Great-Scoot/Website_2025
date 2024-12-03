@@ -21,10 +21,10 @@ Workflow for dev -> staging -> prod?
                         - Pull latest into container and test. (done)
                             - Setup container again but make sure ports are mapped (done)
                     - Rename backend & frontend
+                    - Create API for system config (for webpack-dev server use) (done)
+                    - Update secret.env in container (done)
                     ## PICKUP HERE ##
-                    - Pass data to webpack-dev server:
-                        - Use fetch?
-                        - Update how base.html is working?
+                    - Work on url routing & views. How to handle /portfolio and /about? Should they be separate apps?
                 - Staging -> Prod:
                     - ENV vars to enable staging?
                     - Command to empty public and copy from stage?

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Portfolio from './portfolio/portfolio.js';
 import About     from './about/about.js';
@@ -28,8 +28,33 @@ const Pages = (props) => {
     };
 
     useEffect(() => {
+        // Update page title
         document.title = title;
+
+        // Update active page
+        stage.methods.pages.updateActivePage(title);
     });
+
+    // Fetch System Config
+    useEffect(() => {
+        // Only fetch once these match...
+        if (title == stage.state.pages.activePage) {
+            fetch('/portfolio/api/system-configuration?format=json')
+            .then(response => response.json())
+            .then(systemConfigurationObject => {
+                stage.methods.updateSystemConfiguration(systemConfigurationObject);
+                stage.methods.forceRender();
+            });
+        }
+
+    }, [stage.state.pages.activePage]);
+
+    // Log System Config
+    useEffect(() => {
+        if (stage.state.systemConfiguration) {
+            console.log(stage.state.systemConfiguration);
+        }
+    }, [stage.state.forceRender]);
 
     return (
         <div id='page'>
