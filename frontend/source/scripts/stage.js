@@ -97,8 +97,9 @@ const Stage = () => {
     const [breakpoint,     setBreakpoint]     = useState('xs');
     const [lastBreakpoint, setLastBreakpoint] = useState(breakpoint);
 
-    const [forceRender,         setForceRender]         = useState(0);
-    const [systemConfiguration, setSystemConfiguration] = useState(window.systemConfiguration ? window.systemConfiguration : null);
+    const [forceRender,          setForceRender]          = useState(0);
+    const [systemConfiguration,  setSystemConfiguration]  = useState(window.systemConfiguration ? window.systemConfiguration : null);
+    const [maintenanceHideClass, setMaintenanceHideClass] = useState('')
 
     // State: <Pages />
     const [activePage,          setActivePage]          = useState(null);
@@ -108,10 +109,11 @@ const Stage = () => {
     // State object (for organization and passing to children).
     stage.state = {
         // <Stage />
-        forceRender,
         breakpoint,
         lastBreakpoint,
+        forceRender,
         systemConfiguration,
+        maintenanceHideClass,
         pages: {
             activePage,
             activeSection,
@@ -131,6 +133,9 @@ const Stage = () => {
         },
         updateSystemConfiguration: (systemConfigurationObject) => {
             setSystemConfiguration(systemConfigurationObject);
+        },
+        updateMaintenanceHideClass: () => {
+            setMaintenanceHideClass(systemConfiguration && systemConfiguration.maintenance_mode ? 'maintenanceHide' : '');
         },
         // Children
         pages: {
@@ -181,7 +186,9 @@ const Stage = () => {
             // Add .animate, then remove
             stage.refs.navigation.navBrandSection.current.classList.add('animate');
             setTimeout(() => {
-                stage.refs.navigation.navBrandSection.current.classList.remove('animate');
+                if (stage.refs.navigation.navBrandSection.current) {
+                    stage.refs.navigation.navBrandSection.current.classList.remove('animate');
+                }
             }, stage.globals.transitions.durations.fast);
         }
     }, [activeSection]);

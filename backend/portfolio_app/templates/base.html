@@ -5,10 +5,10 @@
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-        <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" />
+        <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}?v={{ system_configuration.website_version }}" />
 
         <!-- Title -->
-        <title>Title</title>
+        <title>{{ page_title }}</title>
 
         <!-- SEO -->
         <meta name="author" content="Scott Zehner" />
@@ -19,12 +19,12 @@
         <!-- Social Media -->
         <meta property="og:title" content="Portfolio" />
         <meta property="og:description" content="Dedicated developer, project leader, and creative producer. Well versed in application development, content creation, streaming, and audio-visual engineering." />
-        <meta property="og:image" content="{% static 'images/me/profile_square_alt_high.jpg' %}" />
+        <meta property="og:image" content="{% static 'images/me/profile_square_alt_high.jpg' %}?v={{ system_configuration.website_version }}" />
         <meta property="og:url" content="https://scottzehner.com/portfolio" />
         
         <!-- CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
-        <link rel="stylesheet" href="{% static 'styles/bundle.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/bundle.css' %}?v={{ system_configuration.website_version }}">
     </head>
     <body>
       <!-- REACT ROOT -->
@@ -32,8 +32,8 @@
 
       <!-- JS -->
       <script>
-        const systemConfiguration = JSON.parse('{{ system_configuration|safe|escapejs }}');
+        const systemConfiguration = JSON.parse('{{ system_configuration_encoded|safe|escapejs }}');
       </script>
-      <script src="{% static 'scripts/bundle.js' %}"></script>
+      <script src="{% static 'scripts/bundle.js' %}?v={{ system_configuration.website_version }}"></script>
     </body>
 </html>

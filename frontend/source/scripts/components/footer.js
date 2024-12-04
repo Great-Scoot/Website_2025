@@ -28,7 +28,7 @@ const FooterNavButton = (props) => {
 
     // Functions
     const getClasses = () => {
-        let classes = 'footerNavButton hoverScaleBg btn ';
+        let classes = `footerNavButton hoverScaleBg btn ${stage.state.maintenanceHideClass}`;
 
         // If: Route button...
         if (pseudoSections && pseudoSections.indexOf(stage.state.pages.activeSection.id) > -1) {
@@ -82,8 +82,10 @@ const Footer = (props) => {
 
     // Functions
     const navigateHome = () => { // Similar function in navigation.js
-        navigate('/portfolio');
-        stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
+        if (!stage.state.systemConfiguration.maintenance_mode) {
+            navigate('/portfolio');
+            stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
+        }
     }
 
     return (
@@ -91,7 +93,7 @@ const Footer = (props) => {
             <div id='footerConstrainment'>
                 <div className='row'>
                     <div id='footerColumnBrand' className='footerCol col-12 col-md-3'>
-                        <img id='footerSignature' className='signature' src={'/static/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
+                        <img id='footerSignature' className={`signature ${stage.state.maintenanceHideClass}`} src={'/static/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
                     </div>
                     <div id='footerColumnPortfolio' className='footerCol col-6 col-md-3'>
                         <ul className='footerNavMenu'>
@@ -122,7 +124,6 @@ const Footer = (props) => {
                         </ul>
                     </div>
                     <div id='footerColumnSocial' className='footerCol col-12 col-md-3'>
-                        <h4 id='FCSHeading' className='d-none d-md-block'>Follow Me:</h4>
                         <div id='FCSBackground'>
                             <FooterSocialButton id='FSBLinkedIn' icon={['fab', 'fa-linkedin']} href='https://www.linkedin.com/in/szehner7/' />
                             <FooterSocialButton id='FSBGitHub'   icon={['fab', 'fa-github']}   href='https://github.com/Great-Scoot' />

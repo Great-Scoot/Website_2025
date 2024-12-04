@@ -85,8 +85,10 @@ const Slide = (props) => {
             - This function applies the background-image.
         */
         const load = () => {
-            slideImageRef.current.style.backgroundImage = `url(${slideObject.imageURL})`;
-            slide.methods.updateLoaded(true);
+            if (slideImageRef.current) {
+                slideImageRef.current.style.backgroundImage = `url(${slideObject.imageURL})`;
+                slide.methods.updateLoaded(true);
+            }
         };
 
         // If not loaded...

@@ -3,14 +3,11 @@ from django.shortcuts import render
 from api.utils import get_system_configuration
 
 # Create your views here.
-def about(request):
-    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
+def base_view(request, page_title):
+    context = {
+        'page_title': page_title,
+        'system_configuration':         get_system_configuration(False),
+        'system_configuration_encoded': get_system_configuration(True)
+    }
 
-def portfolio(request):
-    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
-
-def maintenance(request):
-    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
-
-def not_found(request):
-    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
+    return render(request, 'base.html', context)

@@ -79,7 +79,11 @@
 // General Styles
 body {
 
-    &.overflowHidden {
+    .maintenanceHide {
+        visibility: hidden;
+    }
+
+    .overflowHidden {
         overflow: hidden;
     }
 }

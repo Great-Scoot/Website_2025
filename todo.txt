@@ -2,10 +2,10 @@
 
 Workflow for dev -> staging -> prod?
     - Update React source code:
-        - Remove stuff that's not needed. (done)
-        - Create maintenance page. Update urls.py, views.py (done)
-        - Remove staging mode. (done)
-        - Troubleshoot http issue (done)
+        - Update React to redirect to /maintenance when true (done)
+        - Disable/hide stuff (done)
+        - Add ?v=[website_version] (done)
+        - Fix url routing (done)
         ## PICKUP HERE ##
         - Webpack: Split code for each page? Make related updates?
     - Update docker.nginx.conf:

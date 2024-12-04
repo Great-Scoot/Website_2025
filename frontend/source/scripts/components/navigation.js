@@ -180,15 +180,19 @@ const Navigation = (props) => {
     }
 
     const handleClickNavContact = () => {
-        navigate('/about');
-        stage.methods.pages.updateSectionScrollTarget({page: 'about', section: 'contact'});
-        navigation.methods.updatePhase('closed');
+        if (!stage.state.systemConfiguration.maintenance_mode) {
+            navigate('/about');
+            stage.methods.pages.updateSectionScrollTarget({page: 'about', section: 'contact'});
+            navigation.methods.updatePhase('closed');
+        }
     }
 
     const navigateHome = () => { // Similar function in footer.js
-        navigate('/portfolio');
-        stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
-        navigation.methods.updatePhase('closed');
+        if (!stage.state.systemConfiguration.maintenance_mode) {
+            navigate('/portfolio');
+            stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
+            navigation.methods.updatePhase('closed');
+        }
     }
 
     // Hooks
@@ -267,7 +271,7 @@ const Navigation = (props) => {
                         return (
                             <button 
                                 id='navContact' 
-                                className={`btn hoverScaleBg ${showNavBackground ? 'showNavBackground' : ''}`} 
+                                className={`btn hoverScaleBg ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.maintenanceHideClass}`} 
                                 onClick={handleClickNavContact}
                                 type='button' 
                                 disabled={phase === 'opening' || phase === 'closing'}
@@ -281,7 +285,7 @@ const Navigation = (props) => {
                 <button 
                     id='navBars' 
                     ref={navigation.refs.navBars} 
-                    className={`btn btnRound hoverScaleBg ${phase} ${showNavBackground ? 'showNavBackground' : ''}`} 
+                    className={`btn btnRound hoverScaleBg ${phase} ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.maintenanceHideClass}`} 
                     onClick={handleClickNavBars} 
                     type='button' 
                     disabled={phase === 'opening' || phase === 'closing'}
@@ -309,21 +313,6 @@ const Navigation = (props) => {
                     <li>
                         <NavButton id='NBContact' route='/about' section='contact' icon={['fas', 'fa-envelope']} content='Contact' stage={stage} navigation={navigation} />
                     </li>
-                    {/* /user */}
-                    {/*
-                    <li>
-                        <NavButton id='NBUserCreate' route='/user/create' icon={['fas', 'fa-user-plus']} content='Create Account' stage={stage} navigation={navigation} />
-                    </li>
-                    <li>
-                        <NavButton id='NBUserLogin' route='/user/login' icon={['fas', 'fa-user']} content='Login' stage={stage} navigation={navigation} />
-                    </li>
-                    <li>
-                        <NavButton id='NBUserReset' route='/user/reset' icon={['fas', 'fa-rotate-right']} content='Reset Password' stage={stage} navigation={navigation} />
-                    </li>
-                    <li>
-                        <NavButton id='NBUserDelete' route='/user/delete' icon={['fas', 'fa-user-minus']} content='Delete Account' stage={stage} navigation={navigation} />
-                    </li>
-                    */}
                 </ul>
             </div>
         </nav>

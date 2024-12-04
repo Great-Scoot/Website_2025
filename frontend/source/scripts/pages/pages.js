@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import Portfolio   from './portfolio/portfolio.js';
 import About       from './about/about.js';
@@ -11,6 +12,9 @@ const Pages = (props) => {
     // Props
     const {page, title, stage} = props;
 
+    // Hooks
+    const navigate = useNavigate();
+
     // Functions
     const getComponent = () => {
         switch(page) {
@@ -20,6 +24,11 @@ const Pages = (props) => {
             default:            return <NotFound    {...props} />;
         };
     };
+
+    const navigateMaintenance = () => { // Similar function in navigation.js
+        navigate('/maintenance');
+        stage.methods.pages.updateSectionScrollTarget({page: 'maintenance', section: 'top'});
+    }
 
     useEffect(() => {
         // Update page title
@@ -43,11 +52,19 @@ const Pages = (props) => {
 
     }, [stage.state.pages.activePage]);
 
-    // Log System Config
+    // Handle System Config
     useEffect(() => {
         if (stage.state.systemConfiguration) {
+            // Log it...
             console.log(stage.state.systemConfiguration);
+            
+            // Navigate...
+            if (stage.state.systemConfiguration.maintenance_mode) {
+                navigateMaintenance();
+            }
         }
+
+        stage.methods.updateMaintenanceHideClass();
     }, [stage.state.forceRender]);
 
     return (

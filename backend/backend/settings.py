@@ -88,7 +88,10 @@ else:
         "https://www.scottzehner.com",
     ]
 
+# URLs
 ROOT_URLCONF = 'backend.urls'
+
+# APPEND_SLASH = True
 
 TEMPLATES = [
     {
