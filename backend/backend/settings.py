@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'djoser',
     'api',
     'portfolio_app',
@@ -81,11 +82,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 if ENV_WEBSITE_MODE == 'dev':
     MIDDLEWARE += [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+
+# CORS
+if ENV_WEBSITE_MODE == 'dev':
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "https://scottzehner.com",
+        "https://www.scottzehner.com",
+        "https://stage.scottzehner.com",
     ]
 
 ROOT_URLCONF = 'backend.urls'

@@ -26,7 +26,7 @@ module.exports = (env, argv) => ({
         hot: true,
         port: ENV_WEBPACK_PORT,
         proxy: {
-            '/portfolio/api': {
+            '/api': {
                 target: `http://${process.env.ENV_DJANGO_HOST}:${process.env.ENV_DJANGO_PORT}`,
                 // pathRewrite: { '^/api': '' },
                 changeOrigin: true
