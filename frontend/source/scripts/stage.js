@@ -37,6 +37,16 @@ const Stage = () => {
                     contact:   {id: 'contact',   label: 'Contact',     colorClass: 'purple'},
                     seeMyWork: {id: 'seeMyWork', label: 'See my Work', colorClass: 'pink'},
                 }
+            },
+            maintenance: {
+                sections: {
+                    maintenance: {id: 'maintenance', label: '', colorClass: 'teal'}
+                }
+            },
+            notFound: {
+                sections: {
+                    notFound: {id: 'notFound', label: '', colorClass: 'teal'}
+                }
             }
         },
         transitions: {
@@ -67,6 +77,16 @@ const Stage = () => {
                     resume:    useRef(null),
                     contact:   useRef(null),
                     seeMyWork: useRef(null)
+                }
+            },
+            maintenance: {
+                sections: {
+                    maintenance: useRef(null)
+                }
+            },
+            notFound: {
+                sections: {
+                    notFound: useRef(null)
                 }
             }
         },
@@ -196,9 +216,8 @@ const Stage = () => {
                 {/* CONTENT */}
                 <Routes>
                     <Route exact path='/'>
-                        <Route index                    element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
-                        <Route exact path='/index'      element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
-                        <Route exact path='/index.html' element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                        <Route index               element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                        <Route exact path='/index' element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
                     </Route>
                     <Route exact path='/portfolio'>
                         <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
@@ -206,13 +225,9 @@ const Stage = () => {
                     <Route exact path='/about'>
                         <Route index element={<Pages page='About' title='About' stage={stage} />} />
                     </Route>
-                    {/* <Route exact path='/user' >
-                        <Route index                     element={<Pages page='User'   title='User'   stage={stage} />} />
-                        <Route exact path='/user/create' element={<Pages page='Create' title='Create' stage={stage} />} />
-                        <Route exact path='/user/login'  element={<Pages page='Login'  title='Login'  stage={stage} />} />
-                        <Route exact path='/user/reset'  element={<Pages page='Reset'  title='Reset'  stage={stage} />} />
-                        <Route exact path='/user/delete' element={<Pages page='Delete' title='Delete' stage={stage} />} />
-                    </Route> */}
+                    <Route exact path='/maintenance'>
+                        <Route index element={<Pages page='Maintenance' title='Maintenance' stage={stage} />} />
+                    </Route>
                     <Route path="*" element={<Pages page='NotFound' title='Not Found' stage={stage} />} />
                 </Routes>
 

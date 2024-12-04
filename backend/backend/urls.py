@@ -15,25 +15,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 
 from backend import views
+from portfolio_app import views as portfolio_app_views
 
-urlpatterns = [
+urlpatterns = []
+
+# Project Paths...
+urlpatterns += [
     path('admin/', admin.site.urls,     name='admin'),
     path('api/',   include('api.urls'), name='api'),
     path('auth/',  include('djoser.urls')),
     path('auth/',  include('djoser.urls.authtoken')),
-    path('',       include('portfolio_app.urls'), name='portfolio'),
 ]
 
+# Debug Toolbar...
 if settings.ENV_WEBSITE_MODE == 'dev':
-    urlpatterns += [
-        path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt'),
-    ]
-else:
+    urlpatterns += [path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt'),]
+
+# App Paths...
+urlpatterns += [path('', include('portfolio_app.urls'), name='portfolio'),]
+
+# Errors...
+if settings.ENV_WEBSITE_MODE == 'prod':
     handler400 = 'backend.views.handler400'
     handler403 = 'backend.views.handler403'
     handler404 = 'backend.views.handler404'
     handler500 = 'backend.views.handler500'
+
+# Catch-all...
+urlpatterns += [re_path(r'.*', portfolio_app_views.not_found, name='not_found'),]

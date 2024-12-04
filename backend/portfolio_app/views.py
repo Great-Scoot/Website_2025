@@ -8,3 +8,9 @@ def about(request):
 
 def portfolio(request):
     return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
+
+def maintenance(request):
+    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})
+
+def not_found(request):
+    return render(request, 'base.html', {'system_configuration': get_system_configuration(True)})

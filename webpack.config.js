@@ -4,9 +4,6 @@ const path = require('path');
 require('dotenv').config({path: 'public.env'});
 require('dotenv').config({path: 'secret.env'});
 
-const ENV_WEBSITE_MODE = process.env.ENV_WEBSITE_MODE;
-const EWM_TARGET_DIR   = ENV_WEBSITE_MODE == 'prod' ? 'public' : 'stage';
-
 const ENV_WEBPACK_PORT = process.env.ENV_WEBPACK_PORT;
 
 // Plugins
@@ -18,7 +15,7 @@ module.exports = (env, argv) => ({
     entry: path.join(__dirname, './frontend/source/index.js'),
     output: {
         filename: 'scripts/bundle.js',
-        path: path.join(__dirname, './frontend/' + EWM_TARGET_DIR),
+        path: path.join(__dirname, './frontend/public'),
         publicPath: '/'
     },
     devServer: {
@@ -70,11 +67,11 @@ module.exports = (env, argv) => ({
         }),
         new CopyPlugin({
             patterns: [ // Copy static files to build. This plugin is not designed to copy the bundled files.
-                {from: path.join(__dirname, './frontend/source/documents'), to: path.join(__dirname, './frontend/' + EWM_TARGET_DIR + '/documents')},
-                {from: path.join(__dirname, './frontend/source/fonts'),     to: path.join(__dirname, './frontend/' + EWM_TARGET_DIR + '/fonts')},
-                {from: path.join(__dirname, './frontend/source/images'),    to: path.join(__dirname, './frontend/' + EWM_TARGET_DIR + '/images')},
-                {from: path.join(__dirname, './frontend/source/languages'), to: path.join(__dirname, './frontend/' + EWM_TARGET_DIR + '/languages')},
-                {from: path.join(__dirname, './frontend/source/other'),     to: path.join(__dirname, './frontend/' + EWM_TARGET_DIR + '/other')},
+                {from: path.join(__dirname, './frontend/source/documents'), to: path.join(__dirname, './frontend/public/documents')},
+                {from: path.join(__dirname, './frontend/source/fonts'),     to: path.join(__dirname, './frontend/public/fonts')},
+                {from: path.join(__dirname, './frontend/source/images'),    to: path.join(__dirname, './frontend/public/images')},
+                {from: path.join(__dirname, './frontend/source/languages'), to: path.join(__dirname, './frontend/public/languages')},
+                {from: path.join(__dirname, './frontend/source/other'),     to: path.join(__dirname, './frontend/public/other')},
             ]
         })
     ],

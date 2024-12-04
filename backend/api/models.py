@@ -5,8 +5,6 @@ class SystemConfiguration(models.Model):
     website_version =      models.CharField(max_length=50, default='0.0.0')
     last_website_version = models.CharField(max_length=50, default='0.0.0')
     maintenance_mode =     models.BooleanField(default=False) # Show maintenance page.
-    staging_mode =         models.BooleanField(default=False) # Expose stage.scottzehner.com
-    staged_version =       models.CharField(max_length=50, default='0.0.0')
     last_updated =         models.DateTimeField(auto_now=True)
     
     class Meta:

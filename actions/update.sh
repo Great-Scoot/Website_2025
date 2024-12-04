@@ -8,7 +8,7 @@ nginx -t
 source venv/bin/activate
 pip install -r requirements.txt
 cd backend
-python manage.py stage
+python manage.py maintenance_enable
 python manage.py migrate
 python manage.py collectstatic
 gunicorn backend.wsgi:application --config gunicorn_config.py

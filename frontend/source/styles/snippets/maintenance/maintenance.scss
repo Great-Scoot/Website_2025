@@ -1,5 +1,5 @@
-// Not Found
-#notFound {
+// Maintenance
+#maintenance {
     // Styles
     min-height: 620px;
     position: relative;
@@ -10,7 +10,7 @@
     padding: $default-padding;
     margin-bottom: $default-margin;
 
-    #NFText {
+    #MText {
         // Styles
         width: 90%;
         position: absolute;
@@ -20,7 +20,7 @@
         border-radius: 1rem;
         padding: $default-padding;
 
-        #NFTextSmall {
+        #MTextSmall {
             font-size: 0.67rem;
         }
     }

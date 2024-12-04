@@ -3,13 +3,13 @@ from django.conf import settings
 from api.models import SystemConfiguration
 
 class Command(BaseCommand):
-    help = 'Disables staging_mode.'
+    help = 'Enables maintenance_mode.'
 
     def handle(self, *args, **kwargs):
         config = SystemConfiguration.objects.first()
         if config:
-            config.staging_mode = False
+            config.maintenance_mode = True
             config.save()
             self.stdout.write(
-                self.style.SUCCESS(f'Disabled staging_mode')
+                self.style.SUCCESS('Enabled: maintenance_mode.')
             )

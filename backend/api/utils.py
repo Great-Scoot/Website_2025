@@ -5,7 +5,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from api.models import SystemConfiguration
 
 # System Configuration
-system_configuration_fields = ['website_version', 'maintenance_mode', 'staging_mode', 'staged_version']
+system_configuration_fields = ['website_version', 'maintenance_mode']
 
 def get_system_configuration(as_DjangoJSON=False):
 

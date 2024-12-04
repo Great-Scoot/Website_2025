@@ -1,10 +1,13 @@
 == TO DO ==
 
 Workflow for dev -> staging -> prod?
-    ## PICKUP HERE ##
     - Update React source code:
-        - Remove stuff that's not needed.
-        - Create maintenance page. Update urls.py, etc.
+        - Remove stuff that's not needed. (done)
+        - Create maintenance page. Update urls.py, views.py (done)
+        - Remove staging mode. (done)
+        - Troubleshoot http issue (done)
+        ## PICKUP HERE ##
+        - Webpack: Split code for each page? Make related updates?
     - Update docker.nginx.conf:
         - Maintenance mode:
             - How to enable?
@@ -13,7 +16,7 @@ Workflow for dev -> staging -> prod?
                 - Use ENV vars to enable staging?
             - Whitelist IP via secret.env, related to staging?
             - How to serve from just NGINX
-    - Work on bash scripting (stage_latest.sh, stage_to_prod.sh, cleanup.sh, & others?)
+    - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to update ENV_WEBSITE_MODE related to staging vs production?
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
         - Test via Docker

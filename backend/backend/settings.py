@@ -39,17 +39,10 @@ SECRET_KEY = ENV_DJANGO_SECRET_KEY # TODO: Update this...
 DEBUG = ENV_WEBSITE_MODE == 'dev'
 
 # Allowed Hosts
-ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
-
-if ENV_WEBSITE_MODE == 'stage':
-    ALLOWED_HOSTS += [
-        'stage.scottzehner.com'
-    ]   
+ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com',]
 
 if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
-    ALLOWED_HOSTS += [
-        '*'
-    ]
+    ALLOWED_HOSTS += ['*']
 
 # Application definition
 
@@ -70,9 +63,7 @@ INSTALLED_APPS = [
 ]
 
 if ENV_WEBSITE_MODE == 'dev':
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
+    INSTALLED_APPS += ['debug_toolbar',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,9 +77,7 @@ MIDDLEWARE = [
 ]
 
 if ENV_WEBSITE_MODE == 'dev':
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware',]
 
 # CORS
 if ENV_WEBSITE_MODE == 'dev':
@@ -97,7 +86,6 @@ else:
     CORS_ALLOWED_ORIGINS = [
         "https://scottzehner.com",
         "https://www.scottzehner.com",
-        "https://stage.scottzehner.com",
     ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -174,9 +162,7 @@ STATIC_URL = '/static/'
 # If dev, these settings will allow Django to serve static assets, after running collectstatic. For prod, NGINX will serve static assets. 
 if ENV_WEBSITE_MODE == 'dev':
     # Where Django will collect static files from...
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, '..', 'frontend', 'public')
-    ]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, '..', 'frontend', 'public')]
 
     # Where Django will copy static files to...
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -221,7 +207,23 @@ DJOSER = {
 if ENV_WEBSITE_MODE == 'dev':
     INTERNAL_IPS = [ # Related to debug_toolbar
         '127.0.0.1',
+        'localhost',
     ]
 
-# Other stuff
-CSRF_COOKIE_SECURE = True # Prevents transmitting the session cookie over HTTP accidentally.
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+        'SHOW_TOOLBAR_CALLBACK': lambda request: True,
+    }
+
+# HTTPS related stuff...
+if ENV_WEBSITE_MODE == 'dev':
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    # SECURE_PROXY_SSL_HEADER = None
+    # SECURE_HSTS_SECONDS = 0
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    # SECURE_HSTS_PRELOAD = False
+else:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
