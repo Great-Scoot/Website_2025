@@ -36,10 +36,10 @@ if settings.ENV_WEBSITE_MODE == 'dev':
 
 # Errors...
 if settings.ENV_WEBSITE_MODE == 'prod':
-    handler400 = 'backend.views.handler400'
-    handler403 = 'backend.views.handler403'
-    handler404 = 'backend.views.handler404'
-    handler500 = 'backend.views.handler500'
+    handler400 = 'backend.views.error_view'
+    handler403 = 'backend.views.error_view'
+    handler404 = 'backend.views.error_view'
+    handler500 = 'backend.views.error_view'
 
 # App Paths (includes catch-all)...
 urlpatterns += [path('', include('portfolio_app.urls'), name='portfolio')]

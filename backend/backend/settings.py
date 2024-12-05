@@ -39,7 +39,7 @@ SECRET_KEY = ENV_DJANGO_SECRET_KEY # TODO: Update this...
 DEBUG = ENV_WEBSITE_MODE == 'dev'
 
 # Allowed Hosts
-ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com',]
+ALLOWED_HOSTS = ['scottzehner.com', 'www.scottzehner.com']
 
 if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
     ALLOWED_HOSTS += ['*']

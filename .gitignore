@@ -7,8 +7,6 @@ backend/static/
 # NodeJS
 node_modules
 npm-debug.log
-frontend/public/*
-!frontend/public/.gitignore
 
 # React
 frontend/node_modules/

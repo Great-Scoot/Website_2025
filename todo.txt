@@ -6,9 +6,14 @@ Workflow for dev -> staging -> prod?
         - Disable/hide stuff (done)
         - Add ?v=[website_version] (done)
         - Fix url routing (done)
-        ## PICKUP HERE ##
-        - Base view rewrite to /maintenance
-        - Error view
+        - Added frontend/public content to repo (done)
+        - Base view rewrite to /maintenance (done)
+        - Error view:
+            - Create error_view (done)
+            - Pass errorCode client-site:
+                ## PICKUP HERE ##
+                - Create React error view
+                - Simulate errors/test error view
         - Investigate code splitting 
         - Make bundle more data driven?
         - Webpack: Split code for each page? Make related updates?
@@ -18,8 +23,9 @@ Workflow for dev -> staging -> prod?
                 - Include the following? /etc/nginx/maintenance.conf; # Contains: set $maintenance_mode 1;
                     - Can be controlled via touch command?
                 - Use ENV vars to enable staging?
-            - Whitelist IP via secret.env, related to staging?
+            - Whitelist IP via secret.env, related to staging? Maybe a URL param to bypass instead?
             - How to serve from just NGINX
+        - Error page?
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to update ENV_WEBSITE_MODE related to staging vs production?
         - How to stop/start/restart servers (gunicorn, nginx, & python)?

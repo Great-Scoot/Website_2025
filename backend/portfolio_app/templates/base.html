@@ -33,6 +33,7 @@
       <!-- JS -->
       <script>
         const systemConfiguration = JSON.parse('{{ system_configuration_encoded|safe|escapejs }}');
+        const errorCode = '{{ error_code|default_if_none:""|safe }}';
       </script>
       <script src="{% static 'scripts/bundle.js' %}?v={{ system_configuration.website_version }}"></script>
     </body>
