@@ -7,6 +7,10 @@ Workflow for dev -> staging -> prod?
         - Add ?v=[website_version] (done)
         - Fix url routing (done)
         ## PICKUP HERE ##
+        - Base view rewrite to /maintenance
+        - Error view
+        - Investigate code splitting 
+        - Make bundle more data driven?
         - Webpack: Split code for each page? Make related updates?
     - Update docker.nginx.conf:
         - Maintenance mode:
