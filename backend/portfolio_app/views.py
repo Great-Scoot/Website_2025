@@ -5,7 +5,7 @@ from api.utils import get_system_configuration
 # Create your views here.
 def app_view(request, page_title):
     system_config = get_system_configuration(False)
-    
+
     # If maintenance_mode and not current request path, redirect.
     if system_config.get('maintenance_mode', False) and request.path != '/maintenance':
         return redirect('/maintenance')

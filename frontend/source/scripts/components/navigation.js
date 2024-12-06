@@ -180,7 +180,7 @@ const Navigation = (props) => {
     }
 
     const handleClickNavContact = () => {
-        if (!stage.state.systemConfiguration.maintenance_mode) {
+        if (stage.state.statusCode == 200 && !stage.state.systemConfiguration.maintenance_mode) {
             navigate('/about');
             stage.methods.pages.updateSectionScrollTarget({page: 'about', section: 'contact'});
             navigation.methods.updatePhase('closed');
@@ -188,7 +188,7 @@ const Navigation = (props) => {
     }
 
     const navigateHome = () => { // Similar function in footer.js
-        if (!stage.state.systemConfiguration.maintenance_mode) {
+        if (stage.state.statusCode == 200 && !stage.state.systemConfiguration.maintenance_mode) {
             navigate('/portfolio');
             stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
             navigation.methods.updatePhase('closed');
@@ -271,7 +271,7 @@ const Navigation = (props) => {
                         return (
                             <button 
                                 id='navContact' 
-                                className={`btn hoverScaleBg ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.maintenanceHideClass}`} 
+                                className={`btn hoverScaleBg ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.hideClass}`} 
                                 onClick={handleClickNavContact}
                                 type='button' 
                                 disabled={phase === 'opening' || phase === 'closing'}
@@ -285,7 +285,7 @@ const Navigation = (props) => {
                 <button 
                     id='navBars' 
                     ref={navigation.refs.navBars} 
-                    className={`btn btnRound hoverScaleBg ${phase} ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.maintenanceHideClass}`} 
+                    className={`btn btnRound hoverScaleBg ${phase} ${showNavBackground ? 'showNavBackground' : ''} ${stage.state.hideClass}`} 
                     onClick={handleClickNavBars} 
                     type='button' 
                     disabled={phase === 'opening' || phase === 'closing'}

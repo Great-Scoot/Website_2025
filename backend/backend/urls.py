@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 
 from backend import views
@@ -40,6 +40,8 @@ if settings.ENV_WEBSITE_MODE == 'prod':
     handler403 = 'backend.views.error_view'
     handler404 = 'backend.views.error_view'
     handler500 = 'backend.views.error_view'
+
+urlpatterns += [re_path(r'^error/?$', views.error_view, name='error')]
 
 # App Paths (includes catch-all)...
 urlpatterns += [path('', include('portfolio_app.urls'), name='portfolio')]

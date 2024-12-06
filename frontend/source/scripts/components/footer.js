@@ -28,7 +28,7 @@ const FooterNavButton = (props) => {
 
     // Functions
     const getClasses = () => {
-        let classes = `footerNavButton hoverScaleBg btn ${stage.state.maintenanceHideClass}`;
+        let classes = `footerNavButton hoverScaleBg btn ${stage.state.hideClass}`;
 
         // If: Route button...
         if (pseudoSections && pseudoSections.indexOf(stage.state.pages.activeSection.id) > -1) {
@@ -82,7 +82,7 @@ const Footer = (props) => {
 
     // Functions
     const navigateHome = () => { // Similar function in navigation.js
-        if (!stage.state.systemConfiguration.maintenance_mode) {
+        if (stage.state.statusCode == 200 && !stage.state.systemConfiguration.maintenance_mode) {
             navigate('/portfolio');
             stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
         }
@@ -93,7 +93,7 @@ const Footer = (props) => {
             <div id='footerConstrainment'>
                 <div className='row'>
                     <div id='footerColumnBrand' className='footerCol col-12 col-md-3'>
-                        <img id='footerSignature' className={`signature ${stage.state.maintenanceHideClass}`} src={'/static/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
+                        <img id='footerSignature' className={`signature ${stage.state.hideClass}`} src={'/static/images/me/signature.png'} onClick={navigateHome} alt='Scott Zehner' />
                     </div>
                     <div id='footerColumnPortfolio' className='footerCol col-6 col-md-3'>
                         <ul className='footerNavMenu'>

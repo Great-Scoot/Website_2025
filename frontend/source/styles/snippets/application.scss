@@ -79,7 +79,7 @@
 // General Styles
 body {
 
-    .maintenanceHide {
+    .hideClass {
         visibility: hidden;
     }
 
@@ -145,6 +145,7 @@ body {
 // Pages
 @import './portfolio/portfolio.scss';
 @import './about/about.scss';
+@import './error/error.scss';
 @import './maintenance/maintenance.scss';
 @import './notfound/notfound.scss';
 

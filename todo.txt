@@ -1,22 +1,9 @@
 == TO DO ==
 
 Workflow for dev -> staging -> prod?
-    - Update React source code:
-        - Update React to redirect to /maintenance when true (done)
-        - Disable/hide stuff (done)
-        - Add ?v=[website_version] (done)
-        - Fix url routing (done)
-        - Added frontend/public content to repo (done)
-        - Base view rewrite to /maintenance (done)
-        - Error view:
-            - Create error_view (done)
-            - Pass errorCode client-site:
-                ## PICKUP HERE ##
-                - Create React error view
-                - Simulate errors/test error view
-        - Investigate code splitting 
-        - Make bundle more data driven?
-        - Webpack: Split code for each page? Make related updates?
+    ## PICKUP HERE ##
+    - Webpack: Split code for each page? Make related updates?
+    - Make more data driven?
     - Update docker.nginx.conf:
         - Maintenance mode:
             - How to enable?

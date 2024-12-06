@@ -38,6 +38,11 @@ const Stage = () => {
                     seeMyWork: {id: 'seeMyWork', label: 'See my Work', colorClass: 'pink'},
                 }
             },
+            error: {
+                sections: {
+                    error: {id: 'error', label: '', colorClass: 'teal'}
+                }
+            },
             maintenance: {
                 sections: {
                     maintenance: {id: 'maintenance', label: '', colorClass: 'teal'}
@@ -79,6 +84,11 @@ const Stage = () => {
                     seeMyWork: useRef(null)
                 }
             },
+            error: {
+                sections: {
+                    error: useRef(null)
+                }
+            },
             maintenance: {
                 sections: {
                     maintenance: useRef(null)
@@ -97,9 +107,10 @@ const Stage = () => {
     const [breakpoint,     setBreakpoint]     = useState('xs');
     const [lastBreakpoint, setLastBreakpoint] = useState(breakpoint);
 
-    const [forceRender,          setForceRender]          = useState(0);
-    const [systemConfiguration,  setSystemConfiguration]  = useState(window.systemConfiguration ? window.systemConfiguration : null);
-    const [maintenanceHideClass, setMaintenanceHideClass] = useState('')
+    const [forceRender,          setForceRender]         = useState(0);
+    const [hideClass,            setHideClass]           = useState('');
+    const [statusCode,           setStatusCode]          = useState(systemData && systemData.statusCode ? systemData.statusCode : 200);
+    const [systemConfiguration,  setSystemConfiguration] = useState(systemData && systemData.systemConfiguration ? systemData.systemConfiguration : null);
 
     // State: <Pages />
     const [activePage,          setActivePage]          = useState(null);
@@ -112,8 +123,9 @@ const Stage = () => {
         breakpoint,
         lastBreakpoint,
         forceRender,
+        hideClass,
+        statusCode,
         systemConfiguration,
-        maintenanceHideClass,
         pages: {
             activePage,
             activeSection,
@@ -131,11 +143,11 @@ const Stage = () => {
             setLastBreakpoint(breakpoint || 'xs');
             setBreakpoint(newBreakpoint  || 'xs');
         },
+        updateHideClass: () => {
+            setHideClass(statusCode != 200 || (systemConfiguration && systemConfiguration.maintenance_mode) ? 'hideClass' : '');
+        },
         updateSystemConfiguration: (systemConfigurationObject) => {
             setSystemConfiguration(systemConfigurationObject);
-        },
-        updateMaintenanceHideClass: () => {
-            setMaintenanceHideClass(systemConfiguration && systemConfiguration.maintenance_mode ? 'maintenanceHide' : '');
         },
         // Children
         pages: {
@@ -231,6 +243,9 @@ const Stage = () => {
                     </Route>
                     <Route exact path='/about'>
                         <Route index element={<Pages page='About' title='About' stage={stage} />} />
+                    </Route>
+                    <Route exact path='/error'>
+                        <Route index element={<Pages page='Error' title='Error' stage={stage} />} />
                     </Route>
                     <Route exact path='/maintenance'>
                         <Route index element={<Pages page='Maintenance' title='Maintenance' stage={stage} />} />

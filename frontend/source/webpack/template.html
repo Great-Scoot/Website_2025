@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-		<link href="/static/images/icons/favicon.ico" rel="shortcut icon" />
+		<link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
 		<title>Webpack Index</title>
 	</head>
@@ -11,7 +11,10 @@
 		<div id="root"></div>
 		<script>
 			// Hard coded here to emulate Django...
-			systemConfiguration = {website_version: '0.0.0', maintenance_mode: false}
+			const systemData = {
+				statusCode: 200,
+				systemConfiguration: {website_version: '0.0.0', maintenance_mode: false}
+			};
 		</script>
 	</body>
 </html>

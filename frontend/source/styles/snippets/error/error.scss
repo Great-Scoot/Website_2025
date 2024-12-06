@@ -1,0 +1,27 @@
+// Error
+#error {
+    // Styles
+    min-height: 620px;
+    position: relative;
+    text-align: center;
+    background-image: url('/static/images/stock/searching-night-sky.jpg');
+    background-position: bottom;
+    background-size: cover;
+    padding: $default-padding;
+    margin-bottom: $default-margin;
+
+    #EText {
+        // Styles
+        width: 90%;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: $custom-black-two-thirds;
+        border-radius: 1rem;
+        padding: $default-padding;
+
+        #ETextSmall {
+            font-size: 0.67rem;
+        }
+    }
+}
