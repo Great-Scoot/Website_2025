@@ -2,6 +2,7 @@
 
 Workflow for dev -> staging -> prod?
     ## PICKUP HERE ##
+    - Refactor stage.js
     - Make more data driven?
     - Update docker.nginx.conf:
         - Maintenance mode:
