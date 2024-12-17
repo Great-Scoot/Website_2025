@@ -1,9 +1,12 @@
 const path = require('path');
 
-// .env stuff...
+// Load environment variables from two separate files
+// public.env contains non-sensitive configuration
+// secret.env contains sensitive data like API keys
 require('dotenv').config({path: 'public.env'});
 require('dotenv').config({path: 'secret.env'});
 
+const ENV_WEBSITE_VERSION = process.env.ENV_WEBSITE_VERSION;
 const ENV_WEBPACK_PORT = process.env.ENV_WEBPACK_PORT;
 
 // Plugins
@@ -13,15 +16,44 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => ({
     entry: path.join(__dirname, './frontend/source/index.js'),
+    // Output settings for bundled files
     output: {
-        filename: 'scripts/bundle.js',
+        filename: `scripts/[name].${ENV_WEBSITE_VERSION}.js`,
+        chunkFilename: `scripts/[name].chunk.${ENV_WEBSITE_VERSION}.js`,
         path: path.join(__dirname, './frontend/public'),
-        publicPath: '/'
+        publicPath: argv.mode === 'production' ? '/static/' : '/',
+        clean: true,
+    },
+    // Code splitting optimization
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 20000, // Minimum size in bytes for creating a chunk
+            minChunks: 1,   // Minimum number of chunks that share a module
+            maxAsyncRequests: 30, // Maximum number of parallel requests when loading chunks
+            maxInitialRequests: 30,
+            cacheGroups: {
+                // Separate vendor (node_modules) code into its own chunk
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    name: 'vendors'
+                },
+                // Group commonly shared code into a separate chunk
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                    name: 'common'
+                }
+            }
+        }
     },
     devServer: {
-        historyApiFallback: true, // Allows React's routing to work
-        hot: true,
+        historyApiFallback: true, // Support client-side routing
+        hot: true, // Enable hot module replacement
         port: ENV_WEBPACK_PORT,
+        // Proxy API requests to Django backend
         proxy: {
             '/api': {
                 target: `http://${process.env.ENV_DJANGO_HOST}:${process.env.ENV_DJANGO_PORT}`,
@@ -53,18 +85,21 @@ module.exports = (env, argv) => ({
         ]
     },
     plugins: [
-        new HTMLWebpackPlugin({ // This creates the index.html
+        // Generate index.html with injected bundles
+        new HTMLWebpackPlugin({
             minify: {
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true,
-                removeComments: true,
+                collapseWhitespace: false,
+                minifyCSS: false,
+                minifyJS: false,
+                removeComments: false,
             },
             template: path.join(__dirname, './frontend/source/webpack/template.html')
         }),
+        // Extract CSS into separate files
         new MiniCssExtractPlugin({
-            filename: 'styles/bundle.css'
+            filename: `styles/[name].${ENV_WEBSITE_VERSION}.css`
         }),
+        // Copy static assets to build directory
         new CopyPlugin({
             patterns: [ // Copy static files to build. This plugin is not designed to copy the bundled files.
                 {from: path.join(__dirname, './frontend/source/documents'), to: path.join(__dirname, './frontend/public/documents')},
@@ -75,6 +110,7 @@ module.exports = (env, argv) => ({
             ]
         })
     ],
+    // Configure module loading rules
     module: {
         rules: [
             {
@@ -115,5 +151,6 @@ module.exports = (env, argv) => ({
             }
         ]
     },
+    // Uncomment for detailed build information
     // stats: 'detailed'
 });

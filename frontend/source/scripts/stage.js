@@ -1,9 +1,93 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import React, {Suspense, useEffect, useRef, useState} from 'react';
+import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 
 import Navigation from './components/navigation.js';
-import Pages      from './pages/pages.js';
-import Footer     from './components/footer.js';
+
+const Portfolio   = React.lazy(() => import(/* webpackChunkName: "portfolio" */   './pages/portfolio/portfolio.js'))
+const About       = React.lazy(() => import(/* webpackChunkName: "about" */       './pages/about/about.js'))
+const Error       = React.lazy(() => import(/* webpackChunkName: "error" */       './pages/error/error.js'))
+const Maintenance = React.lazy(() => import(/* webpackChunkName: "maintenance" */ './pages/maintenance/maintenance.js'))
+const NotFound    = React.lazy(() => import(/* webpackChunkName: "not-found" */   './pages/notfound/notfound.js'))
+
+import Footer from './components/footer.js';
+
+const Pages = (props) => {
+    const pages = {};
+
+    // Props
+    const {page, title, stage} = props;
+
+    // Hooks
+    const navigate = useNavigate();
+
+    // Functions
+    const getComponent = () => {
+        switch(page) {
+            case 'Portfolio':   return <Portfolio   {...props} />; break;
+            case 'About':       return <About       {...props} />; break;
+            case 'Error':       return <Error       {...props} />; break;
+            case 'Maintenance': return <Maintenance {...props} />; break;
+            default:            return <NotFound    {...props} />;
+        };
+    };
+
+    const navigateError = () => { // Similar function in navigation.js
+        navigate('/error');
+        stage.methods.pages.updateSectionScrollTarget({page: 'error', section: 'top'});
+    }
+
+    const navigateMaintenance = () => { // Similar function in navigation.js
+        navigate('/maintenance');
+        stage.methods.pages.updateSectionScrollTarget({page: 'maintenance', section: 'top'});
+    }
+
+    // Update page title and activate page...
+    useEffect(() => {
+        document.title = title;
+        stage.methods.pages.updateActivePage(title);
+    });
+
+    // When active page updated...
+    useEffect(() => {
+        // Check status code
+        if (stage.state.statusCode != 200) {
+            stage.methods.updateHideClass();
+            navigateError();
+        } else {
+            // Fetch System Config
+            if (title == stage.state.pages.activePage) {
+                fetch('/api/system-configuration?format=json')
+                .then(response => response.json())
+                .then(systemConfigurationObject => {
+                    stage.methods.updateSystemConfiguration(systemConfigurationObject);
+                    stage.methods.forceRender();
+                });
+            }
+        }
+
+    }, [stage.state.pages.activePage]);
+
+    // Handle System Config
+    useEffect(() => {
+        if (stage.state.systemConfiguration) {
+            // Log it...
+            console.log(stage.state.systemConfiguration);
+            
+            // Navigate...
+            if (stage.state.systemConfiguration.maintenance_mode) {
+                navigateMaintenance();
+            }
+        }
+
+        stage.methods.updateHideClass();
+    }, [stage.state.forceRender]);
+
+    return (
+        <div id='page'>
+            {getComponent()}
+        </div>
+    );
+};
 
 const Stage = () => {
     const stage = {};
@@ -215,10 +299,14 @@ const Stage = () => {
                     top: 0
                 });
             } else { // Else: Target is a specific section...
-                window.scrollTo({
-                    behavior: 'smooth',
-                    top: stage.refs.pages[sectionScrollTarget.page].sections[sectionScrollTarget.section].current.offsetTop - stage.globals.navigation.navHeight
-                });
+                const pageSectionCurrent = stage.refs.pages[sectionScrollTarget.page].sections[sectionScrollTarget.section].current;
+
+                if (pageSectionCurrent) {
+                    window.scrollTo({
+                        behavior: 'smooth',
+                        top: pageSectionCurrent.offsetTop - stage.globals.navigation.navHeight
+                    });
+                }
             }
 
             // Unset...
@@ -233,25 +321,26 @@ const Stage = () => {
                 <Navigation stage={stage} />
 
                 {/* CONTENT */}
-                <Routes>
-                    <Route exact path='/'>
-                        <Route index               element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
-                        <Route exact path='/index' element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
-                    </Route>
-                    <Route exact path='/portfolio'>
-                        <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
-                    </Route>
-                    <Route exact path='/about'>
-                        <Route index element={<Pages page='About' title='About' stage={stage} />} />
-                    </Route>
-                    <Route exact path='/error'>
-                        <Route index element={<Pages page='Error' title='Error' stage={stage} />} />
-                    </Route>
-                    <Route exact path='/maintenance'>
-                        <Route index element={<Pages page='Maintenance' title='Maintenance' stage={stage} />} />
-                    </Route>
-                    <Route path="*" element={<Pages page='NotFound' title='Not Found' stage={stage} />} />
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route exact path='/'>
+                            <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                        </Route>
+                        <Route exact path='/portfolio'>
+                            <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                        </Route>
+                        <Route exact path='/about'>
+                            <Route index element={<Pages page='About' title='About' stage={stage} />} />
+                        </Route>
+                        <Route exact path='/error'>
+                            <Route index element={<Pages page='Error' title='Error' stage={stage} />} />
+                        </Route>
+                        <Route exact path='/maintenance'>
+                            <Route index element={<Pages page='Maintenance' title='Maintenance' stage={stage} />} />
+                        </Route>
+                        <Route path="*"  element={<Pages page='NotFound' title='Not Found' stage={stage} />} />
+                    </Routes>
+                </Suspense>
 
                 {/* FOOTER */}
                 <Footer stage={stage} />

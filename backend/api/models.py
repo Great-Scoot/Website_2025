@@ -12,4 +12,4 @@ class SystemConfiguration(models.Model):
         verbose_name_plural = 'System Configuration'
 
     def __str__(self):
-        return f'v{self.website_version}'
+        return f'version: {self.website_version}'
