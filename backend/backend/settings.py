@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'api',
-    'portfolio_app',
+    'portfolio',
 ]
 
 if ENV_WEBSITE_MODE == 'dev':

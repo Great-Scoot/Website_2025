@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 
-from portfolio_app import views
+from portfolio import views
 
 # App Paths...
 urlpatterns = [

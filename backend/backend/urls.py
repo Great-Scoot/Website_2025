@@ -44,4 +44,4 @@ if settings.ENV_WEBSITE_MODE == 'prod':
 urlpatterns += [re_path(r'^error/?$', views.error_view, name='error')]
 
 # App Paths (includes catch-all)...
-urlpatterns += [path('', include('portfolio_app.urls'), name='portfolio')]
+urlpatterns += [path('', include('portfolio.urls'), name='portfolio')]
