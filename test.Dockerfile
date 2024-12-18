@@ -27,8 +27,8 @@ RUN apt-get update && apt-get install -y \
 COPY secret.env /app/temp/secret.env
 
 # Configure Nginx
-COPY nginx/docker.nginx.conf /etc/nginx/conf.d
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.backup
+COPY nginx/docker.nginx.conf /etc/nginx/conf.d
 
 # Make log directory for GUnicorn
 RUN mkdir /var/log/gunicorn
@@ -42,7 +42,7 @@ CMD ["nginx", "-g", "daemon off;"]
 # Next steps: 
     # Move secret.env, delete temp directory
     # Setup SSH, clone repo
-    # Install stuff (pip & npm)
+    # Install stuff (pip)
     # Create database
     # createsuperuser, collectstatic, migrate
     # Configure NGINX

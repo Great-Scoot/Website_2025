@@ -51,14 +51,14 @@ git clone git@github.com:[PATH-TO-REPO]
 mv temp/secret.env [PROJECT-DIRECTORY]/
 rm -r temp
 
-cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d
 mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.backup
+cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d
 
 mkdir /var/log/gunicorn
 
 == POSTGRES ==
 
-== Docker Container ==
+== Ubuntu ==
 pg_ctlcluster 15 main start|stop|status (starts/stops postgres)
 sudo -i -u postgres
 psql
@@ -73,10 +73,10 @@ GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
 GRANT ALL ON SCHEMA public TO your_username;
 
 == PYTHON ==
-python manage.py createsuperuser
-python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic
 
 == GREEN UNICORN ==
 gunicorn [PROJECT-NAME].wsgi:application --config gunicorn_config.py (starts gunicorn in production - linux only)
@@ -86,10 +86,14 @@ pkill gunicorn
 npm run webpack:dev
 npm run webpack:stage
 
+== NGINX ==
+nginx -t
+nginx -s reload
+
 == CI/CD ==
-Set ENV_WEBSITE_VERSION
-Set ENV_WEBSITE_MODE to 'stage'
-npm run webpack:stage
+Update ENV_WEBSITE_VERSION
+Set ENV_WEBSITE_MODE to 'prod'
+npm run webpack:prod
 Commit
 SSH to server
 ./stage_latest.sh (make it executable with chmod +x stage_latest.sh)
