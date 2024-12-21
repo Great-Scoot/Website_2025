@@ -113,42 +113,21 @@ const About = (props) => {
     const about = {};
 
     // Props
-    const {stage} = props;
+    const {page, title, pages, stage} = props;
 
     // Hooks
 
     // Update #navBrandSection on scroll
     useEffect(() => {
-        let lastScrollPosition = window.scrollY;
-
-        // Shorthand
-        const shortRefs = {
+        const sectionRefs = {
             profile:   stage.refs.pages.about.sections.profile.current,
             resume:    stage.refs.pages.about.sections.resume.current,
             contact:   stage.refs.pages.about.sections.contact.current,
             seeMyWork: stage.refs.pages.about.sections.seeMyWork.current
         };
 
-        const handleScroll = (e) => {
-            lastScrollPosition = window.scrollY;
-
-            // Update activeSection...
-            for (const key in shortRefs) {
-                const value = shortRefs[key];
-
-                // Compare scroll position to mid point of each section...
-                if (lastScrollPosition < value.offsetTop - stage.globals.navigation.navHeight + value.offsetHeight / 2) {
-                    // If activeSection should be updated...
-                    if (stage.state.pages.activeSection.id !== key) {
-                        // Update it.
-                        stage.methods.pages.updateActiveSection(stage.globals.pages.about.sections[key]);
-                    }
-                    break;
-                }
-            }
-        }
-
-        // Add, call, and reset event listener as needed...
+        // Add, call, and reset event listener...
+        const handleScroll = pages.methods.createScrollHandler(sectionRefs);
         document.addEventListener('scroll', handleScroll); handleScroll();
         return () => document.removeEventListener('scroll', handleScroll);
     }, [stage.state.pages.activeSection]);

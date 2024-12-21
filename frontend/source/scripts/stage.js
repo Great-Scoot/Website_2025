@@ -17,19 +17,42 @@ const Pages = (props) => {
     // Props
     const {page, title, stage} = props;
 
-    // Hooks
-    const navigate = useNavigate();
+    // Methods (for organization and passing to children).
+    pages.methods = {
+        // Used to update #navBrandSection for some, not all, pages.
+        createScrollHandler: (sectionRefs) => (e) => {
+            const scrollPosition = window.scrollY;
+        
+            // Loop through sectionRefs...
+            for (const sectionKey in sectionRefs) {
+                const sectionValue = sectionRefs[sectionKey];
+        
+                // If scroll position less than section's distance from top, plus half the section's height, minus fixed navHeight...
+                if (scrollPosition < (sectionValue.offsetTop + (sectionValue.offsetHeight / 2) - stage.globals.navigation.navHeight)) {
+                    // Check if sectionKey is not current activeSection...
+                    if (sectionKey !== stage.state.pages.activeSection.id) {
+                        // Update activeSection.
+                        stage.methods.pages.updateActiveSection(stage.globals.pages[page].sections[sectionKey]);
+                    }
+                    // Not sure why I added this...lol...
+                    break;
+                }
+            }
+        }
+    }
 
     // Functions
     const getComponent = () => {
         switch(page) {
-            case 'Portfolio':   return <Portfolio   {...props} />; break;
-            case 'About':       return <About       {...props} />; break;
-            case 'Error':       return <Error       {...props} />; break;
-            case 'Maintenance': return <Maintenance {...props} />; break;
-            default:            return <NotFound    {...props} />;
+            case 'portfolio':   return <Portfolio   pages={pages} {...props} />; break;
+            case 'about':       return <About       pages={pages} {...props} />; break;
+            case 'error':       return <Error       pages={pages} {...props} />; break;
+            case 'maintenance': return <Maintenance pages={pages} {...props} />; break;
+            default:            return <NotFound    pages={pages} {...props} />;
         };
     };
+
+    const navigate = useNavigate();
 
     const navigateError = () => { // Similar function in navigation.js
         navigate('/error');
@@ -40,6 +63,8 @@ const Pages = (props) => {
         navigate('/maintenance');
         stage.methods.pages.updateSectionScrollTarget({page: 'maintenance', section: 'top'});
     }
+
+    // Hooks
 
     // Update page title and activate page...
     useEffect(() => {
@@ -54,15 +79,23 @@ const Pages = (props) => {
             stage.methods.updateHideClass();
             navigateError();
         } else {
-            // Fetch System Config
+            // Ignore null state...
             if (title == stage.state.pages.activePage) {
-                fetch('/api/system-configuration?format=json')
-                .then(response => response.json())
-                .then(systemConfigurationObject => {
-                    stage.methods.updateSystemConfiguration(systemConfigurationObject);
-                    stage.methods.forceRender();
-                });
+                
+                // Fetch System Config if not first active page...
+                if (!stage.state.pages.isFirstActivePage) {
+                    fetch('/api/system-configuration?format=json')
+                        .then(response => response.json())
+                        .then(systemConfigurationObject => {
+                            stage.methods.updateSystemConfiguration(systemConfigurationObject);
+                            stage.methods.forceRender();
+                    });
+                }
+
+                // Set isFirstActivePage to false.
+                stage.methods.pages.updateIsFirstActivePage();
             }
+
         }
 
     }, [stage.state.pages.activePage]);
@@ -107,7 +140,7 @@ const Stage = () => {
         },
         pages: {
             portfolio: {
-                sections: { // Not referenced in many cases. See <NavButton /> and <Portfolio />...
+                sections: { // See <NavButton /> and <Portfolio />...
                     hero:         {id: 'hero',         label: 'Portfolio',     colorClass: 'teal'},
                     latestWork:   {id: 'latestWork',   label: 'Latest Work',   colorClass: 'cyan'},
                     previousWork: {id: 'previousWork', label: 'Previous Work', colorClass: 'purple'},
@@ -115,7 +148,7 @@ const Stage = () => {
                 }
             },
             about: {
-                sections: { // Not referenced in many cases. See <NavButton /> and <About />...
+                sections: { // See <NavButton /> and <About />...
                     profile:   {id: 'profile',   label: 'Profile',     colorClass: 'teal'},
                     resume:    {id: 'resume',    label: 'Resume',      colorClass: 'cyan'},
                     contact:   {id: 'contact',   label: 'Contact',     colorClass: 'purple'},
@@ -188,16 +221,17 @@ const Stage = () => {
     };
 
     // State: <Stage />
-    const [breakpoint,     setBreakpoint]     = useState('xs');
-    const [lastBreakpoint, setLastBreakpoint] = useState(breakpoint);
-
+    const [breakpoint,           setBreakpoint]          = useState('xs');
     const [forceRender,          setForceRender]         = useState(0);
     const [hideClass,            setHideClass]           = useState('');
+
+    // System Data
     const [statusCode,           setStatusCode]          = useState(systemData && systemData.statusCode ? systemData.statusCode : 200);
     const [systemConfiguration,  setSystemConfiguration] = useState(systemData && systemData.systemConfiguration ? systemData.systemConfiguration : null);
 
     // State: <Pages />
     const [activePage,          setActivePage]          = useState(null);
+    const [isFirstActivePage,   setIsFirstActivePage]   = useState(true);
     const [activeSection,       setActiveSection]       = useState({id: null, label: null, colorClass: null});
     const [sectionScrollTarget, setSectionScrollTarget] = useState({page: null, section: null});
 
@@ -205,13 +239,13 @@ const Stage = () => {
     stage.state = {
         // <Stage />
         breakpoint,
-        lastBreakpoint,
         forceRender,
         hideClass,
         statusCode,
         systemConfiguration,
         pages: {
             activePage,
+            isFirstActivePage,
             activeSection,
             sectionScrollTarget
         }
@@ -224,7 +258,6 @@ const Stage = () => {
             setForceRender(prev => prev + 1);
         },
         updateBreakpoint: (newBreakpoint) => {
-            setLastBreakpoint(breakpoint || 'xs');
             setBreakpoint(newBreakpoint  || 'xs');
         },
         updateHideClass: () => {
@@ -233,10 +266,13 @@ const Stage = () => {
         updateSystemConfiguration: (systemConfigurationObject) => {
             setSystemConfiguration(systemConfigurationObject);
         },
-        // Children
+        // <Pages />
         pages: {
             updateActivePage: (pageTitle) => {
                 setActivePage(pageTitle);
+            },
+            updateIsFirstActivePage: () => {
+                setIsFirstActivePage(false);
             },
             updateActiveSection: (sectionObject) => {
                 setActiveSection(sectionObject);
@@ -321,24 +357,24 @@ const Stage = () => {
                 <Navigation stage={stage} />
 
                 {/* CONTENT */}
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div id='stageLoading'>Loading...</div>}>
                     <Routes>
                         <Route exact path='/'>
-                            <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                            <Route index element={<Pages page='portfolio' title='Portfolio' stage={stage} />} />
                         </Route>
                         <Route exact path='/portfolio'>
-                            <Route index element={<Pages page='Portfolio' title='Portfolio' stage={stage} />} />
+                            <Route index element={<Pages page='portfolio' title='Portfolio' stage={stage} />} />
                         </Route>
                         <Route exact path='/about'>
-                            <Route index element={<Pages page='About' title='About' stage={stage} />} />
+                            <Route index element={<Pages page='about' title='About' stage={stage} />} />
                         </Route>
                         <Route exact path='/error'>
-                            <Route index element={<Pages page='Error' title='Error' stage={stage} />} />
+                            <Route index element={<Pages page='error' title='Error' stage={stage} />} />
                         </Route>
                         <Route exact path='/maintenance'>
-                            <Route index element={<Pages page='Maintenance' title='Maintenance' stage={stage} />} />
+                            <Route index element={<Pages page='maintenance' title='Maintenance' stage={stage} />} />
                         </Route>
-                        <Route path="*"  element={<Pages page='NotFound' title='Not Found' stage={stage} />} />
+                        <Route path="*"  element={<Pages page='notFound' title='Not Found' stage={stage} />} />
                     </Routes>
                 </Suspense>
 

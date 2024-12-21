@@ -4,42 +4,14 @@ const Error = (props) => {
     const error = {};
 
     // Props
-    const {stage} = props;
+    const {page, title, pages, stage} = props;
 
     // Hooks
 
-    // Update #navBrandSection on scroll
+    // Update #navBrandSection when component mounts.
     useEffect(() => {
-        let lastScrollPosition = window.scrollY;
-
-        // Shorthand
-        const shortRefs = {
-            error: stage.refs.pages.error.sections.error.current,
-        };
-
-        const handleScroll = (e) => {
-            lastScrollPosition = window.scrollY;
-
-            // Update activeSection...
-            for (const key in shortRefs) {
-                const value = shortRefs[key];
-
-                // Compare scroll position to mid point of each section...
-                if (lastScrollPosition < value.offsetTop - stage.globals.navigation.navHeight + value.offsetHeight / 2) {
-                    // If activeSection should be updated...
-                    if (stage.state.pages.activeSection.id !== key) {
-                        // Update it.
-                        stage.methods.pages.updateActiveSection(stage.globals.pages.error.sections[key]);
-                    }
-                    break;
-                }
-            }
-        }
-
-        // Add, call, and reset event listener as needed...
-        document.addEventListener('scroll', handleScroll); handleScroll();
-        return () => document.removeEventListener('scroll', handleScroll);
-    }, [stage.state.pages.activeSection]);
+        stage.methods.pages.updateActiveSection(stage.globals.pages.error.sections.error);
+    }, []);
 
     return (
         <div id='error' ref={stage.refs.pages.error.sections.error}>
