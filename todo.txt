@@ -1,18 +1,17 @@
 == TO DO ==
 
 Workflow for dev -> staging -> prod?
-    ## PICKUP HERE ##
-    - Refactor stage.js
-        - Move pages component to own file
-    - Add validation to SystemConfiguration model to only allow one entry and prevent delete of main entry?
-    - Create non-super users, permissions groups, and test.
     - Make more data driven:
         - Add simple models to represent site structure
             - Pages
             - Sections
-            - Sliders
+            - Slider (done)
+            - SliderItem (done)
+        ## PICKUP HERE ##
+        - Improve the date/time picker, related to SliderItem. Figure out which widget to use. Continue adding SliderItems to database.
         - Lock down these models like SystemConfiguration?
         - Change contact form to Django/React form?
+    - Fix small screen slide issue (when in office)
     - Update docker.nginx.conf:
         - Maintenance mode:
             - How to enable?

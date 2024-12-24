@@ -180,7 +180,7 @@ const Navigation = (props) => {
     }
 
     const handleClickNavContact = () => {
-        if (stage.state.statusCode == 200 && !stage.state.systemConfiguration.maintenance_mode) {
+        if (!stage.state.systemConfiguration.maintenance_mode) {
             navigate('/about');
             stage.methods.pages.updateSectionScrollTarget({page: 'about', section: 'contact'});
             navigation.methods.updatePhase('closed');
@@ -188,7 +188,7 @@ const Navigation = (props) => {
     }
 
     const navigateHome = () => { // Similar function in footer.js
-        if (stage.state.statusCode == 200 && !stage.state.systemConfiguration.maintenance_mode) {
+        if (!stage.state.systemConfiguration.maintenance_mode) {
             navigate('/portfolio');
             stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'top'});
             navigation.methods.updatePhase('closed');

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from api.utils import get_system_configuration
+from portfolio.utils import get_system_configuration
 
 # Create your views here.
 def app_view(request, page_title):

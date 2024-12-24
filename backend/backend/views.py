@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from api.utils import get_system_configuration
+from portfolio.utils import get_system_configuration
 
 # Create your views here.
 def error_view(request, exception=None):

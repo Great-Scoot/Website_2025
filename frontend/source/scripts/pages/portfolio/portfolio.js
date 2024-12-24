@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import {Slider} from '../../components/slider.js';
-import Work from '../../components/work.js';
+import Work     from '../../components/work.js';
 
 import WebDev from './webDev.js';
 import Webcasting from './webcasting.js';

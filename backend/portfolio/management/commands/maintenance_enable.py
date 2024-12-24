@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from api.models import SystemConfiguration
+from portfolio.models import SystemConfiguration
 
 class Command(BaseCommand):
     help = 'Enables maintenance_mode.'

@@ -2,7 +2,7 @@ import json
 
 from django.core.serializers.json import DjangoJSONEncoder
 
-from api.models import SystemConfiguration
+from portfolio.models import SystemConfiguration
 
 # System Configuration
 system_configuration_fields = ['website_version', 'maintenance_mode']
