@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 venv/
 backend/static/
+backend/media/
 
 # NodeJS
 node_modules
