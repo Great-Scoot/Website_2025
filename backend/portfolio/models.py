@@ -23,8 +23,20 @@ class SystemConfiguration(models.Model):
     def delete(self, *args, **kwargs):
         raise ValidationError('SystemConfiguration cannot be deleted.')
 
+class Page(models.Model):
+    page_id = models.CharField(max_length=200)
+    title =   models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Page"
+        verbose_name_plural = "Pages"
+
 class Slider(models.Model):
     slider_id = models.CharField(max_length=100)
+    page =      models.ForeignKey(Page, on_delete=models.SET_NULL, related_name='sliders', null=True)
 
     def __str__(self):
         return self.slider_id

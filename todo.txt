@@ -7,9 +7,13 @@ Workflow for dev -> staging -> prod?
             - Sections
             - Slider (done)
             - SliderItem (done)
+        - Continue adding SliderItems to database.
+        - Include data in server response (done)
         ## PICKUP HERE ##
-        - Improve the date/time picker, related to SliderItem. Figure out which widget to use. Continue adding SliderItems to database.
-        - Lock down these models like SystemConfiguration?
+        - Stand up API for slider-items-by-page-id
+            - How to use utility function approach?
+            - Why is image null?
+            - How to get slider_id as str?
         - Change contact form to Django/React form?
     - Fix small screen slide issue (when in office)
     - Update docker.nginx.conf:
