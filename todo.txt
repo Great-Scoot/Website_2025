@@ -4,7 +4,9 @@ Workflow for dev -> prod?
     - Make more data driven:
         ## PICKUP HERE ##
         - Update frontend to use /api/slider-items?page_name=portfolio
+            - Remove forceRender (done)
             - Expired entries should not be clickable
+            - Remove source/public images
         - Change contact form to Django/React form?
     - Fix small screen slide issue (when in office)
     - Update docker.nginx.conf:

@@ -73,14 +73,18 @@ const Pages = (props) => {
                         .then(response => response.json())
                         .then(systemConfigurationObject => {
                             stage.methods.updateSystemConfiguration(systemConfigurationObject);
-                            stage.methods.forceRender();
+                    });
+
+                    fetch(`/api/slider-items?page_name=${page}`)
+                        .then(response => response.json())
+                        .then(sliderItemsArray => {
+                            stage.methods.pages.updateSliderItems(sliderItemsArray.length > 1 ? sliderItemsArray : []);
                     });
                 }
 
                 // Set isFirstActivePage to false.
                 stage.methods.pages.updateIsFirstActivePage();
             }
-
         }
 
     }, [stage.state.pages.activePage]);
@@ -98,7 +102,16 @@ const Pages = (props) => {
         }
 
         stage.methods.updateHideClass();
-    }, [stage.state.forceRender]);
+    }, [stage.state.systemConfiguration]);
+
+    // Handle Slider Items
+    useEffect(() => {
+        if (stage.state.pages.sliderItems) {
+            // Log it...
+            console.log(stage.state.pages.sliderItems);
+        }
+
+    }, [stage.state.pages.sliderItems]);
 
     return (
         <div id='page'>

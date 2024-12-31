@@ -105,24 +105,23 @@ const Stage = () => {
 
     // State: <Stage />
     const [breakpoint,           setBreakpoint]          = useState('xs');
-    const [forceRender,          setForceRender]         = useState(0);
     const [hideClass,            setHideClass]           = useState('');
 
     // System Data
-    const [statusCode,           setStatusCode]          = useState(systemData && systemData.statusCode ? systemData.statusCode : 200);
+    const [statusCode,           setStatusCode]          = useState(systemData && systemData.statusCode ?          systemData.statusCode : null);
     const [systemConfiguration,  setSystemConfiguration] = useState(systemData && systemData.systemConfiguration ? systemData.systemConfiguration : null);
-
+    
     // State: <Pages />
     const [activePage,          setActivePage]          = useState(null);
     const [isFirstActivePage,   setIsFirstActivePage]   = useState(true);
     const [activeSection,       setActiveSection]       = useState({id: null, label: null, colorClass: null});
     const [sectionScrollTarget, setSectionScrollTarget] = useState({page: null, section: null});
+    const [sliderItems,         setSliderItems]         = useState(systemData && systemData.sliderItems ? systemData.sliderItems : null);
 
     // State object (for organization and passing to children).
     stage.state = {
         // <Stage />
         breakpoint,
-        forceRender,
         hideClass,
         statusCode,
         systemConfiguration,
@@ -130,16 +129,14 @@ const Stage = () => {
             activePage,
             isFirstActivePage,
             activeSection,
-            sectionScrollTarget
+            sectionScrollTarget,
+            sliderItems
         }
     };
 
     // Methods (for organization and passing to children).
     stage.methods = {
         // <Stage />
-        forceRender: () => {
-            setForceRender(prev => prev + 1);
-        },
         updateBreakpoint: (newBreakpoint) => {
             setBreakpoint(newBreakpoint  || 'xs');
         },
@@ -162,7 +159,10 @@ const Stage = () => {
             },
             updateSectionScrollTarget: (scrollTarget) => {
                 setSectionScrollTarget(scrollTarget);
-            }
+            },
+            updateSliderItems: (sliderItemsArray) => {
+                setSliderItems(sliderItemsArray);
+            },
         }
     };
 
