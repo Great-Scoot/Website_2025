@@ -1,20 +1,21 @@
 from django.shortcuts import render, redirect
 
-from portfolio.utils import get_system_configuration, get_slider_items_by_page_id
+from portfolio.utils import get_system_configuration, get_slider_items_by_page_name
 
 # Create your views here.
-def app_view(request, page_id, page_title):
-    system_config = get_system_configuration(False)
+def app_view(request, page_name, page_title):
+    system_configuration = get_system_configuration(request=request)
 
     # If maintenance_mode and not current request path, redirect.
-    if system_config.get('maintenance_mode', False) and request.path != '/maintenance':
+    if system_configuration.get('maintenance_mode', False) and request.path != '/maintenance':
         return redirect('/maintenance')
         
     context = {
         'page_title': page_title,
-        'system_configuration': system_config,
-        'system_configuration_encoded': get_system_configuration(True),
-        'slider_items_by_page_id_encoded': get_slider_items_by_page_id(True, page_id),
+        'status_code': 200,
+        'system_configuration': system_configuration['data'],
+        'system_configuration_encoded': system_configuration['data_encoded'],
+        'slider_items_by_page_name_encoded': get_slider_items_by_page_name(request=request, page_name=page_name)['data_encoded'],
     }
 
     return render(request, 'base.html', context)

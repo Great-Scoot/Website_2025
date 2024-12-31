@@ -1,39 +1,48 @@
 import json
 
 from django.core.serializers.json import DjangoJSONEncoder
-from django.db.models import F
 
 from portfolio.models import SystemConfiguration, SliderItem
+from portfolio.serializers import SystemConfigurationSerializer, SliderItemsSerializer
 
 # System Configuration
-system_configuration_fields = ['website_version', 'maintenance_mode']
-
-def get_system_configuration(as_DjangoJSON=False):
-    default_config = {
+def get_system_configuration(request=None):
+    # Fallback
+    fallback_system_configuration = {
         'website_version': '0.0.0',
         'maintenance_mode': False
     }
     
-    config = SystemConfiguration.objects.values(*system_configuration_fields).first()
+    # Get first object only
+    system_configuration = SystemConfiguration.objects.first()
 
-    if config is None:
-        config = default_config
+    # If system configuration not added yet, use fallback.
+    if system_configuration is None:
+        system_configuration = fallback_system_configuration
+
+    # Use same data structure as API
+    serializer = SystemConfigurationSerializer(system_configuration, many=False, context={'request': request})
     
-    if as_DjangoJSON:
-        return json.dumps(config, cls=DjangoJSONEncoder)
-    
-    return config
+    # Return serialized data (for Django Template Language use) and json encoded data (for passing to client-side JavaScript)
+    return {
+        'data': serializer.data,
+        'data_encoded': json.dumps(serializer.data, cls=DjangoJSONEncoder)
+    }
 
 # Slider Items
-slider_items_fields = ['title', 'subtitle', 'image', 'type', 'external_url', 'external_url_date', 'slider_id']
-
-def get_slider_items_by_page_id(as_DjangoJSON=False, page_id=False):
-    if not page_id:
+def get_slider_items_by_page_name(request=None, page_name=None):
+    if not page_name:
         return []
     
-    slider_items = SliderItem.objects.filter(slider__page__page_id=page_id).values(*slider_items_fields, slider_id_str=F('slider__slider_id'))
+    # Filter by page_name
+    # Using "select_related" here drastically improves the SQL performance
+    slider_items = SliderItem.objects.select_related('slider', 'slider__page').filter(active=True).filter(slider__page__name=page_name)
 
-    if as_DjangoJSON:
-        return json.dumps(list(slider_items), cls=DjangoJSONEncoder)
-    
-    return slider_items
+    # Use same data structure as API
+    serializer = SliderItemsSerializer(slider_items, many=True, context={'request': request})
+
+    # Return serialized data (for Django Template Language use) and json encoded data (for passing to client-side JavaScript)
+    return {
+        'data': serializer.data,
+        'data_encoded': json.dumps(serializer.data, cls=DjangoJSONEncoder)
+    }

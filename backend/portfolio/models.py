@@ -24,8 +24,8 @@ class SystemConfiguration(models.Model):
         raise ValidationError('SystemConfiguration cannot be deleted.')
 
 class Page(models.Model):
-    page_id = models.CharField(max_length=200)
-    title =   models.CharField(max_length=200)
+    name =  models.CharField(max_length=200) # Like "page_id" but not...
+    title = models.CharField(max_length=200)
 
     def __str__(self):
         return self.title
@@ -35,11 +35,11 @@ class Page(models.Model):
         verbose_name_plural = "Pages"
 
 class Slider(models.Model):
-    slider_id = models.CharField(max_length=100)
-    page =      models.ForeignKey(Page, on_delete=models.SET_NULL, related_name='sliders', null=True)
+    name = models.CharField(max_length=100) # Like "slider_id" but not...
+    page = models.ForeignKey(Page, on_delete=models.SET_NULL, related_name='sliders', null=True)
 
     def __str__(self):
-        return self.slider_id
+        return self.name
     
     class Meta:
         verbose_name = "Slider"

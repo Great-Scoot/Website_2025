@@ -3,17 +3,18 @@
 Workflow for dev -> staging -> prod?
     - Make more data driven:
         - Add simple models to represent site structure
-            - Pages
-            - Sections
+            - Pages (done)
             - Slider (done)
             - SliderItem (done)
-        - Continue adding SliderItems to database.
+        - Continue adding SliderItems to database. (done)
         - Include data in server response (done)
+        - Stand up API for slider-items (done)
+        - Review get_system_config and optimize (done)
+        - Optimize SQL performance (done)
+        - Only return active slider-items (done)
         ## PICKUP HERE ##
-        - Stand up API for slider-items-by-page-id
-            - How to use utility function approach?
-            - Why is image null?
-            - How to get slider_id as str?
+        - Update frontend to use /api/slider-items?page_name=portfolio
+            - Expired entries should not be clickable
         - Change contact form to Django/React form?
     - Fix small screen slide issue (when in office)
     - Update docker.nginx.conf:

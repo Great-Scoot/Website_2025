@@ -33,10 +33,11 @@
       <!-- JS -->
       <script>
         const systemData = {
-          statusCode: parseInt('{{ status_code|safe|default_if_none:200 }}'),
+          statusCode: parseInt('{{ status_code|safe }}'),
           systemConfiguration: JSON.parse('{{ system_configuration_encoded|safe|escapejs }}'),
-          sliderItems: JSON.parse('{{ slider_items_by_page_id_encoded|safe|escapejs }}')
+          sliderItems: JSON.parse('{{ slider_items_by_page_name_encoded|safe|escapejs }}')
         };
+        console.log(systemData);
       </script>
       <script src="{% static 'scripts/vendors.'|add:system_configuration.website_version|add:'.js' %}"></script>
       <script src="{% static 'scripts/main.'|add:system_configuration.website_version|add:'.js' %}"></script>
