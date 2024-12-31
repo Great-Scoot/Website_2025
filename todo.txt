@@ -1,17 +1,7 @@
 == TO DO ==
 
-Workflow for dev -> staging -> prod?
+Workflow for dev -> prod?
     - Make more data driven:
-        - Add simple models to represent site structure
-            - Pages (done)
-            - Slider (done)
-            - SliderItem (done)
-        - Continue adding SliderItems to database. (done)
-        - Include data in server response (done)
-        - Stand up API for slider-items (done)
-        - Review get_system_config and optimize (done)
-        - Optimize SQL performance (done)
-        - Only return active slider-items (done)
         ## PICKUP HERE ##
         - Update frontend to use /api/slider-items?page_name=portfolio
             - Expired entries should not be clickable
