@@ -24,7 +24,7 @@ const FooterNavButton = (props) => {
 
     // Hooks
     const location = useLocation();
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Must be used within context of <Router />
 
     // Functions
     const getClasses = () => {
@@ -78,7 +78,7 @@ const Footer = (props) => {
     const {stage} = props;
 
     // Hooks
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Must be used within context of <Router />
 
     // Functions
     const navigateHome = () => { // Similar function in navigation.js

@@ -14,17 +14,7 @@ const Hero = (props) => {
     const hero = {};
 
     // Props
-    const {portfolio, stage} = props;
-
-    // Slides array
-    const slidesArray = [
-        {title: 'Code',    imageURL: '/static/images/sliders/hero/Code.jpg',    type: 'image'},
-        {title: 'S&T',     imageURL: '/static/images/sliders/hero/S&T.jpg',     type: 'image'},
-        {title: 'Conagra', imageURL: '/static/images/sliders/hero/Conagra.jpg', type: 'image'},
-        {title: 'AAM',     imageURL: '/static/images/sliders/hero/AAM.jpg',     type: 'image'},
-        {title: 'Regions', imageURL: '/static/images/sliders/hero/Regions.jpg', type: 'image'},
-        {title: 'Red',     imageURL: '/static/images/sliders/hero/Red.jpg',     type: 'image'}
-    ];
+    const {portfolio, pages, stage} = props;
 
     // State
     const [active, setActive] = useState(true);
@@ -55,18 +45,23 @@ const Hero = (props) => {
                     </div>
                 </div>
                 <div className='d-none d-md-block col-md-6 order-0'>
-                    <Slider 
-                        config={{
-                            id: 'heroSlider',
-                            autoplay: true, 
-                            autoplayInterval: 12, 
-                            controls: true, 
-                            progressBar: true,
-                            slidesArray: slidesArray 
-                        }} 
-                        parent={hero} 
-                        stage={stage} 
-                    />
+                    {pages.state.sliderItems.length > 1 ? ( // Conditionally render <Slider />
+                        <Slider
+                            config={{
+                                id: 'heroSlider',
+                                autoplay: true,
+                                autoplayInterval: 12,
+                                controls: true,
+                                progressBar: true,
+                                slidesArray: pages.methods.getSliderItemsBySliderName('heroSlider')
+                            }}
+                            parent={hero}
+                            pages={pages}
+                            stage={stage}
+                        />
+                    ) : (
+                        <div className='sliderLoading'>Loading...</div>
+                    )}
                 </div>
             </div>
         </div>
@@ -77,7 +72,7 @@ const LatestWork = (props) => {
     const latestWork = {};
 
     // Props
-    const {portfolio, stage} = props;
+    const {portfolio, pages, stage} = props;
 
     // State
     const [activeIndex, setActiveIndex] = useState(null);
@@ -173,7 +168,7 @@ const PreviousWork = (props) => {
     const previousWork = {};
 
     // Props
-    const {portfolio, stage} = props;
+    const {portfolio, pages, stage} = props;
 
     return (
         <div id='previousWork' ref={stage.refs.pages.portfolio.sections.previousWork} className='section sectionDarkened'>
@@ -207,7 +202,7 @@ const GoToProfile = (props) => {
     const goToProfile = {};
 
     // Props
-    const {portfolio, stage} = props;
+    const {portfolio, pages, stage} = props;
 
     // Hooks
     const navigate = useNavigate();
@@ -234,7 +229,6 @@ const GoToProfile = (props) => {
     );
 };
 
-
 const Portfolio = (props) => {
     const portfolio = {};
 
@@ -260,10 +254,10 @@ const Portfolio = (props) => {
 
     return (
         <div id='portfolio'>
-            <Hero         portfolio={portfolio} stage={stage} />
-            <LatestWork   portfolio={portfolio} stage={stage} />
-            <PreviousWork portfolio={portfolio} stage={stage} />
-            <GoToProfile  portfolio={portfolio} stage={stage} />
+            <Hero         portfolio={portfolio} pages={pages} stage={stage} />
+            <LatestWork   portfolio={portfolio} pages={pages} stage={stage} />
+            <PreviousWork portfolio={portfolio} pages={pages} stage={stage} />
+            <GoToProfile  portfolio={portfolio} pages={pages} stage={stage} />
         </div>
     );
 };

@@ -112,11 +112,13 @@ const Stage = () => {
     const [systemConfiguration,  setSystemConfiguration] = useState(systemData && systemData.systemConfiguration ? systemData.systemConfiguration : null);
     
     // State: <Pages />
+    // Notes: 
+    //  - These have been promoted from the "Pages" component since they are used within useEffect() code blocks below.
+    //  - If not used within useEffect(), set these (and related methods) in the "Pages" component.
     const [activePage,          setActivePage]          = useState(null);
     const [isFirstActivePage,   setIsFirstActivePage]   = useState(true);
     const [activeSection,       setActiveSection]       = useState({id: null, label: null, colorClass: null});
     const [sectionScrollTarget, setSectionScrollTarget] = useState({page: null, section: null});
-    const [sliderItems,         setSliderItems]         = useState(systemData && systemData.sliderItems ? systemData.sliderItems : null);
 
     // State object (for organization and passing to children).
     stage.state = {
@@ -126,11 +128,11 @@ const Stage = () => {
         statusCode,
         systemConfiguration,
         pages: {
+            // <Pages />
             activePage,
             isFirstActivePage,
             activeSection,
             sectionScrollTarget,
-            sliderItems
         }
     };
 
@@ -157,14 +159,13 @@ const Stage = () => {
             updateActiveSection: (sectionObject) => {
                 setActiveSection(sectionObject);
             },
-            updateSectionScrollTarget: (scrollTarget) => {
-                setSectionScrollTarget(scrollTarget);
-            },
-            updateSliderItems: (sliderItemsArray) => {
-                setSliderItems(sliderItemsArray);
+            updateSectionScrollTarget: (scrollTargetObject) => {
+                setSectionScrollTarget(scrollTargetObject);
             },
         }
     };
+
+    // Hooks
 
     // Update breakpoint on window resize
     useEffect(() => {
@@ -239,6 +240,8 @@ const Stage = () => {
     return (
         <div id='stage' ref={stage.refs.stage}>
             <Router>
+                {/* NOTE: In future projects, it might be best to wrap <Navigation />, <Pages />, and <Footer /> in a custom component. This would simplify the use of useNavigate. */}
+
                 {/* NAV */}
                 <Navigation stage={stage} />
 

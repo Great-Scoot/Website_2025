@@ -63,7 +63,7 @@ const WebDev = (props) => {
     const webDev = {};
 
     // Props
-    const {config, parent, stage} = props;
+    const {config, parent, pages, stage} = props;
 
     // State
     const [active,    setActive]    = useState(false);
@@ -148,6 +148,7 @@ const WebDev = (props) => {
                             slidesArray: getSlidesArray('slideCardBack')
                         }} 
                         parent={webDev} 
+                        pages={pages}
                         stage={stage} 
                     />
                 </div>

@@ -11,7 +11,7 @@ const NavButton = (props) => {
 
     // Hooks
     const location = useLocation();
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Must be used within context of <Router />
 
     // Functions
     const getClasses = () => {
@@ -98,7 +98,7 @@ const Navigation = (props) => {
     const {stage} = props;
 
     // Hooks
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Must be used within context of <Router />
 
     // Refs
     navigation.refs = {

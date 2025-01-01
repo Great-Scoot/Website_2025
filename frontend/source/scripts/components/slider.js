@@ -86,7 +86,7 @@ const Slide = (props) => {
         */
         const load = () => {
             if (slideImageRef.current) {
-                slideImageRef.current.style.backgroundImage = `url(${slideObject.imageURL})`;
+                slideImageRef.current.style.backgroundImage = `url(${slideObject.image})`;
                 slide.methods.updateLoaded(true);
             }
         };
@@ -270,7 +270,7 @@ const Slider = (props) => {
     */
 
     // Props
-    const {config, parent, stage} = props;
+    const {config, parent, pages, stage} = props;
 
     slider.config = config;
 
@@ -292,7 +292,7 @@ const Slider = (props) => {
     slider.state = {
         autoplay,
         currentIndex, 
-        displayMode
+        displayMode,
     };
 
     // Methods (for organization and passing to children).
@@ -328,7 +328,7 @@ const Slider = (props) => {
         },
         updateDisplayMode: () => {
             setDisplayMode(['xs', 'sm'].indexOf(stage.state.breakpoint) > -1 ? 'tight' : 'loose');
-        }
+        },
     };
 
     // Hooks
@@ -350,6 +350,11 @@ const Slider = (props) => {
 
         return () => clearInterval(autoplayInterval);
     }, [autoplay, currentIndex]);
+
+    // Test
+    // useEffect(() => {
+    //     console.log(config.id, config.slidesArray);
+    // }, []);
 
     return (
         <div id={config.id} className={`slider ${displayMode}`}>

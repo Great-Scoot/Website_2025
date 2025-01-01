@@ -28,7 +28,7 @@ const Webcasting = (props) => {
     const webcasting = {};
 
     // Props
-    const {config, parent, stage} = props;
+    const {config, parent, pages, stage} = props;
 
     // State
     const [active,    setActive]    = useState(false);
@@ -173,7 +173,8 @@ const Webcasting = (props) => {
                             progressBar: false,
                             slidesArray: getSlidesArray('slideCardBack')
                         }} 
-                        parent={webcasting} 
+                        parent={webcasting}
+                        pages={pages} 
                         stage={stage} 
                     />
                 </div>

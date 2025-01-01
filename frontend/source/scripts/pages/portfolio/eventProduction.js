@@ -9,7 +9,7 @@ const EventProduction = (props) => {
     const eventProduction = {};
 
     // Props
-    const {config, parent, stage} = props;
+    const {config, parent, pages, stage} = props;
 
     // Hooks
     const navigate = useNavigate();
@@ -109,7 +109,8 @@ const EventProduction = (props) => {
                                     progressBar: false,
                                     slidesArray: slidesArray
                                 }} 
-                                parent={eventProduction} 
+                                parent={eventProduction}
+                                pages={pages}
                                 stage={stage} 
                             />
                         </div>
