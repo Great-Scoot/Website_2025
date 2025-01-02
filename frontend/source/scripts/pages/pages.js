@@ -78,14 +78,17 @@ const Pages = (props) => {
             // Ignore null state...
             if (page == stage.state.pages.activePage) {
                 
-                // Fetch System Config & Slider Items if not first active page...
+                // Fetch System Config
                 if (!stage.state.pages.isFirstActivePage) {
                     fetch('/api/system-configuration?format=json')
                         .then(response => response.json())
                         .then(systemConfigurationObject => {
                             stage.methods.updateSystemConfiguration(systemConfigurationObject);
                     });
+                }
 
+                // Fetch Slider Items
+                if (!stage.state.pages.isFirstActivePage || pages.state.sliderItems.length <= 1) {
                     fetch(`/api/slider-items?page_name=${page}`)
                         .then(response => response.json())
                         .then(sliderItemsArray => {

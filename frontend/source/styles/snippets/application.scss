@@ -54,12 +54,16 @@
         margin-right: $default-margin;
     }
 
-    .WDHeading, .WDParagraph {
+    .WDPParagraph {
+        white-space: pre-line;
+    }
+
+    .WDPHeading, .WDPParagraph {
         margin-right: $default-margin;
         margin-bottom: $default-margin;
     }
 
-    .WDButton {
+    .WDPButton {
         margin: $default-margin-half 0;
     }
 }

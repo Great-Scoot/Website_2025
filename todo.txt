@@ -1,18 +1,18 @@
 == TO DO ==
 
 Workflow for dev -> prod?
-    - Remove forceRender (done)
-    - Fix small screen slide prev/next issue (done)
     - Make more data driven:
-        ## PICKUP HERE ##
-        - Store time in GMT
         - Use /api/slider-items?page_name=portfolio
             - Conditionally render <Sliders /> (done)
             - Expired entries should not be clickable (done)
-            - Update model for slider items and remove hard code related to webDev items
-                - Use external_url
-                - Add description
-            - Remove source/public images
+            - Use external_url (done)
+            - Add <WebDevPreview /> and remove hard coded components (done)
+            - Update model for slider items
+                - Add description and external_url_text (done)
+                ## PICKUP HERE ##
+                - Add order. Don't sort API response by order. Instead, render components according to order (sort slidesArray?)
+        - Store time in GMT
+        - Remove source/public images
         - Change contact form to Django/React form?
     - Update docker.nginx.conf:
         - Maintenance mode:
