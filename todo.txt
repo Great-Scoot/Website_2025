@@ -1,15 +1,19 @@
 == TO DO ==
 
 Workflow for dev -> prod?
+    - Remove forceRender (done)
+    - Fix small screen slide prev/next issue (done)
     - Make more data driven:
-        - Remove forceRender (done)
         ## PICKUP HERE ##
-        - Update frontend to use /api/slider-items?page_name=portfolio
-            - Conditionally render <Slider /> (done), and <Work />
-                - Expired entries should not be clickable
+        - Store time in GMT
+        - Use /api/slider-items?page_name=portfolio
+            - Conditionally render <Sliders /> (done)
+            - Expired entries should not be clickable (done)
+            - Update model for slider items and remove hard code related to webDev items
+                - Use external_url
+                - Add description
             - Remove source/public images
         - Change contact form to Django/React form?
-    - Fix small screen slide issue (when in office)
     - Update docker.nginx.conf:
         - Maintenance mode:
             - How to enable?

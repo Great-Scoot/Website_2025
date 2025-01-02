@@ -87,26 +87,7 @@ const WebDev = (props) => {
 
     // Functions
     const getSlidesArray = (mode) => {
-        const slidesArray = [
-            {
-                title: 'The Media Frame', 
-                subtitle: 'Webcasting by Chorus Call', 
-                imageURL: '/static/images/sliders/webDev/The-Media-Frame.jpg', 
-                type: 'card'
-            },
-            {
-                title: 'The Media Builder', 
-                subtitle: 'Webcasting by Chorus Call', 
-                imageURL: '/static/images/sliders/webDev/The-Media-Builder.jpg', 
-                type: 'card'
-            },
-            {
-                title: 'Mosaic Community Church', 
-                subtitle: 'Jeannette, PA', 
-                imageURL: '/static/images/sliders/webDev/Mosaic.jpg', 
-                type: 'card'
-            },
-        ];
+        const slidesArray = pages.methods.getSliderItemsBySliderName('webDevSlider');
 
         const componentsArray = [
             <TheMediaFrame   mode={mode} stage={stage} />,
@@ -138,22 +119,30 @@ const WebDev = (props) => {
         <div id='webDev'>
             <div className='row g-0'>
                 <div className='col-12 col-md-6'>
-                    <Slider 
-                        config={{
-                            id: 'webDevSlider', 
-                            autoplay: false, 
-                            autoplayInterval: false, 
-                            controls: true, 
-                            progressBar: false,
-                            slidesArray: getSlidesArray('slideCardBack')
-                        }} 
-                        parent={webDev} 
-                        pages={pages}
-                        stage={stage} 
-                    />
+                    {pages.state.sliderItems.length > 1 ? ( // Conditionally render <Slider />
+                        <Slider 
+                            config={{
+                                id: 'webDevSlider', 
+                                autoplay: false, 
+                                autoplayInterval: false, 
+                                controls: true, 
+                                progressBar: false,
+                                slidesArray: getSlidesArray('slideCardBack')
+                            }} 
+                            parent={webDev} 
+                            pages={pages}
+                            stage={stage} 
+                        />
+                    ) : (
+                        <div className='sliderLoading'>Loading...</div>
+                    )}
                 </div>
                 <div className='col-12 col-md-6'>
-                    <SliderPreview slidesArray={getSlidesArray('slidePreviewRight')} parent={webDev} stage={stage} />
+                    {pages.state.sliderItems.length > 1 ? ( // Conditionally render <Slider />
+                        <SliderPreview slidesArray={getSlidesArray('slidePreviewRight')} parent={webDev} stage={stage} />
+                    ) : (
+                        <div className='sliderLoading'>Loading...</div>
+                    )}
                 </div>
             </div>
         </div>

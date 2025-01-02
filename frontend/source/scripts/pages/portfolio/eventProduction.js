@@ -14,26 +14,6 @@ const EventProduction = (props) => {
     // Hooks
     const navigate = useNavigate();
 
-    // Slides array
-    const slidesArray = [
-        {title: 'Mayo',            imageURL: '/static/images/sliders/eventProduction/Mayo.png',    type: 'image'},
-        {title: 'Philips',         imageURL: '/static/images/sliders/eventProduction/Philips.png', type: 'image'},
-        {title: 'JetBlue',         imageURL: '/static/images/sliders/eventProduction/Jetblue.png', type: 'image'},
-        {title: 'United Airlines', imageURL: '/static/images/sliders/eventProduction/United_Airlines.png',  type: 'image'},
-        {title: 'American Axle',   imageURL: '/static/images/sliders/eventProduction/AAM.png',     type: 'image'},
-        {title: 'Ford',            imageURL: '/static/images/sliders/eventProduction/Ford.png',    type: 'image'},
-        {title: 'Conagra',         imageURL: '/static/images/sliders/eventProduction/Conagra.png', type: 'image'},
-        {title: 'Giant Eagle',     imageURL: '/static/images/sliders/eventProduction/Giant_Eagle.png', type: 'image'},
-        {title: 'Sysco',           imageURL: '/static/images/sliders/eventProduction/Sysco.png',    type: 'image'},
-        {title: 'Edgewell',        imageURL: '/static/images/sliders/eventProduction/Edgewell.png', type: 'image'},
-        {title: 'Michaels',        imageURL: '/static/images/sliders/eventProduction/Michaels.png', type: 'image'},
-        {title: 'ABB',             imageURL: '/static/images/sliders/eventProduction/ABB.png',      type: 'image'},
-        {title: 'Alcoa',           imageURL: '/static/images/sliders/eventProduction/Alcoa.png',    type: 'image'},
-        {title: 'Koppers',         imageURL: '/static/images/sliders/eventProduction/Koppers.png',  type: 'image'},
-        {title: 'Owens Corning',   imageURL: '/static/images/sliders/eventProduction/Owens_Corning.png', type: 'image'},
-        {title: 'Western Window Systems', imageURL: '/static/images/sliders/eventProduction/Western_Window_Systems.png', type: 'image'},
-    ];
-
     // Refs
     eventProduction.refs = {
         image: useRef(null)
@@ -100,19 +80,23 @@ const EventProduction = (props) => {
                     </div>
                     <div className='col-12'>
                         <div id='EPSliderBackground'>
-                            <Slider 
-                                config={{
-                                    id: 'eventProductionSlider', 
-                                    autoplay: true, 
-                                    autoplayInterval: 4, 
-                                    controls: false, 
-                                    progressBar: false,
-                                    slidesArray: slidesArray
-                                }} 
-                                parent={eventProduction}
-                                pages={pages}
-                                stage={stage} 
-                            />
+                            {pages.state.sliderItems.length > 1 ? ( // Conditionally render <Slider />
+                                <Slider 
+                                    config={{
+                                        id: 'eventProductionSlider', 
+                                        autoplay: true, 
+                                        autoplayInterval: 4, 
+                                        controls: false, 
+                                        progressBar: false,
+                                        slidesArray: pages.methods.getSliderItemsBySliderName('eventProductionSlider')
+                                    }} 
+                                    parent={eventProduction}
+                                    pages={pages}
+                                    stage={stage} 
+                                />
+                            ) : (
+                                <div className='sliderLoading'>Loading...</div>
+                            )}
                         </div>
                     </div>
                 </div>

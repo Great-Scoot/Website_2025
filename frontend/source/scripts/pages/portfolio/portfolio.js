@@ -120,7 +120,7 @@ const LatestWork = (props) => {
 
                         return (
                             <Work config={config} parent={latestWork} stage={stage}>
-                                <WebDev config={config} parent={latestWork} stage={stage} />
+                                <WebDev config={config} parent={latestWork} pages={pages} stage={stage} />
                             </Work>
                         );
                     })()}
@@ -137,7 +137,7 @@ const LatestWork = (props) => {
 
                         return (
                             <Work config={config} parent={latestWork} stage={stage}>
-                                <Webcasting config={config} parent={latestWork} stage={stage} />
+                                <Webcasting config={config} parent={latestWork} pages={pages} stage={stage} />
                             </Work>
                         );
                     })()}
@@ -154,7 +154,7 @@ const LatestWork = (props) => {
 
                         return (
                             <Work config={config} parent={latestWork} stage={stage}>
-                                <EventProduction config={config} parent={latestWork} stage={stage} />
+                                <EventProduction config={config} parent={latestWork} pages={pages} stage={stage} />
                             </Work>
                         );
                     })()}
