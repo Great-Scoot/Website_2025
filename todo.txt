@@ -9,11 +9,10 @@ Workflow for dev -> prod?
             - Add <WebDevPreview /> and remove hard coded components (done)
             - Update model for slider items
                 - Add description and external_url_text (done)
-                ## PICKUP HERE ##
-                - Add order. Don't sort API response by order. Instead, render components according to order (sort slidesArray?)
-        - Store time in GMT
-        - Remove source/public images
-        - Change contact form to Django/React form?
+                - Add order. Don't sort API response by order. Instead, render components according to order (sort slidesArray, store in component state) (done)
+        - Store time in GMT (done)
+        - Remove source/public images (done)
+    ## PICKUP HERE ##
     - Update docker.nginx.conf:
         - Maintenance mode:
             - How to enable?

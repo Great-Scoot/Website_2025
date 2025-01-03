@@ -20,7 +20,7 @@ admin.site.register(Slider)
 
 @admin.register(SliderItem)
 class SliderItemAdmin(admin.ModelAdmin):
-    list_display =  ('title', 'type', 'slider', 'expiration_date')
+    list_display =  ('title', 'type', 'slider', 'expiration_date', 'order')
     list_filter =   (
         'slider', 
         ('expiration_date', DateRangeFilterBuilder()), 

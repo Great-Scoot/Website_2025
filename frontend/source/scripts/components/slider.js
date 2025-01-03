@@ -1,6 +1,6 @@
 import {breakpointIsSmallish, elementIsVisibleInViewport, toCapitalCase} from './helpers.js';
 
-import React, {useEffect, useRef, useState} from 'react';
+import React, {use, useEffect, useRef, useState} from 'react';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -302,7 +302,7 @@ const Slider = (props) => {
         },
         updateCurrentIndex: (direction) => {
             let targetIndex = currentIndex;
-
+            
             if (direction === 'previous') {
                 targetIndex--;
             } else if (direction === 'next') {
@@ -349,12 +349,7 @@ const Slider = (props) => {
         }
 
         return () => clearInterval(autoplayInterval);
-    }, [autoplay, currentIndex]);
-
-    // Test
-    // useEffect(() => {
-    //     console.log(config.id, config.slidesArray);
-    // }, []);
+    }, [autoplay, currentIndex, parent.state.slidesArray]);
 
     return (
         <div id={config.id} className={`slider ${displayMode}`}>

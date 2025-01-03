@@ -55,6 +55,7 @@ class SliderItem(models.Model):
     external_url_date = models.DateTimeField(blank=True, null=True)
     external_url_text = models.CharField(max_length=100, blank=True, null=True)
     expiration_date =   models.DateField(blank=True, null=True)
+    order =             models.PositiveIntegerField(default=0)
     active =            models.BooleanField(default=True)
     slider =            models.ForeignKey(Slider, on_delete=models.SET_NULL, related_name='items', null=True)
 

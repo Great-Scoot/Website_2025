@@ -10,6 +10,6 @@ pip install -r requirements.txt
 cd backend
 python manage.py maintenance_enable
 python manage.py migrate
-python manage.py collectstatic
+python manage.py collectstatic --no-input
 gunicorn backend.wsgi:application --config gunicorn_config.py
 # NGINX Disable maintenance mode

@@ -18,7 +18,7 @@ const Pages = (props) => {
 
     // State object (for organization and passing to children).
     pages.state = {
-        sliderItems
+        sliderItems,
     }
 
     // Methods (for organization and passing to children).
@@ -43,9 +43,22 @@ const Pages = (props) => {
                 }
             }
         },
-        getSliderItemsBySliderName: (sliderName) => {
+        getSliderItemsBySliderName: (sliderName, sortBy='order', sortDirection='asc') => {
             if (sliderItems && sliderItems.length > 1) {
-                return sliderItems.filter(item => item.slider.name === sliderName);
+                let filteredItems = sliderItems.filter(item => item.slider.name === sliderName);
+                let sortedFilteredItems = filteredItems;
+
+                if (sortBy === 'order') {
+                    sortedFilteredItems.sort((a, b) => {
+                        const orderA = a.order || 0; // Default to 0
+                        const orderB = b.order || 0;
+                        return sortDirection === 'asc' ? orderA - orderB : orderB - orderA;
+                    });
+                } else if (sortBy === 'random') {
+                    sortedFilteredItems.sort(() => Math.random() - 0.5);
+                }
+
+                return sortedFilteredItems;
             } else {
                 return [];
             }
@@ -118,12 +131,12 @@ const Pages = (props) => {
     }, [stage.state.systemConfiguration]);
 
     // Handle Slider Items
-    useEffect(() => {
-        if (pages.state.sliderItems) {
-            // console.log(pages.state.sliderItems);
-        }
+    // useEffect(() => {
+    //     if (pages.state.sliderItems) {
+    //         console.log(pages.state.sliderItems);
+    //     }
 
-    }, [pages.state.sliderItems]);
+    // }, [pages.state.sliderItems]);
 
     return (
         <div id='page'>

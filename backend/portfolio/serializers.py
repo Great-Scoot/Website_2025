@@ -35,4 +35,4 @@ class SliderItemsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model =  SliderItem
-        fields = ['title', 'subtitle', 'description', 'image', 'type', 'external_url', 'external_url_date', 'external_url_text', 'expiration_date', 'slider']
+        fields = ['title', 'subtitle', 'description', 'image', 'type', 'external_url', 'external_url_date', 'external_url_text', 'expiration_date', 'order', 'slider']

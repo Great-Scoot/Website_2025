@@ -17,17 +17,35 @@ const Hero = (props) => {
     const {portfolio, pages, stage} = props;
 
     // State
-    const [active, setActive] = useState(true);
+    const [active,      setActive]      = useState(true);
+    const [slidesArray, setSlidesArray] = useState([]);
 
     // State object (for organization and passing to children).
     hero.state = {
-        active
+        active,
+        slidesArray
+    };
+
+    // Methods (for organization and passing to children).
+    hero.methods = {
+        updateSlidesArray: (slidesArray) => {
+            setSlidesArray(slidesArray);
+        }
     };
 
     // Functions
     const handleHeroButtonClick = () => {
         stage.methods.pages.updateSectionScrollTarget({page: 'portfolio', section: 'latestWork'});
     };
+
+    // Hooks
+
+    // Update hero.state.slidesArray when page.state.sliderItems updates.
+    useEffect(() => {
+        if (hero.state.slidesArray.length === 0) {
+            hero.methods.updateSlidesArray(pages.methods.getSliderItemsBySliderName('heroSlider', 'order'));
+        }
+    }, [pages.state.sliderItems]);
 
     return (
         <div id='hero' ref={stage.refs.pages.portfolio.sections.hero} className='section sectionDarkened'>
@@ -37,7 +55,7 @@ const Hero = (props) => {
                         <img id='HeroCardHeaderImage' className='imageBorder' src={'/static/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
                         <div id='heroCardBody' className='card-body'>
                             <h4 className='card-title'>Summary</h4>
-                            <p className='card-text'>Dedicated developer, project leader, and creative producer. Well versed in application development, content creation, and audio-visual engineering. Contributed to thousands of successful projects for many satisfied clients.</p>
+                            <p className='card-text'>Dedicated developer, project leader, and creative producer. Well versed in web development, UX/UI design, conferencing, streaming, and audio-visual engineering. Contributed to thousands of successful projects.</p>
                             <button id='heroButton' className='btn btn-outline-primary btnCyan' onClick={handleHeroButtonClick} type='button'>
                                 <FontAwesomeIcon icon={['fas', 'fa-arrow-turn-down']} className='fa-flip-horizontal' />See my work
                             </button>
@@ -53,7 +71,7 @@ const Hero = (props) => {
                                 autoplayInterval: 12,
                                 controls: true,
                                 progressBar: true,
-                                slidesArray: pages.methods.getSliderItemsBySliderName('heroSlider')
+                                slidesArray: hero.state.slidesArray
                             }}
                             parent={hero}
                             pages={pages}

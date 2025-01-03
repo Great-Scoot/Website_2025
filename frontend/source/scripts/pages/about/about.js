@@ -54,7 +54,7 @@ const Resume = (props) => {
                         <div id='resumeCard' className='card backgroundBlueBurst'>
                             <div id='resumeCardBody' className='card-body'>
                                 <h4 className='card-title'>Experience</h4>
-                                <p className='card-text'>I've been in the digital communications and media production business for thirteen years. My passion for software development, design, and media production continue to push me forward. I am an experienced, creative, and hard working professional who can tackle any project that comes my way.</p>
+                                <p className='card-text'>I've been in the digital communications and media production business for fifteen years. My passion for software development, design, and media production continue to push me forward. I am an experienced, creative, and hard working professional who can tackle any project that comes my way.</p>
                             </div>
                         </div>
                     </div>

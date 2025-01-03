@@ -1,7 +1,6 @@
 import {breakpointIsLargeish} from '../../components/helpers.js';
 
 import React, {useEffect, useRef, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 
 import {Slider} from '../../components/slider.js';
 
@@ -12,7 +11,6 @@ const EventProduction = (props) => {
     const {config, parent, pages, stage} = props;
 
     // Hooks
-    const navigate = useNavigate();
 
     // Refs
     eventProduction.refs = {
@@ -20,13 +18,17 @@ const EventProduction = (props) => {
     };
 
     // State
-    const [active, setActive] = useState(false);
-    const [loaded, setLoaded] = useState(false);
+    const [active,      setActive]      = useState(false);
+    const [loaded,      setLoaded]      = useState(false);
+    const [slidesArray, setSlidesArray] = useState([]);
+    const [syncIndex,   setSyncIndex]   = useState(0);
 
     // State object (for organization and passing to children).
     eventProduction.state = {
         active,
-        loaded
+        loaded,
+        slidesArray,
+        syncIndex
     };
 
     // Methods (for organization and passing to children).
@@ -36,15 +38,16 @@ const EventProduction = (props) => {
         },
         updateLoaded: (loaded) => {
             setLoaded(loaded || false);
+        },
+        updateSlidesArray: (slidesArray) => {
+            setSlidesArray(slidesArray);
+        },
+        updateSyncIndex: (index) => {
+            setSyncIndex(index || 0);
         }
     };
 
     // Functions
-    const handleClick = () => {
-        navigate('/about');
-        stage.methods.pages.updateSectionScrollTarget({page: 'about', section: 'contact'});
-    };
-
     const loadImage = () => {
         if (!loaded && active && breakpointIsLargeish(stage.state.breakpoint)) {
             eventProduction.refs.image.current.style.backgroundImage = 'url(/static/images/other/mixer.jpg)';
@@ -65,6 +68,13 @@ const EventProduction = (props) => {
         loadImage();
     }, [active, stage.state.breakpoint]);
 
+    // Update eventProduction.state.slidesArray when page.state.sliderItems updates.
+    useEffect(() => {
+        if (eventProduction.state.slidesArray.length === 0) {
+            eventProduction.methods.updateSlidesArray(pages.methods.getSliderItemsBySliderName('eventProductionSlider', 'random'));
+        }
+    }, [pages.state.sliderItems]);
+
     return (
         <div id='eventProduction'>
             <div id='eventProductionDescription' className='workDescription backgroundBlueBurst'>
@@ -73,7 +83,7 @@ const EventProduction = (props) => {
                         <h4 className='WDHeading'>Event Production</h4>
                         <p className='WDParagraph'>For over 10 years, I've produced many live corporate events. I've mixed live audio and video, operated cameras, configured live streams, worked in control rooms and broadcast trucks, and occasionally I've done these tasks all at once.</p>
                         <p className='WDParagraph'>Pictured below are many of the corporations that have trusted me to ensure the technical execution of their events. These events include investor days, share holder meetings, town halls, medical conferences, and more.</p>
-                        <p className='WDParagraph'>I'm also well-versed in streaming these events to a variety of platforms, such as YouTube, Facebook, Brightcove, Yammer, Kontiki, and Chorus Call.</p>
+                        <p className='WDParagraph'>I'm also well-versed in streaming technology and have published live and on-demand content to many platforms, such as Chorus Call, Teams, Vimeo, Brightcove, Facebook, YouTube, Kontiki, and Yammer.</p>
                     </div>
                     <div className='d-none d-md-block col-md-6'>
                         <div id='EPImage' ref={eventProduction.refs.image} className='imageBorder'></div>
@@ -87,8 +97,8 @@ const EventProduction = (props) => {
                                         autoplay: true, 
                                         autoplayInterval: 4, 
                                         controls: false, 
-                                        progressBar: false,
-                                        slidesArray: pages.methods.getSliderItemsBySliderName('eventProductionSlider')
+                                        progressBar: true,
+                                        slidesArray: eventProduction.state.slidesArray
                                     }} 
                                     parent={eventProduction}
                                     pages={pages}

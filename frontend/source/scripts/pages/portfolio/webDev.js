@@ -12,8 +12,8 @@ const WebDevPreview = (props) => {
 
     return (
         <div className='webDevPreview workDescription backgroundBlueBurst'>
-            <h4 className='WDPHeading'>{sliderItem.title}</h4>
-            <p className='WDPParagraph'>{sliderItem.description ? sliderItem.description : 'Uh oh! Description not found.'}</p>
+            <h4 className='WDHeading'>{sliderItem.title}</h4>
+            <p className='WDParagraph'>{sliderItem.description ? sliderItem.description : 'Uh oh! Description not found.'}</p>
             {(() => {
                 if (sliderItem.external_url && sliderItem.external_url_text) {
                     return (
@@ -35,12 +35,14 @@ const WebDev = (props) => {
     const {config, parent, pages, stage} = props;
 
     // State
-    const [active,    setActive]    = useState(false);
-    const [syncIndex, setSyncIndex] = useState(0);
+    const [active,      setActive]      = useState(false);
+    const [slidesArray, setSlidesArray] = useState([]);
+    const [syncIndex,   setSyncIndex]   = useState(0);
 
     // State object (for organization and passing to children).
     webDev.state = {
         active,
+        slidesArray,
         syncIndex
     };
 
@@ -49,6 +51,9 @@ const WebDev = (props) => {
         updateActive: () => {
             setActive(config.index === parent.state.activeIndex);
         },
+        updateSlidesArray: (slidesArray) => {
+            setSlidesArray(slidesArray);
+        },
         updateSyncIndex: (index) => {
             setSyncIndex(index || 0);
         }
@@ -56,11 +61,11 @@ const WebDev = (props) => {
 
     // Functions
     const getSlidesArray = (mode) => {
-        const slidesArray = pages.methods.getSliderItemsBySliderName('webDevSlider');
+        const webDevSlidesArray = webDev.state.slidesArray;
 
         // Prepare slidesArray to be returned
-        for (let i = 0, l = slidesArray.length; i < l; i++) {
-            const sliderItem = slidesArray[i];
+        for (let i = 0, l = webDevSlidesArray.length; i < l; i++) {
+            const sliderItem = webDevSlidesArray[i];
 
             if (sliderItem) {
                 // Add the "previewComponent"...
@@ -68,7 +73,7 @@ const WebDev = (props) => {
             }
         }
 
-        return slidesArray;
+        return webDevSlidesArray;
     };
 
     // Hooks
@@ -77,6 +82,13 @@ const WebDev = (props) => {
     useEffect(() => {
         webDev.methods.updateActive();
     }, [parent.state.activeIndex]);
+
+    // Update webDev.state.slidesArray when page.state.sliderItems updates.
+    useEffect(() => {
+        if (webDev.state.slidesArray.length === 0) {
+            webDev.methods.updateSlidesArray(pages.methods.getSliderItemsBySliderName('webDevSlider', 'order'));
+        }
+    }, [pages.state.sliderItems]);
 
     return (
         <div id='webDev'>
