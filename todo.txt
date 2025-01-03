@@ -1,19 +1,9 @@
 == TO DO ==
 
 Workflow for dev -> prod?
-    - Make more data driven:
-        - Use /api/slider-items?page_name=portfolio
-            - Conditionally render <Sliders /> (done)
-            - Expired entries should not be clickable (done)
-            - Use external_url (done)
-            - Add <WebDevPreview /> and remove hard coded components (done)
-            - Update model for slider items
-                - Add description and external_url_text (done)
-                - Add order. Don't sort API response by order. Instead, render components according to order (sort slidesArray, store in component state) (done)
-        - Store time in GMT (done)
-        - Remove source/public images (done)
     ## PICKUP HERE ##
     - Update docker.nginx.conf:
+        - Serve media assets
         - Maintenance mode:
             - How to enable?
                 - Include the following? /etc/nginx/maintenance.conf; # Contains: set $maintenance_mode 1;
@@ -24,6 +14,7 @@ Workflow for dev -> prod?
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
         - Test via Docker
+    - Make git repo public & add to webDev
     - Create readme
     - Review TODOs
     - Publish
