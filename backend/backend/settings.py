@@ -163,14 +163,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# If dev, these settings will allow Django to serve static assets, after running collectstatic. For prod, NGINX will serve static assets. 
+# Dev only: Collect frontend/public
 if ENV_WEBSITE_MODE == 'dev':
-    # Where Django will collect static files from...
+    # Where Django will collect from...
     STATICFILES_DIRS = [os.path.join(BASE_DIR, '..', 'frontend', 'public')]
 
-    # Where Django will copy static files to...
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+# Dev or Prod: Collect Admin
+# Where Django will copy to.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Media files (User-uploaded images, etc.)
 
