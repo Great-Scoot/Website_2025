@@ -55,7 +55,7 @@ const Hero = (props) => {
                         <img id='HeroCardHeaderImage' className='imageBorder' src={'/static/images/me/profile_square_alt_small.jpg'} alt='Scott Zehner' />
                         <div id='heroCardBody' className='card-body'>
                             <h4 className='card-title'>Summary</h4>
-                            <p className='card-text'>Dedicated developer, project leader, and creative producer. Well versed in web development, UX/UI design, conferencing, streaming, and audio-visual engineering. Contributed to thousands of successful projects.</p>
+                            <p className='card-text'>Dedicated developer, project leader, and creative producer. Well versed in web application development, UX/UI design, audio-visual engineering, streaming, and conferencing. Contributed to thousands of successful projects for many satisfied clients.</p>
                             <button id='heroButton' className='btn btn-outline-primary btnCyan' onClick={handleHeroButtonClick} type='button'>
                                 <FontAwesomeIcon icon={['fas', 'fa-arrow-turn-down']} className='fa-flip-horizontal' />See my work
                             </button>

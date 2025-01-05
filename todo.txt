@@ -1,15 +1,13 @@
 == TO DO ==
 
 Workflow for dev -> prod?
-    ## PICKUP HERE ##
     - Update docker.nginx.conf:
         - Serve media assets
         - Maintenance mode:
-            - How to enable?
-                - Include the following? /etc/nginx/maintenance.conf; # Contains: set $maintenance_mode 1;
-                    - Can be controlled via touch command?
-            - Whitelist IPs (home & work) via secret.env?
-            - How to serve from just NGINX
+            - Toggle via perl/curl
+            - Add maintenance.html
+            ## PICKUP HERE ##
+            - Test
         - Error page
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?

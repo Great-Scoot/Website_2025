@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
+		<link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
+		<title>Maintenance</title>
+		<link rel="stylesheet" href="/static/styles/main.maintenance.css" />
+		<script defer="defer" src="/static/scripts/vendors.maintenance.js"></script>
+		<script defer="defer" src="/static/scripts/main.maintenance.js"></script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script>
+			// Hard coded here to emulate Django...
+			const systemData = {
+				statusCode: 200,
+				systemConfiguration: {website_version: 'maintenance', maintenance_mode: true},
+				sliderItems: []
+			};
+		</script>
+	</body>
+</html>
