@@ -58,12 +58,12 @@ mkdir /var/log/gunicorn
 
 == POSTGRES ==
 
-== Ubuntu ==
+-- Ubuntu --
 pg_ctlcluster 15 main start|stop|status (starts/stops postgres)
 sudo -i -u postgres
 psql
 
-== Windows ==
+-- Windows --
 psql -U postgres
 
 CREATE USER your_username WITH PASSWORD 'your_password';
@@ -89,6 +89,10 @@ npm run webpack:stage
 == NGINX ==
 nginx -t
 nginx -s reload
+
+-- Maintenance Mode --
+curl "http://127.0.0.1/maintenance_toggle?enabled=$1"
+curl "http://127.0.0.1/maintenance_toggle?enabled=$0"
 
 == CI/CD ==
 Update ENV_WEBSITE_VERSION

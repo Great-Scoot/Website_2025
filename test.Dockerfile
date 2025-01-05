@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     python3.11-venv \
     certbot \
     python3-certbot-nginx
-    
+
 # Copy secret.env (this will need updated)
 COPY secret.env /app/temp/secret.env
 
