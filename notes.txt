@@ -91,8 +91,8 @@ nginx -t
 nginx -s reload
 
 -- Maintenance Mode --
-curl "http://127.0.0.1/maintenance_toggle?enabled=$1"
-curl "http://127.0.0.1/maintenance_toggle?enabled=$0"
+mv /app/Website_2025/frontend/public/maintenance-disabled.html /app/Website_2025/frontend/public/maintenance.html
+mv /app/Website_2025/frontend/public/maintenance.html /app/Website_2025/frontend/public/maintenance-disabled.html
 
 == CI/CD ==
 Update ENV_WEBSITE_VERSION

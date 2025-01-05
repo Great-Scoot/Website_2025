@@ -4,10 +4,10 @@ Workflow for dev -> prod?
     - Update docker.nginx.conf:
         - Serve media assets
         - Maintenance mode:
-            - Toggle via perl/curl
             - Add maintenance.html
-            ## PICKUP HERE ##
-            - Test
+            - Update nginx conf
+                ## PICKUP HERE ##
+                - Figure out why not working...
         - Error page
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
