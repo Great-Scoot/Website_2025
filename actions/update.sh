@@ -3,7 +3,7 @@
 # GUnicorn: Stop
 cd /app/Website_2025
 git pull origin master
-cp /app/Website_2025/nginx/docker.nginx.conf /etc/nginx/conf.d/
+cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d/
 nginx -t
 source venv/bin/activate
 pip install -r requirements.txt

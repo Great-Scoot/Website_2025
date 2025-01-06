@@ -33,6 +33,9 @@ COPY nginx/docker.nginx.conf /etc/nginx/conf.d
 # Make log directory for GUnicorn
 RUN mkdir /var/log/gunicorn
 
+# Make maintenance directory for NGINX
+RUN mkdir /etc/nginx/conf.d/maintenance
+
 # Expose ports
 EXPOSE 80 443
 
