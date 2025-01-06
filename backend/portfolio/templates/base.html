@@ -33,10 +33,17 @@
       <!-- JS -->
       <script>
         const systemData = {
-          statusCode: parseInt('{{ status_code|safe }}'),
-          systemConfiguration: JSON.parse('{{ system_configuration_encoded|safe|escapejs }}'),
-          sliderItems: JSON.parse('{{ slider_items_by_page_name_encoded|safe|escapejs }}')
+          statusCode : (() => {
+            parsedValue = 200; try {parsedValue = parseInt('{{ status_code|safe }}')} catch(e) {} return parsedValue;
+          })(),
+          systemConfiguration: (() => {
+            parsedValue = {}; try {parsedValue = JSON.parse('{{ system_configuration_encoded|safe|escapejs }}')} catch(e) {} return parsedValue;
+          })(),
+          sliderItems: (() => {
+            parsedValue = []; try {parsedValue = JSON.parse('{{ slider_items_by_page_name_encoded|safe|escapejs }}')} catch(e) {} return parsedValue;
+          })(),
         };
+
         console.log(systemData);
       </script>
       <script src="{% static 'scripts/vendors.'|add:system_configuration.website_version|add:'.js' %}"></script>

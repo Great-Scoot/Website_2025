@@ -3,6 +3,8 @@ cp /etc/nginx/conf.d/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenan
 nginx -s reload
 # GUnicorn: Stop
 cd /app/Website_2025
+git reset --hard
+git clean -df
 git pull origin master
 cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d/
 cp /app/Website_2025/nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
