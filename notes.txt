@@ -93,6 +93,7 @@ nginx -s reload
 -- Maintenance Mode --
 mv /app/Website_2025/frontend/public/maintenance-disabled.html /app/Website_2025/frontend/public/maintenance.html
 mv /app/Website_2025/frontend/public/maintenance.html /app/Website_2025/frontend/public/maintenance-disabled.html
+nginx -s reload
 
 == CI/CD ==
 Update ENV_WEBSITE_VERSION
