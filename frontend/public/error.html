@@ -6,9 +6,9 @@
 		<link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
 		<title>Maintenance</title>
-		<link rel="stylesheet" href="/static/styles/main.maintenance.css" />
-		<script defer="defer" src="/static/scripts/vendors.maintenance.js"></script>
-		<script defer="defer" src="/static/scripts/main.maintenance.js"></script>
+		<link rel="stylesheet" href="/static/styles/main.nginx.css" />
+		<script defer="defer" src="/static/scripts/vendors.nginx.js"></script>
+		<script defer="defer" src="/static/scripts/main.nginx.js"></script>
 	</head>
 	<body>
 		<div id="root"></div>
@@ -16,11 +16,11 @@
 			// Hard coded here to emulate Django...
 			const systemData = {
 				statusCode: 200,
-				systemConfiguration: {website_version: 'maintenance', maintenance_mode: true},
+				systemConfiguration: {website_version: 'nginx', maintenance_mode: false},
 				sliderItems: []
 			};
 
-			console.log('Hello from maintenance.html');
+			console.log('Hello from error.html');
 		</script>
 	</body>
 </html>

@@ -101,7 +101,7 @@ const Pages = (props) => {
                 }
 
                 // Fetch Slider Items
-                if (!stage.state.pages.isFirstActivePage || pages.state.sliderItems.length <= 1) {
+                if (!stage.state.pages.isFirstActivePage || (pages.state.sliderItems.length <= 1 && !stage.state.systemConfiguration.maintenance_mode)) {
                     fetch(`/api/slider-items?page_name=${page}`)
                         .then(response => response.json())
                         .then(sliderItemsArray => {

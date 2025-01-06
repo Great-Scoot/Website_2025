@@ -1,18 +1,13 @@
 == TO DO ==
 
-Workflow for dev -> prod?
-    - Update docker.nginx.conf:
-        - Serve media assets
-        - Maintenance mode:
-            - Add maintenance.html
-            - Update nginx conf
-                ## PICKUP HERE ##
-                - Figure out why not working...
-        - Error page
+    ## PICKUP HERE ##
+    - Nginx error page
+    - Data migration to docker container?
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
-        - Test via Docker
-    - Make git repo public & add to webDev
     - Create readme
     - Review TODOs
+    - Make git repo public & add to webDev
     - Publish
+    - Update docker.nginx.conf:
+        - SSL

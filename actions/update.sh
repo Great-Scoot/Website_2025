@@ -1,10 +1,11 @@
 #!/bin/bash
-# NGINX: Enable maintenance mode
+cp /etc/nginx/conf.d/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance/maintenance_on.conf
+nginx -s reload
 # GUnicorn: Stop
 cd /app/Website_2025
 git pull origin master
 cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d/
-nginx -t
+cp /app/Website_2025/nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
 source venv/bin/activate
 pip install -r requirements.txt
 cd backend
@@ -12,4 +13,5 @@ python manage.py maintenance_enable
 python manage.py migrate
 python manage.py collectstatic --no-input
 gunicorn backend.wsgi:application --config gunicorn_config.py
-# NGINX Disable maintenance mode
+rm /etc/nginx/conf.d/maintenance/maintenance_on.conf
+nginx -s reload
