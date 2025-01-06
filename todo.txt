@@ -1,7 +1,8 @@
 == TO DO ==
 
     ## PICKUP HERE ##
-    - Data migration to docker container?
+    - How to handle browseable api in prod?
+    - Review Django admin security for prod
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
     - Create readme

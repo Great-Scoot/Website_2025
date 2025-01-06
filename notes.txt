@@ -80,6 +80,7 @@ python manage.py collectstatic
 
 == GREEN UNICORN ==
 gunicorn [PROJECT-NAME].wsgi:application --config gunicorn_config.py (starts gunicorn in production - linux only)
+ps aux | grep gunicorn
 pkill gunicorn
 
 == NODE/WEBPACK/REACT ==
