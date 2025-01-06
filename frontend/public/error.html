@@ -13,14 +13,11 @@
 	<body>
 		<div id="root"></div>
 		<script>
-			// Hard coded here to emulate Django...
+			// Error.html: Hard coded here to emulate Django...
 			const systemData = {
-				statusCode: 200,
+				statusCode: parseInt(new URLSearchParams(window.location.search).get('status') || '500'),
 				systemConfiguration: {website_version: 'nginx', maintenance_mode: false},
-				sliderItems: []
 			};
-
-			console.log('Hello from error.html');
 		</script>
 	</body>
 </html>
