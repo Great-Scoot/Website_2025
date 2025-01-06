@@ -1,7 +1,6 @@
 == TO DO ==
 
     ## PICKUP HERE ##
-    - Nginx error page
     - Data migration to docker container?
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
