@@ -1,7 +1,6 @@
 == TO DO ==
 
     ## PICKUP HERE ##
-    - Test update.sh
     - Create readme
     - Make git repo public & add to webDev
     - Publish
