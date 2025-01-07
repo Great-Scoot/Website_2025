@@ -26,7 +26,7 @@ def get_system_configuration(request=None):
     # Return serialized data (for Django Template Language use) and json encoded data (for passing to client-side JavaScript)
     return {
         'data': serializer.data,
-        'data_encoded': json.dumps(serializer.data, cls=DjangoJSONEncoder)
+        'data_encoded': json.dumps(serializer.data, cls=DjangoJSONEncoder),
     }
 
 # Slider Items

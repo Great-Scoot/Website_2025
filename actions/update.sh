@@ -18,7 +18,8 @@ cd /app/Website_2025/backend
 python manage.py collectstatic --no-input
 python manage.py migrate
 python manage.py update_website_version
-gunicorn backend.wsgi:application --config gunicorn_config.py
+bash /app/Website_2025/actions/clean.sh
+gunicorn backend.wsgi:application --config gunicorn_config.py --daemon
 rm /etc/nginx/conf.d/maintenance/maintenance_on.conf
 nginx -s reload
 python manage.py maintenance_disable

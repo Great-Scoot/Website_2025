@@ -7,6 +7,16 @@ class SystemConfigurationSerializer(serializers.ModelSerializer):
         model = SystemConfiguration
         fields = ['website_version', 'maintenance_mode']
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        
+        # Bypass maintenance mode if header present and valid
+        request = self.context.get('request') 
+        if request and request.headers.get('x_bypass_maintenance') == 'great_scoot':
+            data['maintenance_mode'] = False
+        
+        return data
+
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
