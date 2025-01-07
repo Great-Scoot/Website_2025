@@ -32,6 +32,7 @@
       
       <!-- JS -->
       <script>
+        // Base.html
         const systemData = {
           statusCode : (() => {
             parsedValue = 200; try {parsedValue = parseInt('{{ status_code|safe }}')} catch(e) {} return parsedValue;

@@ -168,7 +168,7 @@ if ENV_WEBSITE_MODE == 'dev':
     # Where Django will collect from...
     STATICFILES_DIRS = [os.path.join(BASE_DIR, '..', 'frontend', 'public')]
 
-# Dev or Prod: Collect Admin
+# Dev or Prod: Collect Admin & Rest Framework assets
 # Where Django will copy to.
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -176,8 +176,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
-if ENV_WEBSITE_MODE == 'dev':
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
