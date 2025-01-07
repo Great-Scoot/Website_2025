@@ -1,5 +1,6 @@
 == TO DO ==
 
+    - Move WEBSITE_MODE to secret.env
     ## PICKUP HERE ##
     - How to handle browseable api in prod?
     - Review Django admin security for prod

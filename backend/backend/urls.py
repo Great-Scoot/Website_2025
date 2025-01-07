@@ -28,14 +28,13 @@ urlpatterns += [
     path('admin/', admin.site.urls,     name='admin'),
     path('api/',   include('api.urls'), name='api'),
     path('auth/',  include('djoser.urls')),
-    path('auth/',  include('djoser.urls.authtoken'))
+    path('auth/',  include('djoser.urls.authtoken')),
+    # Media files...
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
 
 # Dev Paths...
 if settings.ENV_WEBSITE_MODE == 'dev':
-    # Media files...
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
     # Debug Toolbar...
     urlpatterns += [path('__debug__/', include('debug_toolbar.urls', namespace="djdt"), name='djdt')]
 

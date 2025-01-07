@@ -22,11 +22,10 @@ Update settings.py
 python manage.py makemigrations
 python manage.py migrate
 
-deactivate (reactivate venv as needed)
 cd ../
 
 npm init (creates package.json)
-Create frontend directory (outside of backend directory) with source, stage, and public subdirectories
+Create frontend directory (outside of backend directory) with source, and public subdirectories
 
 Work on project level urls.py and views.py
 Work on app level urls.py and views.py
@@ -34,9 +33,7 @@ Create static and template directories
 Update settings.py 
 
 Commit
-
-Workflow stuff (dev -> stage -> prod)
-
+Workflow stuff (dev -> prod)
 Continue developing...
 
 == GIT ==

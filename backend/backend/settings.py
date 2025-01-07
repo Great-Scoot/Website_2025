@@ -24,7 +24,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '..', 'public.env'))
 environ.Env.read_env(os.path.join(BASE_DIR, '..', 'secret.env'))
 
 ENV_WEBSITE_VERSION = public_env('ENV_WEBSITE_VERSION', default='0.0.0').strip()
-ENV_WEBSITE_MODE    = public_env('ENV_WEBSITE_MODE',    default='prod').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env files
+ENV_WEBSITE_MODE    = secret_env('ENV_WEBSITE_MODE',    default='prod').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env files
 
 ENV_DJANGO_SECRET_KEY        = secret_env('ENV_DJANGO_SECRET_KEY',        default='django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i').strip()
 ENV_DOCKER_IS_TEST_CONTAINER = secret_env('ENV_DOCKER_IS_TEST_CONTAINER', default=False) == True
@@ -81,7 +81,7 @@ if ENV_WEBSITE_MODE == 'dev':
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware',]
 
 # CORS
-if ENV_WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
@@ -120,11 +120,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': secret_env('ENV_DB_NAME').strip(),
-        'USER': secret_env('ENV_DB_USER').strip(),
-        'PASSWORD': secret_env('ENV_DB_PASSWORD').strip(),
-        'HOST': secret_env('ENV_DB_HOST').strip(),
-        'PORT': secret_env('ENV_DB_PORT').strip(),
+        'NAME':         secret_env('ENV_DB_NAME').strip(),
+        'USER':         secret_env('ENV_DB_USER').strip(),
+        'PASSWORD':     secret_env('ENV_DB_PASSWORD').strip(),
+        'HOST':         secret_env('ENV_DB_HOST').strip(),
+        'PORT':         secret_env('ENV_DB_PORT').strip(),
         'CONN_MAX_AGE': 300, # 5 minutes in seconds
     }
 }
@@ -227,7 +227,7 @@ if ENV_WEBSITE_MODE == 'dev':
     }
 
 # HTTPS related stuff...
-if ENV_WEBSITE_MODE == 'dev':
+if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False

@@ -28,13 +28,12 @@ COPY secret.env /app/temp/secret.env
 
 # Configure Nginx
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.backup
-COPY nginx/docker.nginx.conf /etc/nginx/conf.d
+COPY nginx/website_2025.conf /etc/nginx/conf.d
+RUN mkdir /etc/nginx/conf.d/maintenance
+COPY nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
 
 # Make log directory for GUnicorn
 RUN mkdir /var/log/gunicorn
-
-# Make maintenance directory for NGINX
-RUN mkdir /etc/nginx/conf.d/maintenance
 
 # Expose ports
 EXPOSE 80 443
