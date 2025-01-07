@@ -1,11 +1,8 @@
 == TO DO ==
 
     ## PICKUP HERE ##
-    - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
-        - How to stop/start/restart servers (gunicorn, nginx, & python)?
+    - Test update.sh
     - Create readme
-    - Review TODOs
     - Make git repo public & add to webDev
     - Publish
-    - Update docker.nginx.conf:
         - SSL
