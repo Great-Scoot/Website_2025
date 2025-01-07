@@ -1,22 +1,19 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
-		<link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+		<link rel="shortcut icon" href="/static/images/icons/favicon.ico">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
 		<title>Error</title>
-		<link rel="stylesheet" href="/static/styles/main.nginx.css" />
-		<script defer="defer" src="/static/scripts/vendors.nginx.js"></script>
-		<script defer="defer" src="/static/scripts/main.nginx.js"></script>
-	</head>
+	<script defer="defer" src="/static/scripts/vendors.beta.js"></script><script defer="defer" src="/static/scripts/main.beta.js"></script><link href="/static/styles/main.beta.css" rel="stylesheet"></head>
 	<body>
 		<div id="root"></div>
 		<script>
-			// Error.html: Hard coded here to emulate Django...
+			// template_error.html: Hard coded here to emulate Django...
 			const systemData = {
 				statusCode: parseInt(new URLSearchParams(window.location.search).get('status') || '500'),
-				systemConfiguration: {website_version: 'nginx', maintenance_mode: false},
+				systemConfiguration: {website_version: 'webpack', maintenance_mode: false},
 			};
 		</script>
 	</body>

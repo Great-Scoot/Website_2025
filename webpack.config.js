@@ -87,13 +87,21 @@ module.exports = (env, argv) => ({
     plugins: [
         // Generate index.html with injected bundles
         new HTMLWebpackPlugin({
-            minify: {
-                collapseWhitespace: false,
-                minifyCSS: false,
-                minifyJS: false,
-                removeComments: false,
-            },
-            template: path.join(__dirname, './frontend/source/webpack/template.html')
+            filename: 'index.html',
+            minify: {collapseWhitespace: false, minifyCSS: false, minifyJS: false, removeComments: false,},
+            template: path.join(__dirname, './frontend/source/webpack/template_index.html')
+        }),
+        // Generate error.html with injected bundles
+        new HTMLWebpackPlugin({
+            filename: 'error.html',
+            minify: {collapseWhitespace: false, minifyCSS: false, minifyJS: false, removeComments: false,},
+            template: path.join(__dirname, './frontend/source/webpack/template_error.html')
+        }),
+        // Generate maintenance.html with injected bundles
+        new HTMLWebpackPlugin({
+            filename: 'maintenance.html',
+            minify: {collapseWhitespace: false, minifyCSS: false, minifyJS: false, removeComments: false,},
+            template: path.join(__dirname, './frontend/source/webpack/template_maintenance.html')
         }),
         // Extract CSS into separate files
         new MiniCssExtractPlugin({
