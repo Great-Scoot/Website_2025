@@ -1,8 +1,6 @@
 == TO DO ==
 
     ## PICKUP HERE ##
-    - Ensure public env updated before commit?
-    - Add unit/other tests?
     - Work on bash scripting (update.sh, rollback.sh, cleanup.sh, & others?)
         - How to stop/start/restart servers (gunicorn, nginx, & python)?
     - Create readme
