@@ -26,7 +26,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '..', 'secret.env'))
 ENV_WEBSITE_VERSION = public_env('ENV_WEBSITE_VERSION', default='0.0.0').strip()
 ENV_WEBSITE_MODE    = secret_env('ENV_WEBSITE_MODE',    default='prod').strip() # Note: Server and IDE needs restarted in order to pickup changes in .env files
 
-ENV_DJANGO_SECRET_KEY        = secret_env('ENV_DJANGO_SECRET_KEY',        default='django-insecure-k&k94_%5q8sx#7vwu&8*(4@%l(bb6&j27t%7cv+c-*l^77gp!i').strip()
+ENV_DJANGO_SECRET_KEY        = secret_env('ENV_DJANGO_SECRET_KEY').strip()
 ENV_DOCKER_IS_TEST_CONTAINER = secret_env('ENV_DOCKER_IS_TEST_CONTAINER', default=False) == True
 
 # Quick-start development settings - unsuitable for production
@@ -203,10 +203,10 @@ REST_FRAMEWORK = {
         'user': '200/hour',
         'throttle_secret_api': '200/hour',
     },
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    'DEFAULT_AUTHENTICATION_CLASSES': [ # API Authentication
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication', # TODO: Remove this before going to production?
+        # 'rest_framework.authentication.SessionAuthentication', # Not recommended for prod
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication', # Recommended for prod 
     ],
 }
 
