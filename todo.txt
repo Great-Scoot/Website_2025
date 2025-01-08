@@ -6,6 +6,7 @@
         - update -to ____? -branch ____?
         ## PICKUP HERE ##
         - Test
+    - Troubleshoot http://localhost/admin/portfolio/systemconfiguration/2/delete/ path.
     - Create readme
     - Make git repo public & add to webDev
     - Publish

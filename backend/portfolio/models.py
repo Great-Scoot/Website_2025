@@ -21,7 +21,9 @@ class SystemConfiguration(models.Model):
         return super().save(*args, **kwargs)
     
     def delete(self, *args, **kwargs):
-        raise ValidationError('SystemConfiguration cannot be deleted.')
+        if SystemConfiguration.objects.count() == 1:
+            raise ValidationError('SystemConfiguration cannot be deleted when it is the last remaining instance.')
+        return super().delete(*args, **kwargs)
 
 class Page(models.Model):
     name =  models.CharField(max_length=200) # Like "page_id" but not...
