@@ -32,10 +32,16 @@ pkill gunicorn
 # Checkout specific commit or branch (default master)
 if [[ -n "$COMMIT_HASH" ]]; then
     echo "Checking out commit: $COMMIT_HASH"
+    echo "Warning: This will put you in a detached HEAD state."
+    git reset --hard
+    git clean -df
     git checkout "$COMMIT_HASH"
 elif [[ -n "$BRANCH" ]]; then
     echo "Checking out branch: $BRANCH"
-    git checkout origin "$BRANCH"
+    git reset --hard
+    git clean -df
+    git checkout "$BRANCH"
+    git pull
 else
   echo "Error: Please provide either --branch-name or --commit-hash" >&2
   exit 1

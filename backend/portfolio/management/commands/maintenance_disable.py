@@ -10,5 +10,5 @@ class Command(BaseCommand):
             config.maintenance_mode = False
             config.save()
             self.stdout.write(
-                self.style.SUCCESS('Disabled: maintenance_mode.')
+                self.style.SUCCESS('Django: Disabled maintenance_mode.')
             )
