@@ -1,7 +1,5 @@
 == TO DO ==
 
-    ## PICKUP HERE ##
-    - Create readme
-    - Make git repo public & add to webDev
     - Publish
+        - UFW
         - SSL

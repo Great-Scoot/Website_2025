@@ -60,6 +60,9 @@ bash /app/Website_2025/actions/clean.sh
 Use x_bypass_maintenance header
 Disable Django maintenance_mode when done.
 
+-- Before further dev --
+git switch development
+
 == GIT ==
 
 -- SSH --
