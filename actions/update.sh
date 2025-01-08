@@ -49,6 +49,8 @@ python /app/Website_2025/backend/manage.py collectstatic --no-input
 python /app/Website_2025/backend/manage.py migrate
 python /app/Website_2025/backend/manage.py update_website_version
 bash /app/Website_2025/actions/clean.sh
+cd /app/Website_2025/backend
 gunicorn backend.wsgi:application --config gunicorn_config.py --daemon
 bash /app/Website_2025/actions/maintenance.sh --nginx-off
+cd /app/Website_2025
 echo "Update complete. Remember to disable Django's maintenance_mode when testing complete."
