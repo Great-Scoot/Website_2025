@@ -1,6 +1,5 @@
 == TO DO ==
 
-    ## PICKUP HERE ##
-    - Make git repo public & add to webDev
     - Publish
+        - UFW
         - SSL
