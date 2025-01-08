@@ -22,15 +22,14 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Determine which option to use for git pull
+# Determine which option to use for git checkout
 if [[ -n "$COMMIT_HASH" ]]; then
-  GIT_TARGET="$COMMIT_HASH"
+    echo "Checking out commit: $COMMIT_HASH"
+    git checkout "$COMMIT_HASH"
 elif [[ -n "$BRANCH" ]]; then
-  GIT_TARGET="$BRANCH"
+    echo "Checking out branch: $BRANCH"
+    git checkout origin "$BRANCH"
 else
   echo "Error: Please provide either --branch-name or --commit-hash" >&2
   exit 1
 fi
-
-echo "Git target is: $GIT_TARGET"
-git pull origin "$GIT_TARGET" # Use the determined target

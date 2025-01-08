@@ -1,4 +1,5 @@
 #!/bin/bash
+# Remove assets not needed in production
 rm -rf /app/temp
 rm -rf /app/Website_2025/backend/static/debug_toolbar
 rm -rf /app/Website_2025/backend/static/images

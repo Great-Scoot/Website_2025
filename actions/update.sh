@@ -22,25 +22,25 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Determine which option to use for git pull
-if [[ -n "$COMMIT_HASH" ]]; then
-  GIT_TARGET="$COMMIT_HASH"
-elif [[ -n "$BRANCH" ]]; then
-  GIT_TARGET="$BRANCH"
-else
-  echo "Error: Please provide either --branch-name or --commit-hash" >&2
-  exit 1
-fi
-
 echo "Updating..."
 cd /app/Website_2025
 bash /app/Website_2025/actions/status.sh
 source /app/Website_2025/venv/bin/activate
 bash /app/Website_2025/actions/maintenance.sh --nginx-on --django-on
 pkill gunicorn
-git reset --hard
-git clean -df
-git pull origin "$GIT_TARGET" # Use the determined target
+
+# Checkout specific commit or branch (default master)
+if [[ -n "$COMMIT_HASH" ]]; then
+    echo "Checking out commit: $COMMIT_HASH"
+    git checkout "$COMMIT_HASH"
+elif [[ -n "$BRANCH" ]]; then
+    echo "Checking out branch: $BRANCH"
+    git checkout origin "$BRANCH"
+else
+  echo "Error: Please provide either --branch-name or --commit-hash" >&2
+  exit 1
+fi
+
 pip install -r requirements.txt
 cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d
 cp /app/Website_2025/nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
