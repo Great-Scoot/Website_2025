@@ -46,7 +46,7 @@ npm run webpack:prod
 Commit to development, merge with master
     - git checkout master
     - git merge development
-    - Resolve any conflicts & commit to master.
+    - Resolve any conflicts & commit to master (or just sync changes)
 
 -- Update Prod Server --
 SSH to server
