@@ -46,7 +46,7 @@ npm run webpack:prod
 Commit to development, merge with master
     - git checkout master
     - git merge development
-    - Resolve any conflicts & commit to master.
+    - Resolve any conflicts & commit to master (or just sync changes)
 
 -- Update Prod Server --
 SSH to server
@@ -59,6 +59,9 @@ bash /app/Website_2025/actions/clean.sh
 -- Test --
 Use x_bypass_maintenance header
 Disable Django maintenance_mode when done.
+
+-- Before further dev --
+git switch development
 
 == GIT ==
 
