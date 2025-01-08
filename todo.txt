@@ -1,6 +1,11 @@
 == TO DO ==
 
-    ## PICKUP HERE ##
+    - Update actions
+        - status
+        - maintenance_on/off --nginx-only --django-only
+        - update -to ____? -branch ____?
+        ## PICKUP HERE ##
+        - Test
     - Create readme
     - Make git repo public & add to webDev
     - Publish
