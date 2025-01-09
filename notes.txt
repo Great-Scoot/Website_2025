@@ -142,6 +142,10 @@ docker build -f .Dockerfile -t [NAME-OF-IMAGE] .
 docker run -p 80:80 -p 443:443 --name [NAME-OF-CONTAINER] [NAME-OF-IMAGE]
 Attach shell
 
+-- Snapshot --
+docker ps
+docker commit <container-id> image_name:tag
+
 == FIREWALL (N/A to Docker) ==
 # Enable UFW
 sudo ufw enable
