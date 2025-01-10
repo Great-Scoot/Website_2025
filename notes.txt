@@ -1,5 +1,5 @@
 == SETUP ==
-Initialize or clone git repo, create .gitignore
+Initialize or clone git repo (use HTTPS if SSH doesn't work), create .gitignore
 
 Install Postgres, Python, Nodejs
 

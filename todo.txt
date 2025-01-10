@@ -1,5 +1,12 @@
 == TO DO ==
 
     - Publish
+        - Create Droplet
+            - Clone repo (done)
+            - Install initial software (done)
+            - Add secret.env (done)
+            - Copy nginx conf (done)
+            ## PICKUP HERE ##
+            - Setup database, createsuperuser, & update?
         - UFW
         - SSL
