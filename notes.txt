@@ -9,7 +9,8 @@ Create secret.env (public.env part of repo)
 Update .gitignore
 
 python3 -m venv venv
-source venv/Scripts/activate (or source venv/bin/activate - use bash)
+sudo chown -R $USER:$USER /app/Website_2025/venv (Ubuntu only)
+source venv/Scripts/activate (or "source venv/bin/activate" or ". venv/bin/activate" - use bash)
 
 pip install django django-appconf django-cors-headers djangorestframework django-debug-toolbar django-filter djoser python-dotenv django-environ bleach gunicorn psycopg[binary]
 pip freeze > requirements.txt (or pip install -r requirements.txt)
@@ -93,7 +94,7 @@ git checkout <branch-name> or <commit-hash>
 git pull (fixes detached HEAD issue)
 
 == POSTGRES ==
-pg_ctlcluster 15 main start|stop|status
+pg_ctlcluster 15 main start|stop|status (may need to change 15 to 14, depending on the env)
 
 -- Ubuntu --
 sudo -i -u postgres

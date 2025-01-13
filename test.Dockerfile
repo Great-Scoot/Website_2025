@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     postgresql-contrib \
     python3 \
     python3.11-venv \
+    python3-pip \
     certbot \
     python3-certbot-nginx
 

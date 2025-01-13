@@ -6,7 +6,8 @@
             - Install initial software (done)
             - Add secret.env (done)
             - Copy nginx conf (done)
+            - Setup database, migrate, createsuperuser (done)
             ## PICKUP HERE ##
-            - Setup database, createsuperuser, & update?
+            - Troubleshoot Django Server/GUnicorn
         - UFW
         - SSL
