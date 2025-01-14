@@ -84,6 +84,11 @@ if ENV_WEBSITE_MODE == 'dev':
 if ENV_WEBSITE_MODE == 'dev' or ENV_DOCKER_IS_TEST_CONTAINER == True:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
+    CSRF_TRUSTED_ORIGINS = [
+        "https://scottzehner.com", 
+        "https://www.scottzehner.com",
+    ]
+
     CORS_ALLOWED_ORIGINS = [
         "https://scottzehner.com",
         "https://www.scottzehner.com",

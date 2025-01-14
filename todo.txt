@@ -7,7 +7,11 @@
             - Add secret.env (done)
             - Copy nginx conf (done)
             - Setup database, migrate, createsuperuser (done)
+            - Troubleshoot Django Server/GUnicorn (done)
+            - Migrate data (done)
             ## PICKUP HERE ##
-            - Troubleshoot Django Server/GUnicorn
+            - Setup auto-renewal of SSL
+            - Test update.sh
+            - Snapshot, Remove old droplet
         - UFW
         - SSL
