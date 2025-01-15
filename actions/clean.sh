@@ -15,5 +15,6 @@ sudo rm -f /app/Website_2025/notes.txt
 sudo rm -f /app/Website_2025/todo.txt
 sudo rm -f /app/Website_2025/package-lock.json
 sudo rm -f /app/Website_2025/package.json
+sudo rm -f /app/Website_2025/README.md
 sudo rm -f /app/Website_2025/test.Dockerfile
 sudo rm -f /app/Website_2025/webpack.config.js
