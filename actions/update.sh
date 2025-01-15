@@ -24,10 +24,10 @@ done
 
 echo "Updating..."
 cd /app/Website_2025
-bash /app/Website_2025/actions/status.sh
-source /app/Website_2025/venv/bin/activate
-bash /app/Website_2025/actions/maintenance.sh --nginx-on --django-on
-pkill gunicorn
+sudo bash /app/Website_2025/actions/status.sh
+. /app/Website_2025/venv/bin/activate
+sudo bash /app/Website_2025/actions/maintenance.sh --nginx-on --django-on
+sudo pkill gunicorn
 
 # Checkout specific commit or branch (default master)
 if [[ -n "$COMMIT_HASH" ]]; then
@@ -48,15 +48,15 @@ else
 fi
 
 pip install -r requirements.txt
-cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d
-cp /app/Website_2025/nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
-nginx -s reload
-python /app/Website_2025/backend/manage.py collectstatic --no-input
-python /app/Website_2025/backend/manage.py migrate
-python /app/Website_2025/backend/manage.py update_website_version
-bash /app/Website_2025/actions/clean.sh
-cd /app/Website_2025/backend
+sudo cp /app/Website_2025/nginx/website_2025.conf /etc/nginx/conf.d
+sudo cp /app/Website_2025/nginx/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance
+sudo nginx -s reload
+python3 /app/Website_2025/backend/manage.py collectstatic --no-input
+python3 /app/Website_2025/backend/manage.py migrate
+python3 /app/Website_2025/backend/manage.py update_website_version
+sudo bash /app/Website_2025/actions/clean.sh
+sudo cd /app/Website_2025/backend
 gunicorn backend.wsgi:application --config /app/Website_2025/backend/gunicorn_config.py --daemon
-bash /app/Website_2025/actions/maintenance.sh --nginx-off
+sudo bash /app/Website_2025/actions/maintenance.sh --nginx-off
 cd /app/Website_2025
 echo "Update complete. Remember to disable Django's maintenance_mode when testing complete."

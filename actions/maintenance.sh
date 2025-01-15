@@ -1,24 +1,24 @@
 #!/bin/bash
 
 nginx-on() {
-    cp /etc/nginx/conf.d/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance/maintenance_on.conf
-    nginx -s reload
+    sudo cp /etc/nginx/conf.d/maintenance/maintenance.conf.on /etc/nginx/conf.d/maintenance/maintenance_on.conf
+    sudo nginx -s reload
     echo "NGINX: Maintenance mode enabled."
 }
 
 nginx-off() {
-    rm /etc/nginx/conf.d/maintenance/maintenance_on.conf
-    nginx -s reload
+    sudo rm /etc/nginx/conf.d/maintenance/maintenance_on.conf
+    sudo nginx -s reload
     echo "NGINX: Maintenance mode disabled."
 }
 
 django-on() {
-    python /app/Website_2025/backend/manage.py maintenance_enable
+    python3 /app/Website_2025/backend/manage.py maintenance_enable
     echo "Django: Maintenance mode enabled."
 }
 
 django-off() {
-    python /app/Website_2025/backend/manage.py maintenance_disable
+    python3 /app/Website_2025/backend/manage.py maintenance_disable
     echo "Django: Maintenance mode disabled."
 }
 

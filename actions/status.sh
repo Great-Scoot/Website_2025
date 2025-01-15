@@ -1,5 +1,5 @@
 #!/bin/bash
-service nginx status
-nginx -t
-ps aux | grep gunicorn
-pg_ctlcluster 14 main status
+# sudo service nginx status
+sudo nginx -t
+sudo ps aux | grep gunicorn
+sudo pg_ctlcluster 14 main status

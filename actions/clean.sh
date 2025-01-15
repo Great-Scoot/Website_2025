@@ -1,19 +1,19 @@
 #!/bin/bash
 # Remove assets not needed in production
-rm -rf /app/temp
-rm -rf /app/Website_2025/backend/static/debug_toolbar
-rm -rf /app/Website_2025/backend/static/images
-rm -rf /app/Website_2025/backend/static/scripts
-rm -rf /app/Website_2025/backend/static/styles
-rm -f /app/Website_2025/backend/static/error.html
-rm -f /app/Website_2025/backend/static/index.html
-rm -f /app/Website_2025/backend/static/maintenance.html
-rm -rf /app/Website_2025/frontend/source
-rm -f /app/Website_2025/frontend/public/index.html
-rm -rf /app/Website_2025/nginx
-rm -f /app/Website_2025/notes.txt
-rm -f /app/Website_2025/todo.txt
-rm -f /app/Website_2025/package-lock.json
-rm -f /app/Website_2025/package.json
-rm -f /app/Website_2025/test.Dockerfile
-rm -f /app/Website_2025/webpack.config.js
+sudo rm -rf /app/temp
+sudo rm -rf /app/Website_2025/backend/static/debug_toolbar
+sudo rm -rf /app/Website_2025/backend/static/images
+sudo rm -rf /app/Website_2025/backend/static/scripts
+sudo rm -rf /app/Website_2025/backend/static/styles
+sudo rm -f /app/Website_2025/backend/static/error.html
+sudo rm -f /app/Website_2025/backend/static/index.html
+sudo rm -f /app/Website_2025/backend/static/maintenance.html
+sudo rm -rf /app/Website_2025/frontend/source
+sudo rm -f /app/Website_2025/frontend/public/index.html
+sudo rm -rf /app/Website_2025/nginx
+sudo rm -f /app/Website_2025/notes.txt
+sudo rm -f /app/Website_2025/todo.txt
+sudo rm -f /app/Website_2025/package-lock.json
+sudo rm -f /app/Website_2025/package.json
+sudo rm -f /app/Website_2025/test.Dockerfile
+sudo rm -f /app/Website_2025/webpack.config.js

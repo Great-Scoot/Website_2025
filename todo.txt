@@ -12,6 +12,7 @@
             - Setup SSL, including auto-renewal (done)
             - Add google analytics (done)
             - UFW (done)
+            - Test status.sh (done)
             ## PICKUP HERE ##
             - Test update.sh
             - Snapshot, Remove old droplet
