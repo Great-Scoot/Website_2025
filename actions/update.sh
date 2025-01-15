@@ -55,7 +55,7 @@ python3 /app/Website_2025/backend/manage.py collectstatic --no-input
 python3 /app/Website_2025/backend/manage.py migrate
 python3 /app/Website_2025/backend/manage.py update_website_version
 sudo bash /app/Website_2025/actions/clean.sh
-sudo cd /app/Website_2025/backend
+cd /app/Website_2025/backend
 gunicorn backend.wsgi:application --config /app/Website_2025/backend/gunicorn_config.py --daemon
 sudo bash /app/Website_2025/actions/maintenance.sh --nginx-off
 cd /app/Website_2025
